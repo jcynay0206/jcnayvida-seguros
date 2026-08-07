@@ -712,34 +712,30 @@
 <!-- SOBRE YUNERSY -->
 <section class="section section-alt" id="sobre-mi">
   <div class="sobre-v2-wrap reveal">
-    <div class="sobre-v2-foto-col">
-      <div class="sobre-v2-marco">
-        <img src="/yunersy.jpg" alt="Yunersy Salabarria" class="sobre-v2-img">
-        <div class="sobre-v2-deco"></div>
-      </div>
-      <div class="sobre-v2-valores">
-        <div class="sv2-valor">🤝 Honestidad</div>
-        <div class="sv2-valor">❤️ Servicio</div>
-        <div class="sv2-valor">🌱 Propósito</div>
-        <div class="sv2-valor">🎯 Claridad</div>
-      </div>
-    </div>
-    <div class="sobre-v2-texto">
-      <div class="section-label">Mi historia</div>
-      <h2 class="section-title">Soy Yunersy.<br><em style="font-style:italic;color:var(--gold-dark)">Llegué a este país<br>con una maleta llena de sueños.</em></h2>
+    <div class="sobre-v2-texto sobre-v2-centrado">
+      <div class="section-label center">Mi historia</div>
+      <h2 class="section-title center">Soy Yunersy.<br><em style="font-style:italic;color:var(--gold-dark)">Llegué a este país<br>con una maleta llena de sueños.</em></h2>
       <div class="sobre-v2-historia">
         <p>Como inmigrante hispana, conozco de cerca lo que significa trabajar duro, soñar en grande y al mismo tiempo sentir ese miedo silencioso: <strong>¿qué pasa si algo me ocurre? ¿Quién protege a los que más amo?</strong></p>
         <p>Esa pregunta cambió mi vida. Hoy mi misión es ayudar a las familias hispanas en Estados Unidos a tomar decisiones financieras con claridad — para proteger lo que más aman, construir un legado y vivir con tranquilidad real.</p>
         <p>No te vendo un producto. Te acompaño a entender tus opciones, en tu idioma, sin presiones y con total transparencia. Porque creo que <strong>la confianza se gana, no se pide.</strong></p>
       </div>
-      <div class="sobre-v2-logros">
+      <div class="sobre-v2-valores sobre-v2-valores-row">
+        <div class="sv2-valor">🤝 Honestidad</div>
+        <div class="sv2-valor">❤️ Servicio</div>
+        <div class="sv2-valor">🌱 Propósito</div>
+        <div class="sv2-valor">🎯 Claridad</div>
+      </div>
+      <div class="sobre-v2-logros sobre-v2-logros-center">
         <div class="sv2-logro"><span class="sv2-num">NJ</span><span class="sv2-label">Licenciada<br><small>vida en vigor</small></span></div>
         <div class="sv2-sep"></div>
         <div class="sv2-logro"><span class="sv2-num">FL</span><span class="sv2-label">Licenciada<br><small>vida en vigor</small></span></div>
         <div class="sv2-sep"></div>
         <div class="sv2-logro"><span class="sv2-num">100%</span><span class="sv2-label">Atención<br><small>en español</small></span></div>
       </div>
-      <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20agendar%20mi%20asesor%C3%ADa%20gratuita." class="btn-primary" target="_blank" style="display:inline-block;margin-top:8px">Agenda tu asesoría gratuita →</a>
+      <div style="text-align:center">
+        <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20agendar%20mi%20asesor%C3%ADa%20gratuita." class="btn-primary" target="_blank" style="display:inline-block;margin-top:8px">Agenda tu asesoría gratuita →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -800,46 +796,38 @@
 <style>
 /* SOBRE */
 .sobre-v2-wrap {
-  display: grid; grid-template-columns: 400px 1fr;
-  gap: 72px; max-width: 1100px; margin: 0 auto; align-items: start;
+  max-width: 780px;
+  margin: 0 auto;
 }
-.sobre-v2-marco { position: relative; margin-bottom: 24px; }
-.sobre-v2-deco {
-  position: absolute; bottom: -14px; right: -14px;
-  width: 100%; height: 100%; border-radius: 20px;
-  border: 2px solid var(--gold); z-index: 0;
+.sobre-v2-centrado { width: 100%; }
+.sobre-v2-historia {
+  display: flex; flex-direction: column; gap: 14px;
+  margin: 20px 0 28px; text-align: left;
 }
-.sobre-v2-img {
-  width: 100%; border-radius: 20px;
-  object-fit: cover; object-position: top center;
-  aspect-ratio: 4/5; display: block; position: relative; z-index: 1;
-  box-shadow: 0 20px 60px rgba(10,26,42,0.18);
+.sobre-v2-historia p { font-size: 16px; line-height: 1.8; color: var(--muted); margin: 0; }
+.sobre-v2-historia strong { color: var(--navy); font-weight: 700; }
+.sobre-v2-valores-row {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  justify-content: center; margin-bottom: 28px;
 }
-.sobre-v2-valores { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .sv2-valor {
   background: white; border: 1px solid rgba(10,26,42,0.08);
-  border-radius: 10px; padding: 10px 14px;
-  font-size: 13.5px; font-weight: 600; color: var(--navy);
+  border-radius: 10px; padding: 10px 18px;
+  font-size: 14px; font-weight: 600; color: var(--navy);
   box-shadow: 0 2px 8px rgba(10,26,42,0.05);
 }
-.sobre-v2-historia { display: flex; flex-direction: column; gap: 14px; margin: 20px 0 28px; }
-.sobre-v2-historia p { font-size: 15.5px; line-height: 1.8; color: var(--muted); margin: 0; }
-.sobre-v2-historia strong { color: var(--navy); font-weight: 700; }
-.sobre-v2-logros {
-  display: flex; align-items: center; gap: 24px;
-  padding: 20px 0; margin-bottom: 24px;
-  border-top: 1px solid rgba(10,26,42,0.1); border-bottom: 1px solid rgba(10,26,42,0.1);
+.sobre-v2-logros-center {
+  display: flex; align-items: center; gap: 32px;
+  justify-content: center;
+  padding: 24px 0; margin-bottom: 28px;
+  border-top: 1px solid rgba(10,26,42,0.1);
+  border-bottom: 1px solid rgba(10,26,42,0.1);
 }
 .sv2-logro { display: flex; align-items: center; gap: 10px; }
 .sv2-num { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--gold-dark); line-height: 1; }
 .sv2-label { font-size: 12.5px; color: var(--navy); font-weight: 600; line-height: 1.4; }
 .sv2-label small { font-weight: 400; color: var(--muted); font-size: 11px; display: block; }
 .sv2-sep { width: 1px; height: 36px; background: rgba(10,26,42,0.1); }
-@media(max-width:960px){
-  .sobre-v2-wrap { grid-template-columns: 1fr; gap: 36px; }
-  .sobre-v2-img { max-width: 300px; margin: 0 auto; display: block; aspect-ratio: 1/1; }
-  .sobre-v2-marco { text-align: center; }
-}
 
 /* TESTIMONIOS */
 .test-grid {
@@ -1036,7 +1024,7 @@
       </div>
       <div class="blog-card-body">
         <div class="blog-desc">Una de las carreras más accesibles y con mayor potencial de ingresos en Estados Unidos. Te explico cómo entrar desde cero.</div>
-        <div class="blog-date">7 agosto 2026</div>
+        <div class="blog-date">10 marzo 2026</div>
         <div class="blog-link">Leer artículo →</div>
       </div>
     </div>
@@ -1048,7 +1036,7 @@
       </div>
       <div class="blog-card-body">
         <div class="blog-desc">Muchos hispanos no tienen acceso a un 401k de empleador. Descubre por qué el IUL puede ser una alternativa superior.</div>
-        <div class="blog-date">7 agosto 2026</div>
+        <div class="blog-date">15 abril 2026</div>
         <div class="blog-link">Leer artículo →</div>
       </div>
     </div>
@@ -1060,7 +1048,7 @@
       </div>
       <div class="blog-card-body">
         <div class="blog-desc">La pregunta que nadie quiere hacerse — pero que toda familia debe responder antes de que sea tarde.</div>
-        <div class="blog-date">7 agosto 2026</div>
+        <div class="blog-date">15 mayo 2026</div>
         <div class="blog-link">Leer artículo →</div>
       </div>
     </div>
@@ -1072,7 +1060,7 @@
       </div>
       <div class="blog-card-body">
         <div class="blog-desc">En nuestra cultura el dinero es tabú. Pero esa cultura del silencio financiero nos cuesta generaciones de riqueza.</div>
-        <div class="blog-date">7 agosto 2026</div>
+        <div class="blog-date">20 junio 2026</div>
         <div class="blog-link">Leer artículo →</div>
       </div>
     </div>
@@ -1297,7 +1285,7 @@
     <button class="post-close" onclick="closePost('post10')">×</button>
     <div class="post-cat">Carrera · Seguros</div>
     <h1 class="post-title">Cómo empezar una carrera en seguros de vida en USA (aunque no tengas experiencia)</h1>
-    <div class="post-date">7 de agosto, 2026</div>
+    <div class="post-date">10 de marzo, 2026</div>
     <div class="post-content">
       <p>La industria de seguros de vida es una de las pocas en Estados Unidos donde puedes comenzar desde cero, sin título universitario, sin experiencia previa, y construir un ingreso de seis cifras en pocos años.</p>
       <p>Lo sé porque yo lo viví. Y si estás leyendo esto, quizás esta carrera también es para ti.</p>
@@ -1339,7 +1327,7 @@
     <button class="post-close" onclick="closePost('post11')">×</button>
     <div class="post-cat">Finanzas · IUL</div>
     <h1 class="post-title">IUL vs 401k: ¿cuál conviene más a las familias hispanas?</h1>
-    <div class="post-date">7 de agosto, 2026</div>
+    <div class="post-date">15 de abril, 2026</div>
     <div class="post-content">
       <p>La realidad de muchas familias hispanas en USA: trabajo propio, empleo sin beneficios, o ingresos mixtos que hacen del 401k una opción limitada o imposible. Ahí es donde entra el IUL.</p>
       <h2>¿Qué es un 401k?</h2>
@@ -1373,7 +1361,7 @@
     <button class="post-close" onclick="closePost('post12')">×</button>
     <div class="post-cat">Familia · Legado</div>
     <h1 class="post-title">¿Qué le pasa a tu familia si el que más gana en casa falta de repente?</h1>
-    <div class="post-date">7 de agosto, 2026</div>
+    <div class="post-date">15 de mayo, 2026</div>
     <div class="post-content">
       <p>Es la pregunta que nadie quiere hacerse. Pero si tienes personas que dependen de ti económicamente, es la pregunta más importante que debes responder — antes de que la vida te la haga ella sola.</p>
       <h2>La realidad que enfrentan las familias</h2>
@@ -1407,7 +1395,7 @@
     <button class="post-close" onclick="closePost('post13')">×</button>
     <div class="post-cat">Finanzas · Familia</div>
     <h1 class="post-title">Cómo hablar de dinero en familia sin que termine en pelea</h1>
-    <div class="post-date">7 de agosto, 2026</div>
+    <div class="post-date">20 de junio, 2026</div>
     <div class="post-content">
       <p>En la cultura hispana, hablar de dinero en casa es casi un tabú. El resultado: generaciones enteras que toman decisiones financieras sin comunicación, sin plan, y sin estrategia compartida. Y esa cultura del silencio financiero nos cuesta mucho.</p>
       <h2>¿Por qué nos cuesta tanto hablar de dinero?</h2>

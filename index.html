@@ -437,123 +437,477 @@
   <a href="https://wa.me/19086774196?text=Hola,%20me%20interesa%20una%20consulta%20gratuita%20sobre%20seguros%20de%20vida" class="nav-cta" target="_blank">Consulta Gratis</a>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-eyebrow">Protección Financiera · Familias Hispanas en USA</div>
-    <h1 class="hero-title">
-      Tu familia merece<br>
-      un futuro <em>protegido</em><br>
-      y libre de impuestos
-    </h1>
-    <p class="hero-sub">
-      Educación financiera clara, seguros de vida estratégicos y acompañamiento personalizado para familias hispanas en Estados Unidos. Sin letra pequeña, en tu idioma.
-    </p>
-    <div class="hero-ctas">
-      <a href="https://wa.me/19086774196?text=Hola,%20quiero%20una%20consulta%20gratuita%20sobre%20seguros%20de%20vida" class="btn-primary" target="_blank">💬 Consulta Gratuita</a>
-      <a href="#servicios" class="btn-secondary">Ver Servicios</a>
+<!-- HERO PERSONAL -->
+<section class="hero hero-personal-v2">
+  <div class="hero-personal-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hp-dot"></span>
+        Agente Licenciada · New Jersey &amp; Florida
+      </div>
+      <h1 class="hero-title">
+        Protege hoy a tu familia<br>
+        y construye un futuro<br>
+        <em>financiero con tranquilidad.</em>
+      </h1>
+      <p class="hero-sub">
+        Asesoría personalizada en español para familias hispanas en Estados Unidos.
+        Sin letra pequeña, sin presiones — solo claridad y un plan que realmente funciona.
+      </p>
+      <div class="hero-ctas">
+        <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20agendar%20mi%20asesor%C3%ADa%20gratuita." class="btn-wa-hero" target="_blank">
+          <span class="hp-dot"></span> Agenda tu asesoría gratuita
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">NJ · FL</div>
+          <div class="stat-label">Licenciada</div>
+        </div>
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">En español</div>
+        </div>
+        <div>
+          <div class="stat-num">$0</div>
+          <div class="stat-label">Consulta inicial</div>
+        </div>
+      </div>
     </div>
-    <div class="hero-stats">
-      <div>
-        <div class="stat-num">IUL</div>
-        <div class="stat-label">Especialistas</div>
-      </div>
-      <div>
-        <div class="stat-num">100%</div>
-        <div class="stat-label">En español</div>
-      </div>
-      <div>
-        <div class="stat-num">$0</div>
-        <div class="stat-label">Consulta inicial</div>
+    <div class="hero-foto-col">
+      <div class="hero-foto-marco">
+        <img src="/yunersy.jpg" alt="Yunersy Salabarria — Asesora de Seguros de Vida" class="hero-foto-img">
+        <div class="hero-foto-badge-v2">
+          <div class="hfb-avatar">Y</div>
+          <div>
+            <strong>Yunersy Salabarria</strong>
+            <span>Agente Licenciada · NJ &amp; FL</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<style>
+.hero-personal-v2 {
+  background: radial-gradient(ellipse at 70% 40%, rgba(201,168,106,0.1) 0%, transparent 60%), var(--cream) !important;
+  padding: 120px 60px 80px !important;
+  overflow: hidden;
+  position: relative;
+}
+.hero-personal-v2::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.hero-personal-inner {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 60px;
+  max-width: 1160px;
+  margin: 0 auto;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.hero-personal-v2 .hero-eyebrow {
+  background: rgba(201,168,106,0.1);
+  border: 1px solid rgba(201,168,106,0.3);
+  color: var(--gold-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.hp-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #25D366;
+  animation: hpdot 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes hpdot { 0%,100%{opacity:1}50%{opacity:0.3} }
+.hero-personal-v2 .hero-title { color: var(--navy); }
+.hero-personal-v2 .hero-title em { color: var(--gold-dark); }
+.hero-personal-v2 .hero-sub { color: var(--muted); }
+.hero-personal-v2 .stat-num { color: var(--navy); }
+.hero-personal-v2 .stat-label { color: var(--muted); }
+.btn-wa-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 17px 40px;
+  background: #25D366;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.02em;
+}
+.btn-wa-hero:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(37,211,102,0.55);
+}
+.hero-foto-col { position: relative; }
+.hero-foto-marco {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.hero-foto-marco::before {
+  content: '';
+  position: absolute;
+  inset: -16px;
+  border-radius: 28px;
+  border: 1px solid rgba(201,168,106,0.2);
+  background: rgba(201,168,106,0.04);
+}
+.hero-foto-img {
+  width: 100%;
+  border-radius: 24px;
+  object-fit: cover;
+  object-position: top center;
+  aspect-ratio: 3/4;
+  display: block;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+}
+.hero-foto-badge-v2 {
+  position: absolute;
+  bottom: -18px;
+  left: -18px;
+  background: white;
+  border: 1px solid rgba(201,168,106,0.3);
+  border-radius: 14px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+  box-shadow: 0 8px 32px rgba(10,26,42,0.12);
+}
+.hfb-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), #e3cfa3);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 17px; color: var(--navy);
+  flex-shrink: 0;
+}
+.hero-foto-badge-v2 strong { display: block; font-size: 13px; color: var(--navy); font-weight: 700; }
+.hero-foto-badge-v2 span { display: block; font-size: 11px; color: var(--gold-dark); margin-top: 2px; }
+@media(max-width:960px){
+  .hero-personal-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-foto-col { order: -1; max-width: 280px; margin: 0 auto; }
+  .hero-foto-img { aspect-ratio: 1/1; }
+  .hero-foto-badge-v2 { left: 50%; transform: translateX(-50%); white-space: nowrap; }
+  .hero-personal-v2 { padding: 100px 24px 60px !important; }
+}
+</style>
+
 <div class="divider"></div>
 
-<!-- SERVICES -->
-<section class="section" id="servicios">
+<!-- PROBLEMAS -->
+<section class="section section-dark" id="servicios">
   <div style="text-align:center" class="reveal">
-    <div class="section-label center">Nuestros Servicios</div>
-    <h2 class="section-title center">Protección que va más allá<br>de un simple seguro</h2>
-    <p class="section-sub center">No vendemos pólizas. Diseñamos estrategias financieras para proteger y hacer crecer el patrimonio de tu familia.</p>
+    <div class="section-label center light">¿Te suena familiar?</div>
+    <h2 class="section-title light center">Las preguntas que mantienen<br><em style="font-style:italic;color:var(--gold-light)">a las familias despierto por las noches</em></h2>
+    <p class="section-sub light center">No estás solo. Para cada una de estas preocupaciones existe una solución clara — y yo te la explico en tu idioma.</p>
   </div>
 
-  <div class="services-grid reveal">
-    <div class="service-card">
-      <div class="service-icon">🛡️</div>
-      <div class="service-name">Seguro de Vida IUL</div>
-      <div class="service-desc">El Indexed Universal Life combina protección permanente, crecimiento vinculado al S&P 500 y beneficios fiscales. La herramienta más poderosa para familias que quieren protección y crecimiento al mismo tiempo.</div>
+  <div class="problemas-grid-v2 reveal">
+    <div class="problema-v2">
+      <div class="pv2-icono">😰</div>
+      <h3>¿Qué pasa con mi familia si yo falto?</h3>
+      <p>Si algo te ocurre mañana, ¿tu familia podría mantener su hogar y seguir adelante? Un plan cambia todo.</p>
+      <div class="pv2-tag">✔ Proteger a tu familia</div>
     </div>
-    <div class="service-card">
-      <div class="service-icon">📈</div>
-      <div class="service-name">Retiro Libre de Impuestos</div>
-      <div class="service-desc">Construye un fondo de retiro que no tributa al IRS. Estrategias legales para que tu dinero crezca y lo puedas usar en el futuro sin pagar impuestos sobre esos ingresos.</div>
+    <div class="problema-v2">
+      <div class="pv2-icono">💸</div>
+      <h3>¿Quién pagaría los gastos finales?</h3>
+      <p>Un funeral en USA puede costar entre $8,000 y $15,000. Esa carga no debería caer sobre las personas que ya están sufriendo.</p>
+      <div class="pv2-tag">✔ Gastos finales cubiertos</div>
     </div>
-    <div class="service-card">
-      <div class="service-icon">👨‍👩‍👧</div>
-      <div class="service-name">Protección Familiar</div>
-      <div class="service-desc">Si algo te pasa, tu familia no debe perder su hogar ni su estilo de vida. Diseñamos coberturas que reemplazan tus ingresos y protegen lo que más quieres.</div>
+    <div class="problema-v2 problema-v2-dest">
+      <div class="pv2-icono">📈</div>
+      <h3>¿Mi dinero está trabajando para mí o se lo lleva el IRS?</h3>
+      <p>Existen estrategias legales para que tu dinero crezca vinculado al mercado y puedas retirarlo en el futuro <strong>sin pagar impuestos.</strong></p>
+      <div class="pv2-tag">✔ Beneficios en vida · Crecimiento sin riesgo</div>
     </div>
-    <div class="service-card">
-      <div class="service-icon">🎓</div>
-      <div class="service-name">Educación Financiera</div>
-      <div class="service-desc">Entender tus opciones es el primer paso. Te enseñamos en español cómo funcionan los seguros, el dinero y las estrategias que usan las familias más prósperas.</div>
+    <div class="problema-v2">
+      <div class="pv2-icono">🏠</div>
+      <h3>¿Cómo construyo patrimonio sin ganar millones?</h3>
+      <p>No necesitas ser rico para planificar. Necesitas planificar para construir riqueza generacional para tus hijos.</p>
+      <div class="pv2-tag">✔ Planificación financiera a tu medida</div>
     </div>
-    <div class="service-card">
-      <div class="service-icon">💼</div>
-      <div class="service-name">Únete al Equipo</div>
-      <div class="service-desc">¿Quieres una carrera con propósito e ingresos ilimitados? Ayuda a familias hispanas mientras construyes tu propio negocio de seguros. Capacitación completa incluida.</div>
+    <div class="problema-v2">
+      <div class="pv2-icono">👴</div>
+      <h3>¿Podré retirarme sin depender del Social Security?</h3>
+      <p>El Social Security solo cubre el 40% de tus ingresos previos. Las familias que planifican a tiempo se retiran con verdadera libertad.</p>
+      <div class="pv2-tag">✔ Ahorro para el futuro</div>
     </div>
-    <div class="service-card">
-      <div class="service-icon">📞</div>
-      <div class="service-name">Consulta Gratuita</div>
-      <div class="service-desc">Una conversación de 30 minutos para entender tu situación y recomendarte la estrategia correcta. Sin presión, sin compromiso, en español.</div>
+    <div class="problema-v2">
+      <div class="pv2-icono">🎓</div>
+      <h3>¿Entiendo mis opciones o solo escucho términos?</h3>
+      <p>IUL, term life, whole life… Si nadie te explicó qué significa cada cosa, tomar una decisión informada es imposible. Eso es exactamente lo que hago contigo.</p>
+      <div class="pv2-tag">✔ Educación financiera en tu idioma</div>
     </div>
   </div>
+
+  <div style="text-align:center;margin-top:56px" class="reveal">
+    <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20agendar%20mi%20asesor%C3%ADa%20gratuita." class="btn-wa-hero" target="_blank">
+      <span class="hp-dot"></span> Agenda tu asesoría gratuita — es sin costo
+    </a>
+  </div>
 </section>
+
+<style>
+.problemas-grid-v2 {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+  max-width: 1100px;
+  margin: 56px auto 0;
+}
+.problema-v2 {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(250,247,242,0.08);
+  border-radius: 18px;
+  padding: 28px 24px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.problema-v2:hover { border-color: rgba(201,168,106,0.3); transform: translateY(-4px); }
+.problema-v2-dest {
+  background: rgba(201,168,106,0.08);
+  border-color: rgba(201,168,106,0.22);
+}
+.pv2-icono { font-size: 30px; line-height: 1; }
+.problema-v2 h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; color: var(--cream); margin: 0; line-height: 1.35;
+}
+.problema-v2 p {
+  font-size: 14px; color: rgba(250,247,242,0.58); line-height: 1.75; margin: 0; flex: 1;
+}
+.problema-v2 p strong { color: var(--gold); }
+.pv2-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px;
+  background: rgba(37,211,102,0.1);
+  border: 1px solid rgba(37,211,102,0.2);
+  border-radius: 50px;
+  font-size: 12px; font-weight: 700; color: #6fcf97;
+  margin-top: auto;
+}
+@media(max-width:900px){ .problemas-grid-v2{ grid-template-columns:1fr 1fr; } }
+@media(max-width:600px){ .problemas-grid-v2{ grid-template-columns:1fr; } }
+</style>
 
 <div class="divider"></div>
 
-<!-- WHY -->
-<section class="section section-alt reveal">
-  <div style="text-align:center">
-    <div class="section-label center">¿Por qué nosotros?</div>
-    <h2 class="section-title center">La diferencia que<br>hace la diferencia</h2>
-  </div>
-
-  <div class="why-grid reveal">
-    <div class="why-card">
-      <div class="why-num">01</div>
-      <div>
-        <div class="why-title">Hablamos tu idioma</div>
-        <div class="why-desc">No solo en español — sino en tu cultura, tus valores y tus metas como familia hispana en USA. Entendemos tu realidad porque es también la nuestra.</div>
+<!-- SOBRE YUNERSY -->
+<section class="section section-alt" id="sobre-mi">
+  <div class="sobre-v2-wrap reveal">
+    <div class="sobre-v2-foto-col">
+      <div class="sobre-v2-marco">
+        <img src="/yunersy.jpg" alt="Yunersy Salabarria" class="sobre-v2-img">
+        <div class="sobre-v2-deco"></div>
+      </div>
+      <div class="sobre-v2-valores">
+        <div class="sv2-valor">🤝 Honestidad</div>
+        <div class="sv2-valor">❤️ Servicio</div>
+        <div class="sv2-valor">🌱 Propósito</div>
+        <div class="sv2-valor">🎯 Claridad</div>
       </div>
     </div>
-    <div class="why-card">
-      <div class="why-num">02</div>
-      <div>
-        <div class="why-title">Educación antes que venta</div>
-        <div class="why-desc">Primero te explicamos todo claramente. Nunca te presionamos a comprar. Tu decisión debe ser informada y libre, siempre.</div>
+    <div class="sobre-v2-texto">
+      <div class="section-label">Mi historia</div>
+      <h2 class="section-title">Soy Yunersy.<br><em style="font-style:italic;color:var(--gold-dark)">Llegué a este país<br>con una maleta llena de sueños.</em></h2>
+      <div class="sobre-v2-historia">
+        <p>Como inmigrante hispana, conozco de cerca lo que significa trabajar duro, soñar en grande y al mismo tiempo sentir ese miedo silencioso: <strong>¿qué pasa si algo me ocurre? ¿Quién protege a los que más amo?</strong></p>
+        <p>Esa pregunta cambió mi vida. Hoy mi misión es ayudar a las familias hispanas en Estados Unidos a tomar decisiones financieras con claridad — para proteger lo que más aman, construir un legado y vivir con tranquilidad real.</p>
+        <p>No te vendo un producto. Te acompaño a entender tus opciones, en tu idioma, sin presiones y con total transparencia. Porque creo que <strong>la confianza se gana, no se pide.</strong></p>
       </div>
-    </div>
-    <div class="why-card">
-      <div class="why-num">03</div>
-      <div>
-        <div class="why-title">Especialistas en IUL</div>
-        <div class="why-desc">No vendemos cualquier producto. Nos especializamos en estrategias IUL bien diseñadas — la diferencia entre un IUL bueno y uno malo es enorme.</div>
+      <div class="sobre-v2-logros">
+        <div class="sv2-logro"><span class="sv2-num">NJ</span><span class="sv2-label">Licenciada<br><small>vida en vigor</small></span></div>
+        <div class="sv2-sep"></div>
+        <div class="sv2-logro"><span class="sv2-num">FL</span><span class="sv2-label">Licenciada<br><small>vida en vigor</small></span></div>
+        <div class="sv2-sep"></div>
+        <div class="sv2-logro"><span class="sv2-num">100%</span><span class="sv2-label">Atención<br><small>en español</small></span></div>
       </div>
-    </div>
-    <div class="why-card">
-      <div class="why-num">04</div>
-      <div>
-        <div class="why-title">Acompañamiento real</div>
-        <div class="why-desc">No desaparecemos después de la venta. Estamos contigo en cada etapa — cuando tienes preguntas, cuando cambia tu situación, siempre.</div>
-      </div>
+      <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20agendar%20mi%20asesor%C3%ADa%20gratuita." class="btn-primary" target="_blank" style="display:inline-block;margin-top:8px">Agenda tu asesoría gratuita →</a>
     </div>
   </div>
 </section>
+
+<!-- TESTIMONIOS -->
+<section class="section" id="testimonios">
+  <div style="text-align:center" class="reveal">
+    <div class="section-label center">Lo que dicen mis clientes</div>
+    <h2 class="section-title center">Familias reales.<br><em style="font-style:italic;color:var(--gold-dark)">Resultados reales.</em></h2>
+    <p class="section-sub center">La confianza no se pide — se construye. Estas son las palabras de personas que tomaron el primer paso.</p>
+  </div>
+  <div class="test-grid reveal">
+    <div class="test-card">
+      <div class="test-comilla">"</div>
+      <p>Yunersy me explicó todo con una paciencia y claridad que nunca había encontrado. Finalmente entendí cómo el seguro de vida también podía hacerme crecer dinero. Mi familia está protegida y yo duermo tranquilo.</p>
+      <div class="test-estrellas">★★★★★</div>
+      <div class="test-autor"><div class="test-av" style="background:linear-gradient(135deg,#1a6b5a,#0a3d4a)">M</div><div><strong>Miguel R.</strong><span>Nueva Jersey</span></div></div>
+    </div>
+    <div class="test-card test-dest">
+      <div class="test-comilla">"</div>
+      <p>Como mamá soltera tenía miedo de no poder proteger a mis hijos si me pasaba algo. Yunersy me orientó sin presiones y encontramos un plan que cabe en mi presupuesto. Es más que una asesora — es alguien que de verdad se preocupa.</p>
+      <div class="test-estrellas">★★★★★</div>
+      <div class="test-autor"><div class="test-av" style="background:linear-gradient(135deg,#c9a86a,#a07840);color:#0a1a2a">L</div><div><strong>Lucía M.</strong><span>Elizabeth, NJ</span></div></div>
+    </div>
+    <div class="test-card">
+      <div class="test-comilla">"</div>
+      <p>Pensaba que los seguros de vida eran solo para gente mayor o muy rica. Yunersy cambió completamente mi perspectiva y hoy tengo una póliza que también funciona como inversión. Ojalá hubiera empezado antes.</p>
+      <div class="test-estrellas">★★★★★</div>
+      <div class="test-autor"><div class="test-av" style="background:linear-gradient(135deg,#5a3a7a,#0a1a2a)">C</div><div><strong>Carlos V.</strong><span>Florida</span></div></div>
+    </div>
+  </div>
+  <p class="test-nota reveal">✔ Testimonios de clientes reales · Los resultados pueden variar según la situación de cada persona.</p>
+</section>
+
+<!-- ESTADOS / LICENCIAS -->
+<section class="section section-dark" id="licencias">
+  <div style="text-align:center" class="reveal">
+    <div class="section-label center light">Autorización oficial</div>
+    <h2 class="section-title light center">Estados donde estoy licenciada</h2>
+    <p class="section-sub light center">Agente certificada para ejercer en los siguientes estados — tu protección está en manos de una profesional.</p>
+  </div>
+  <div class="lic-grid reveal">
+    <div class="lic-card">
+      <div class="lic-top"><span class="lic-emoji">🗽</span><span class="lic-badge">● Licencia activa</span></div>
+      <h3>New Jersey</h3>
+      <div class="lic-fila"><span class="lic-label">Tipo</span><span>Life Insurance Producer</span></div>
+      <div class="lic-fila"><span class="lic-label">N° de licencia</span><span class="lic-num">3003419400</span></div>
+    </div>
+    <div class="lic-card">
+      <div class="lic-top"><span class="lic-emoji">🌴</span><span class="lic-badge">● Licencia activa</span></div>
+      <h3>Florida</h3>
+      <div class="lic-fila"><span class="lic-label">Tipo</span><span>Life Insurance Agent</span></div>
+      <div class="lic-fila"><span class="lic-label">N° de licencia</span><span class="lic-num">G365745</span></div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* SOBRE */
+.sobre-v2-wrap {
+  display: grid; grid-template-columns: 400px 1fr;
+  gap: 72px; max-width: 1100px; margin: 0 auto; align-items: start;
+}
+.sobre-v2-marco { position: relative; margin-bottom: 24px; }
+.sobre-v2-deco {
+  position: absolute; bottom: -14px; right: -14px;
+  width: 100%; height: 100%; border-radius: 20px;
+  border: 2px solid var(--gold); z-index: 0;
+}
+.sobre-v2-img {
+  width: 100%; border-radius: 20px;
+  object-fit: cover; object-position: top center;
+  aspect-ratio: 4/5; display: block; position: relative; z-index: 1;
+  box-shadow: 0 20px 60px rgba(10,26,42,0.18);
+}
+.sobre-v2-valores { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.sv2-valor {
+  background: white; border: 1px solid rgba(10,26,42,0.08);
+  border-radius: 10px; padding: 10px 14px;
+  font-size: 13.5px; font-weight: 600; color: var(--navy);
+  box-shadow: 0 2px 8px rgba(10,26,42,0.05);
+}
+.sobre-v2-historia { display: flex; flex-direction: column; gap: 14px; margin: 20px 0 28px; }
+.sobre-v2-historia p { font-size: 15.5px; line-height: 1.8; color: var(--muted); margin: 0; }
+.sobre-v2-historia strong { color: var(--navy); font-weight: 700; }
+.sobre-v2-logros {
+  display: flex; align-items: center; gap: 24px;
+  padding: 20px 0; margin-bottom: 24px;
+  border-top: 1px solid rgba(10,26,42,0.1); border-bottom: 1px solid rgba(10,26,42,0.1);
+}
+.sv2-logro { display: flex; align-items: center; gap: 10px; }
+.sv2-num { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--gold-dark); line-height: 1; }
+.sv2-label { font-size: 12.5px; color: var(--navy); font-weight: 600; line-height: 1.4; }
+.sv2-label small { font-weight: 400; color: var(--muted); font-size: 11px; display: block; }
+.sv2-sep { width: 1px; height: 36px; background: rgba(10,26,42,0.1); }
+@media(max-width:960px){
+  .sobre-v2-wrap { grid-template-columns: 1fr; gap: 36px; }
+  .sobre-v2-img { max-width: 300px; margin: 0 auto; display: block; aspect-ratio: 1/1; }
+  .sobre-v2-marco { text-align: center; }
+}
+
+/* TESTIMONIOS */
+.test-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 24px; max-width: 1100px; margin: 56px auto 0; align-items: start;
+}
+.test-card {
+  background: white; border-radius: 18px; padding: 28px 24px;
+  border: 1px solid rgba(10,26,42,0.07);
+  box-shadow: 0 4px 20px rgba(10,26,42,0.06);
+  display: flex; flex-direction: column; gap: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.test-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(10,26,42,0.12); }
+.test-dest {
+  background: linear-gradient(145deg,#0f3545,#0a1a2a);
+  border-color: rgba(201,168,106,0.2);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 56px rgba(10,26,42,0.3);
+}
+.test-dest:hover { transform: translateY(-14px); }
+.test-dest p { color: rgba(250,247,242,0.82); }
+.test-dest strong { color: var(--cream); }
+.test-dest span { color: rgba(250,247,242,0.5); }
+.test-comilla { font-family: 'Playfair Display', serif; font-size: 56px; color: rgba(201,168,106,0.2); line-height: 0.7; font-weight: 700; }
+.test-dest .test-comilla { color: rgba(201,168,106,0.35); }
+.test-card p { font-size: 14.5px; line-height: 1.8; color: var(--muted); margin: 0; font-style: italic; flex: 1; }
+.test-estrellas { font-size: 16px; color: var(--gold); letter-spacing: 2px; }
+.test-autor { display: flex; align-items: center; gap: 12px; }
+.test-av {
+  width: 42px; height: 42px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 17px; color: rgba(255,255,255,0.95); flex-shrink: 0;
+}
+.test-autor strong { display: block; font-size: 13.5px; color: var(--navy); font-weight: 700; }
+.test-dest .test-autor strong { color: var(--cream); }
+.test-autor span { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
+.test-nota { text-align: center; font-size: 12px; color: var(--muted); margin-top: 36px; }
+@media(max-width:900px){ .test-grid{ grid-template-columns:1fr; } .test-dest{ transform:none; } }
+
+/* LICENCIAS */
+.lic-grid {
+  display: grid; grid-template-columns: repeat(2,1fr);
+  gap: 24px; max-width: 700px; margin: 48px auto 0;
+}
+.lic-card {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(250,247,242,0.1);
+  background: rgba(255,255,255,0.04);
+  padding: 22px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.lic-card:hover { border-color: rgba(201,168,106,0.4); transform: translateY(-4px); }
+.lic-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.lic-emoji { font-size: 34px; line-height: 1; }
+.lic-badge {
+  font-size: 11.5px; font-weight: 700;
+  padding: 4px 12px; border-radius: 50px;
+  background: rgba(111,207,151,0.15); color: #6fcf97;
+  border: 1px solid rgba(111,207,151,0.3);
+}
+.lic-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--cream); margin: 0 0 12px; }
+.lic-fila { display: flex; gap: 10px; font-size: 13px; margin-bottom: 6px; }
+.lic-label { color: rgba(250,247,242,0.4); min-width: 110px; flex-shrink: 0; }
+.lic-fila span:last-child { color: var(--cream); font-weight: 500; }
+.lic-num { font-family: 'Courier New', monospace; letter-spacing: 0.06em; color: var(--gold) !important; }
+@media(max-width:600px){ .lic-grid{ grid-template-columns:1fr; } }
+</style>
 
 <div class="divider"></div>
 
@@ -671,6 +1025,54 @@
       <div class="blog-card-body">
         <div class="blog-desc">Patrones que repetimos sin darnos cuenta y que nos impiden construir riqueza generacional.</div>
         <div class="blog-date">22 febrero 2026</div>
+        <div class="blog-link">Leer artículo →</div>
+      </div>
+    </div>
+
+    <div class="blog-card" onclick="openPost('post10')">
+      <div class="blog-card-top">
+        <div class="blog-cat">Carrera · Seguros</div>
+        <div class="blog-title">Cómo empezar una carrera en seguros de vida en USA (aunque no tengas experiencia)</div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-desc">Una de las carreras más accesibles y con mayor potencial de ingresos en Estados Unidos. Te explico cómo entrar desde cero.</div>
+        <div class="blog-date">7 agosto 2026</div>
+        <div class="blog-link">Leer artículo →</div>
+      </div>
+    </div>
+
+    <div class="blog-card" onclick="openPost('post11')">
+      <div class="blog-card-top">
+        <div class="blog-cat">Finanzas · IUL</div>
+        <div class="blog-title">IUL vs 401k: ¿cuál conviene más a las familias hispanas?</div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-desc">Muchos hispanos no tienen acceso a un 401k de empleador. Descubre por qué el IUL puede ser una alternativa superior.</div>
+        <div class="blog-date">7 agosto 2026</div>
+        <div class="blog-link">Leer artículo →</div>
+      </div>
+    </div>
+
+    <div class="blog-card" onclick="openPost('post12')">
+      <div class="blog-card-top">
+        <div class="blog-cat">Familia · Legado</div>
+        <div class="blog-title">¿Qué le pasa a tu familia si el que más gana en casa falta de repente?</div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-desc">La pregunta que nadie quiere hacerse — pero que toda familia debe responder antes de que sea tarde.</div>
+        <div class="blog-date">7 agosto 2026</div>
+        <div class="blog-link">Leer artículo →</div>
+      </div>
+    </div>
+
+    <div class="blog-card" onclick="openPost('post13')">
+      <div class="blog-card-top">
+        <div class="blog-cat">Finanzas · Familia</div>
+        <div class="blog-title">Cómo hablar de dinero en familia sin que termine en pelea</div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-desc">En nuestra cultura el dinero es tabú. Pero esa cultura del silencio financiero nos cuesta generaciones de riqueza.</div>
+        <div class="blog-date">7 agosto 2026</div>
         <div class="blog-link">Leer artículo →</div>
       </div>
     </div>
@@ -889,6 +1291,150 @@
   </div>
 </div>
 
+<!-- POST 10 — CARRERA EN SEGUROS -->
+<div id="post10" class="post-overlay" onclick="closePostOnOverlay(event,'post10')">
+  <div class="post-modal">
+    <button class="post-close" onclick="closePost('post10')">×</button>
+    <div class="post-cat">Carrera · Seguros</div>
+    <h1 class="post-title">Cómo empezar una carrera en seguros de vida en USA (aunque no tengas experiencia)</h1>
+    <div class="post-date">7 de agosto, 2026</div>
+    <div class="post-content">
+      <p>La industria de seguros de vida es una de las pocas en Estados Unidos donde puedes comenzar desde cero, sin título universitario, sin experiencia previa, y construir un ingreso de seis cifras en pocos años.</p>
+      <p>Lo sé porque yo lo viví. Y si estás leyendo esto, quizás esta carrera también es para ti.</p>
+      <h2>¿Por qué los seguros de vida?</h2>
+      <p>Porque combina tres cosas que pocas carreras ofrecen juntas:</p>
+      <ul>
+        <li><strong>Propósito real:</strong> ayudas a familias a proteger lo más importante en su vida.</li>
+        <li><strong>Ingresos sin techo:</strong> no hay salario fijo que te limite. Ganas según tu esfuerzo.</li>
+        <li><strong>Libertad:</strong> trabajas desde casa, manejas tu horario, construyes tu propio negocio.</li>
+      </ul>
+      <h2>Paso 1: Obtén tu licencia estatal</h2>
+      <ul>
+        <li>Toma el curso pre-licencia (20 a 40 horas, disponible en línea)</li>
+        <li>Presenta el examen estatal de seguros de vida</li>
+        <li>Aplica a la licencia con el Departamento de Seguros de tu estado</li>
+      </ul>
+      <p>El costo total oscila entre $100 y $350. En New Jersey y Florida el proceso toma entre 4 y 8 semanas si te enfocas.</p>
+      <h2>Paso 2: Únete a una agencia con sistema</h2>
+      <p>No empieces solo. Necesitas un sistema de ventas probado, acceso a múltiples compañías, mentoría de alguien que ya recorrió el camino, y materiales en español si es tu idioma principal.</p>
+      <h2>Paso 3: Especialízate en IUL y protección familiar</h2>
+      <p>Los agentes especializados ganan significativamente mejor. El IUL es uno de los productos más completos y mejor comisionados del mercado — y muy pocos agentes lo entienden de verdad. Dominar el IUL te diferencia desde el primer año.</p>
+      <h2>¿Cuánto se puede ganar?</h2>
+      <p>Un agente nuevo enfocado puede ganar entre $3,000 y $6,000 al mes en su primer año. Un agente con experiencia y su propio equipo puede superar los $10,000 mensuales. No hay límite real.</p>
+      <h2>¿Esto es para ti?</h2>
+      <ul>
+        <li>Quieres ingresos que reflejen tu esfuerzo, no un salario fijo</li>
+        <li>Te importa ayudar a tu comunidad hispana a proteger su futuro</li>
+        <li>Buscas flexibilidad para trabajar desde casa</li>
+        <li>Estás dispuesto a aprender y aplicar lo que aprendes</li>
+      </ul>
+      <p><strong>¿Quieres saber más sobre unirte al equipo JCNay Vida?</strong> <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20me%20interesa%20la%20carrera%20en%20seguros." target="_blank">Escríbeme por WhatsApp →</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- POST 11 — IUL VS 401K -->
+<div id="post11" class="post-overlay" onclick="closePostOnOverlay(event,'post11')">
+  <div class="post-modal">
+    <button class="post-close" onclick="closePost('post11')">×</button>
+    <div class="post-cat">Finanzas · IUL</div>
+    <h1 class="post-title">IUL vs 401k: ¿cuál conviene más a las familias hispanas?</h1>
+    <div class="post-date">7 de agosto, 2026</div>
+    <div class="post-content">
+      <p>La realidad de muchas familias hispanas en USA: trabajo propio, empleo sin beneficios, o ingresos mixtos que hacen del 401k una opción limitada o imposible. Ahí es donde entra el IUL.</p>
+      <h2>¿Qué es un 401k?</h2>
+      <p>Plan de retiro patrocinado por tu empleador. Contribuyes antes de impuestos, el dinero crece con el mercado, y pagas impuestos cuando retiras en el retiro. Si tu empleador hace matching, es una ventaja real.</p>
+      <h2>¿Qué es un IUL?</h2>
+      <p>El Indexed Universal Life es un seguro de vida permanente que acumula valor en efectivo vinculado al S&P 500, con tres ventajas clave:</p>
+      <ul>
+        <li><strong>Piso del 0%:</strong> cuando el mercado cae, tú no pierdes.</li>
+        <li><strong>Retiros libres de impuestos</strong> bajo la estructura correcta.</li>
+        <li><strong>Protección incluida:</strong> tu familia recibe un beneficio libre de impuestos si algo te pasa.</li>
+      </ul>
+      <h2>La comparación directa</h2>
+      <ul>
+        <li><strong>Impuestos al retirar:</strong> 401k sí paga · IUL no paga</li>
+        <li><strong>Protección para la familia:</strong> 401k no tiene · IUL sí incluye</li>
+        <li><strong>Pérdidas por mercado:</strong> 401k puede perder · IUL tiene piso del 0%</li>
+        <li><strong>Disponible sin empleador:</strong> 401k depende del trabajo · IUL es independiente</li>
+      </ul>
+      <h2>¿Cuándo conviene el 401k?</h2>
+      <p>Si tu empleador hace matching, aprovéchalo hasta el límite. Es dinero gratis que no deberías dejar sobre la mesa.</p>
+      <h2>La conclusión honesta</h2>
+      <p>No son enemigos — pueden complementarse. Pero para muchas familias hispanas sin acceso a un buen 401k, el IUL bien estructurado puede ser su plan de retiro privado más poderoso.</p>
+      <p><strong>¿Quieres saber si un IUL tiene sentido para ti?</strong> <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20saber%20si%20un%20IUL%20me%20conviene." target="_blank">Escríbeme gratis por WhatsApp →</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- POST 12 — QUÉ PASA SI EL PROVEEDOR FALTA -->
+<div id="post12" class="post-overlay" onclick="closePostOnOverlay(event,'post12')">
+  <div class="post-modal">
+    <button class="post-close" onclick="closePost('post12')">×</button>
+    <div class="post-cat">Familia · Legado</div>
+    <h1 class="post-title">¿Qué le pasa a tu familia si el que más gana en casa falta de repente?</h1>
+    <div class="post-date">7 de agosto, 2026</div>
+    <div class="post-content">
+      <p>Es la pregunta que nadie quiere hacerse. Pero si tienes personas que dependen de ti económicamente, es la pregunta más importante que debes responder — antes de que la vida te la haga ella sola.</p>
+      <h2>La realidad que enfrentan las familias</h2>
+      <p>Cuando el principal proveedor falta sin un plan, esto es lo que ocurre en los primeros 90 días:</p>
+      <ul>
+        <li>Los ingresos se detienen de inmediato</li>
+        <li>Las cuentas, la renta o hipoteca siguen llegando</li>
+        <li>Los ahorros (si existen) se agotan en meses</li>
+        <li>Los hijos ven interrumpida su educación o estabilidad</li>
+        <li>El cónyuge enfrenta decisiones financieras en el peor momento emocional</li>
+      </ul>
+      <h2>¿Cuánto tiempo sobreviviría tu familia con tus ahorros actuales?</h2>
+      <p>La mayoría de las familias hispanas tiene ahorros para cubrir entre 1 y 3 meses de gastos. ¿Qué pasa después?</p>
+      <h2>Lo que un seguro de vida bien diseñado hace</h2>
+      <ul>
+        <li>Un pago libre de impuestos que cubre años de ingresos perdidos</li>
+        <li>Dinero para pagar la hipoteca o renta sin presión</li>
+        <li>Fondos para la educación de tus hijos</li>
+        <li>Tiempo para que tu familia se reorganice sin urgencia económica</li>
+      </ul>
+      <h2>El costo de esperar</h2>
+      <p>A los 30 años, un seguro puede costar menos que tu suscripción de streaming al mes. A los 45, ese mismo nivel de cobertura cuesta dos o tres veces más. Cada año que esperas, pagas más por menos.</p>
+      <p><strong>¿Hablamos?</strong> <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20hablar%20sobre%20proteger%20a%20mi%20familia." target="_blank">Escríbeme por WhatsApp al (908) 677-4196 →</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- POST 13 — HABLAR DE DINERO EN FAMILIA -->
+<div id="post13" class="post-overlay" onclick="closePostOnOverlay(event,'post13')">
+  <div class="post-modal">
+    <button class="post-close" onclick="closePost('post13')">×</button>
+    <div class="post-cat">Finanzas · Familia</div>
+    <h1 class="post-title">Cómo hablar de dinero en familia sin que termine en pelea</h1>
+    <div class="post-date">7 de agosto, 2026</div>
+    <div class="post-content">
+      <p>En la cultura hispana, hablar de dinero en casa es casi un tabú. El resultado: generaciones enteras que toman decisiones financieras sin comunicación, sin plan, y sin estrategia compartida. Y esa cultura del silencio financiero nos cuesta mucho.</p>
+      <h2>¿Por qué nos cuesta tanto hablar de dinero?</h2>
+      <ul>
+        <li>Creemos que hablar de lo que ganamos es presumir o crear envidia</li>
+        <li>Asociamos el dinero con conflicto — porque así lo vimos en casa</li>
+        <li>Tenemos vergüenza de admitir que no sabemos cómo manejarlo</li>
+        <li>Pensamos que es un tema de adultos que los hijos no deben escuchar</li>
+      </ul>
+      <h2>Cómo empezar la conversación</h2>
+      <p>No tienes que hablar de números exactos. Estas preguntas son un buen punto de partida:</p>
+      <ul>
+        <li><em>"¿Qué pasaría con nuestra familia si yo no pudiera trabajar mañana?"</em></li>
+        <li><em>"¿Tienes claro a dónde va nuestro dinero cada mes?"</em></li>
+        <li><em>"¿Qué quieres que les dejemos a nuestros hijos?"</em></li>
+        <li><em>"¿Tienes miedo de que no tengamos suficiente para el retiro?"</em></li>
+      </ul>
+      <p>Estas preguntas abren conversaciones — no peleas. Son sobre metas, no sobre culpas.</p>
+      <h2>Involucra a tus hijos desde temprano</h2>
+      <p>Los niños que crecen viendo a sus padres hablar de dinero con calma desarrollan una relación sana con las finanzas. "Estamos ahorrando para X" o "decidimos no gastar en esto porque tenemos una meta" son lecciones que valen más que cualquier clase.</p>
+      <h2>El seguro de vida como conversación de amor</h2>
+      <p>"Si algo me pasa, quiero que estén bien" es la frase más poderosa que un proveedor puede decirle a su familia — y un seguro bien diseñado es cómo lo demuestras con acción.</p>
+      <p><strong>¿Quieres que te ayude a empezar esta conversación?</strong> <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20hablar%20sobre%20planificaci%C3%B3n%20financiera%20familiar." target="_blank">Escríbeme por WhatsApp →</a></p>
+    </div>
+  </div>
+</div>
+
 <div class="divider"></div>
 
 
@@ -1032,7 +1578,7 @@
         <div class="contact-icon">📍</div>
         <div>
           <div class="contact-label">Área de servicio</div>
-          <div class="contact-value">New Jersey / New York · Todo USA</div>
+          <div class="contact-value">New Jersey · Florida · Todo USA</div>
         </div>
       </div>
       <div class="contact-item">
@@ -1084,7 +1630,7 @@
     <a href="https://wa.me/19086774196" target="_blank">WhatsApp</a>
   </div>
   <div>
-    <div class="footer-copy">© 2026 JCNay Vida Team · NJ/NY, USA</div>
+    <div class="footer-copy">© 2026 JCNay Vida Team · NJ · FL, USA</div>
     <div class="footer-by">Desarrollado por <a href="https://ventas.azurewebstudio.com">Azure Gold Studio</a></div>
   </div>
 </footer>
@@ -1123,6 +1669,43 @@
 <!-- CHATBOT -->
 <style>
 .chat-open { display: flex !important; flex-direction: column !important; }
+</style>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20tengo%20una%20pregunta%20sobre%20seguros%20de%20vida."
+   class="wa-float-btn" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="27" height="27">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.099 1.508 5.823L.057 23.428a.75.75 0 00.921.921l5.605-1.451A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.693 9.693 0 01-4.95-1.356l-.355-.211-3.676.952.972-3.559-.231-.366A9.694 9.694 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+  </svg>
+  <span class="wa-float-tip">¡Escríbeme!</span>
+</a>
+<style>
+.wa-float-btn {
+  position:fixed; bottom:24px; left:24px; z-index:9998;
+  background:#25D366; color:#fff;
+  width:56px; height:56px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,0.45);
+  text-decoration:none; transition:transform 0.2s,box-shadow 0.2s;
+}
+.wa-float-btn:hover { transform:scale(1.1); box-shadow:0 6px 28px rgba(37,211,102,0.6); }
+.wa-float-btn:hover .wa-float-tip { opacity:1; transform:translateX(0); }
+.wa-float-tip {
+  position:absolute; left:68px;
+  background:#0a1a2a; color:#faf7f2;
+  font-size:13px; font-weight:700;
+  padding:7px 14px; border-radius:8px;
+  white-space:nowrap; pointer-events:none;
+  opacity:0; transform:translateX(-8px);
+  transition:opacity 0.2s,transform 0.2s;
+}
+.wa-float-tip::before {
+  content:''; position:absolute; left:-6px; top:50%;
+  transform:translateY(-50%);
+  border:6px solid transparent; border-right-color:#0a1a2a; border-left:0;
+}
+@media(max-width:600px){ .wa-float-btn{ bottom:18px; left:18px; width:50px; height:50px; } }
 </style>
 
 <div id="chat-widget" style="position:fixed;bottom:24px;right:24px;z-index:9999;font-family:'DM Sans',sans-serif">

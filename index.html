@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JCNay Vida Team — Protección Financiera para Familias Hispanas</title>
+<title>JCNay Vida Team — Financial Protection for Hispanic Families</title>
 <meta name="description" content="Educación, herramientas y acompañamiento para construir un futuro seguro. Seguros de vida IUL, retiro libre de impuestos y protección familiar.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -415,6 +415,24 @@
     .services-grid, .blog-grid { grid-template-columns: 1fr; }
   }
 
+
+  .lang-toggle {
+    display: flex; align-items: center;
+    background: rgba(201,168,106,0.1);
+    border: 1px solid rgba(201,168,106,0.3);
+    border-radius: 50px; padding: 3px;
+    gap: 2px;
+  }
+  .lang-btn {
+    padding: 4px 12px; border-radius: 50px; border: none;
+    font-size: 12px; font-weight: 700; cursor: pointer;
+    background: transparent; color: var(--muted);
+    transition: all 0.2s;
+  }
+  .lang-btn.active {
+    background: var(--gold-dark); color: white;
+  }
+
   .chat-open {
     display: flex !important;
     flex-direction: column !important;
@@ -427,14 +445,20 @@
 <nav>
   <div class="nav-logo">JCNay <span>Vida</span> Team</div>
   <ul class="nav-links">
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#calculadoras">Calculadoras</a></li>
+    <li><a href="#servicios" data-i18n="nav-services">Services</a></li>
+    <li><a href="#calculadoras" data-i18n="nav-calc">Calculators</a></li>
     <li><a href="#blog">Blog</a></li>
-    <li><a href="#equipo">Equipo</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-    <li><a href="#unete">Únete</a></li>
+    <li><a href="#equipo" data-i18n="nav-team">Team</a></li>
+    <li><a href="#contacto" data-i18n="nav-contact">Contact</a></li>
+    <li><a href="#unete" data-i18n="nav-join">Join</a></li>
   </ul>
-  <a href="https://wa.me/19086774196?text=Hola,%20me%20interesa%20una%20consulta%20gratuita%20sobre%20seguros%20de%20vida" class="nav-cta" target="_blank">Consulta Gratis</a>
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+    </div>
+    <a href="https://wa.me/19086774196?text=Hi,%20I%27m%20interested%20in%20a%20free%20life%20insurance%20consultation" class="nav-cta" target="_blank" data-i18n="nav-cta">Free Consultation</a>
+  </div>
 </nav>
 
 <!-- HERO PERSONAL -->
@@ -443,16 +467,16 @@
     <div class="hero-content">
       <div class="hero-eyebrow">
         <span class="hp-dot"></span>
-        Agente Licenciada · New Jersey &amp; Florida
+        <span data-i18n="hero-eyebrow">Licensed Agent · New Jersey &amp; Florida</span>
       </div>
-      <h1 class="hero-title">
-        Protege hoy a tu familia<br>
-        y construye un futuro<br>
-        <em>financiero con tranquilidad.</em>
+      <h1 class="hero-title" data-i18n="hero-title">
+        Protect your family today<br>
+        and build a future of<br>
+        <em>financial peace of mind.</em>
       </h1>
-      <p class="hero-sub">
-        Asesoría personalizada en español para familias hispanas en Estados Unidos.
-        Sin letra pequeña, sin presiones — solo claridad y un plan que realmente funciona.
+      <p class="hero-sub" data-i18n="hero-sub">
+        Personalized guidance in English and Spanish for Hispanic families in the United States.
+        No fine print, no pressure — just clarity and a plan that truly works.
       </p>
       <div class="hero-ctas">
         <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20agendar%20mi%20asesor%C3%ADa%20gratuita." class="btn-wa-hero" target="_blank">
@@ -462,15 +486,15 @@
       <div class="hero-stats">
         <div>
           <div class="stat-num">NJ · FL</div>
-          <div class="stat-label">Licenciada</div>
+          <div class="stat-label" data-i18n="stat-licensed">Licensed</div>
         </div>
         <div>
           <div class="stat-num">100%</div>
-          <div class="stat-label">En español</div>
+          <div class="stat-label" data-i18n="stat-spanish">Bilingual</div>
         </div>
         <div>
           <div class="stat-num">$0</div>
-          <div class="stat-label">Consulta inicial</div>
+          <div class="stat-label" data-i18n="stat-consult">Initial consultation</div>
         </div>
       </div>
     </div>
@@ -481,7 +505,7 @@
           <div class="hfb-avatar">Y</div>
           <div>
             <strong>Yunersy Salabarria</strong>
-            <span>Agente Licenciada · NJ &amp; FL</span>
+            <span data-i18n="badge-title">Licensed Agent · NJ &amp; FL</span>
           </div>
         </div>
       </div>
@@ -614,52 +638,52 @@
 <section class="section section-dark" id="servicios">
   <div style="text-align:center" class="reveal">
     <div class="section-label center light">¿Te suena familiar?</div>
-    <h2 class="section-title light center">Las preguntas que mantienen<br><em style="font-style:italic;color:var(--gold-light)">a las familias despierto por las noches</em></h2>
-    <p class="section-sub light center">No estás solo. Para cada una de estas preocupaciones existe una solución clara — y yo te la explico en tu idioma.</p>
+    <h2 class="section-title light center" data-i18n="prob-title">The questions that keep<br><em style="font-style:italic;color:var(--gold-light)">families awake at night</em></h2>
+    <p class="section-sub light center" data-i18n="prob-sub">You are not alone. For every one of these concerns there is a clear solution — and I will explain it to you in your language.</p>
   </div>
 
   <div class="problemas-grid-v2 reveal">
     <div class="problema-v2">
       <div class="pv2-icono">😰</div>
-      <h3>¿Qué pasa con mi familia si yo falto?</h3>
-      <p>Si algo te ocurre mañana, ¿tu familia podría mantener su hogar y seguir adelante? Un plan cambia todo.</p>
-      <div class="pv2-tag">✔ Proteger a tu familia</div>
+      <h3 data-i18n="prob-h1">What happens to my family if I'm gone?</h3>
+      <p data-i18n="prob-p1">If something happens to you tomorrow, could your family keep their home and move forward? A plan changes everything.</p>
+      <div class="pv2-tag" data-i18n="prob-t1">✔ Protect your family</div>
     </div>
     <div class="problema-v2">
       <div class="pv2-icono">💸</div>
-      <h3>¿Quién pagaría los gastos finales?</h3>
-      <p>Un funeral en USA puede costar entre $8,000 y $15,000. Esa carga no debería caer sobre las personas que ya están sufriendo.</p>
-      <div class="pv2-tag">✔ Gastos finales cubiertos</div>
+      <h3 data-i18n="prob-h2">Who would pay the final expenses?</h3>
+      <p data-i18n="prob-p2">A funeral in the USA can cost between $8,000 and $15,000. That burden should not fall on those who are already grieving.</p>
+      <div class="pv2-tag" data-i18n="prob-t2">✔ Final expenses covered</div>
     </div>
     <div class="problema-v2 problema-v2-dest">
       <div class="pv2-icono">📈</div>
-      <h3>¿Mi dinero está trabajando para mí o se lo lleva el IRS?</h3>
-      <p>Existen estrategias legales para que tu dinero crezca vinculado al mercado y puedas retirarlo en el futuro <strong>sin pagar impuestos.</strong></p>
-      <div class="pv2-tag">✔ Beneficios en vida · Crecimiento sin riesgo</div>
+      <h3 data-i18n="prob-h3">Is my money working for me or going to the IRS?</h3>
+      <p data-i18n="prob-p3">There are legal strategies to grow your money linked to the market and withdraw it in the future <strong>tax-free.</strong></p>
+      <div class="pv2-tag" data-i18n="prob-t3">✔ Living benefits · Growth without risk</div>
     </div>
     <div class="problema-v2">
       <div class="pv2-icono">🏠</div>
-      <h3>¿Cómo construyo patrimonio sin ganar millones?</h3>
-      <p>No necesitas ser rico para planificar. Necesitas planificar para construir riqueza generacional para tus hijos.</p>
-      <div class="pv2-tag">✔ Planificación financiera a tu medida</div>
+      <h3 data-i18n="prob-h4">How do I build wealth without earning millions?</h3>
+      <p data-i18n="prob-p4">You don't need to be rich to plan. You need to plan to build generational wealth for your children.</p>
+      <div class="pv2-tag" data-i18n="prob-t4">✔ Financial planning tailored to you</div>
     </div>
     <div class="problema-v2">
       <div class="pv2-icono">👴</div>
-      <h3>¿Podré retirarme sin depender del Social Security?</h3>
-      <p>El Social Security solo cubre el 40% de tus ingresos previos. Las familias que planifican a tiempo se retiran con verdadera libertad.</p>
-      <div class="pv2-tag">✔ Ahorro para el futuro</div>
+      <h3 data-i18n="prob-h5">Will I be able to retire without depending on Social Security?</h3>
+      <p data-i18n="prob-p5">Social Security only covers 40% of your prior income. Families who plan ahead retire with true freedom.</p>
+      <div class="pv2-tag" data-i18n="prob-t5">✔ Savings for the future</div>
     </div>
     <div class="problema-v2">
       <div class="pv2-icono">🎓</div>
-      <h3>¿Entiendo mis opciones o solo escucho términos?</h3>
-      <p>IUL, term life, whole life… Si nadie te explicó qué significa cada cosa, tomar una decisión informada es imposible. Eso es exactamente lo que hago contigo.</p>
-      <div class="pv2-tag">✔ Educación financiera en tu idioma</div>
+      <h3 data-i18n="prob-h6">Do I understand my options or just hear jargon?</h3>
+      <p data-i18n="prob-p6">IUL, term life, whole life… If no one explained what each one means, making an informed decision is impossible. That is exactly what I do with you.</p>
+      <div class="pv2-tag" data-i18n="prob-t6">✔ Financial education in your language</div>
     </div>
   </div>
 
   <div style="text-align:center;margin-top:56px" class="reveal">
     <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20agendar%20mi%20asesor%C3%ADa%20gratuita." class="btn-wa-hero" target="_blank">
-      <span class="hp-dot"></span> Agenda tu asesoría gratuita — es sin costo
+      <span class="hp-dot"></span> <span data-i18n="prob-cta">Schedule your free consultation — no cost</span>
     </a>
   </div>
 </section>
@@ -714,27 +738,27 @@
   <div class="sobre-v2-wrap reveal">
     <div class="sobre-v2-texto sobre-v2-centrado">
       <div class="section-label center">Mi historia</div>
-      <h2 class="section-title center">Soy Yunersy.<br><em style="font-style:italic;color:var(--gold-dark)">Llegué a este país<br>con una maleta llena de sueños.</em></h2>
+      <h2 class="section-title center" data-i18n="about-title">I am Yunersy.<br><em style="font-style:italic;color:var(--gold-dark)">I came to this country<br>with a suitcase full of dreams.</em></h2>
       <div class="sobre-v2-historia">
-        <p>Como inmigrante hispana, conozco de cerca lo que significa trabajar duro, soñar en grande y al mismo tiempo sentir ese miedo silencioso: <strong>¿qué pasa si algo me ocurre? ¿Quién protege a los que más amo?</strong></p>
-        <p>Esa pregunta cambió mi vida. Hoy mi misión es ayudar a las familias hispanas en Estados Unidos a tomar decisiones financieras con claridad — para proteger lo que más aman, construir un legado y vivir con tranquilidad real.</p>
-        <p>No te vendo un producto. Te acompaño a entender tus opciones, en tu idioma, sin presiones y con total transparencia. Porque creo que <strong>la confianza se gana, no se pide.</strong></p>
+        <p data-i18n="about-p1">As a Hispanic immigrant, I know firsthand what it means to work hard, dream big, and at the same time feel that silent fear: <strong>What happens if something happens to me? Who protects the ones I love most?</strong></p>
+        <p data-i18n="about-p2">That question changed my life. Today my mission is to help Hispanic families in the United States make financial decisions with clarity — to protect what they love most, build a legacy, and live with real peace of mind.</p>
+        <p data-i18n="about-p3">I don't sell you a product. I guide you to understand your options, in your language, without pressure and with full transparency. Because I believe <strong>trust is earned, not demanded.</strong></p>
       </div>
       <div class="sobre-v2-valores sobre-v2-valores-row">
-        <div class="sv2-valor">🤝 Honestidad</div>
-        <div class="sv2-valor">❤️ Servicio</div>
-        <div class="sv2-valor">🌱 Propósito</div>
-        <div class="sv2-valor">🎯 Claridad</div>
+        <div class="sv2-valor" data-i18n="val-1">🤝 Honesty</div>
+        <div class="sv2-valor" data-i18n="val-2">❤️ Service</div>
+        <div class="sv2-valor" data-i18n="val-3">🌱 Purpose</div>
+        <div class="sv2-valor" data-i18n="val-4">🎯 Clarity</div>
       </div>
       <div class="sobre-v2-logros sobre-v2-logros-center">
-        <div class="sv2-logro"><span class="sv2-num">NJ</span><span class="sv2-label">Licenciada<br><small>vida en vigor</small></span></div>
+        <div class="sv2-logro"><span class="sv2-num">NJ</span><span class="sv2-label" data-i18n="logro-nj">Licensed<br><small>life insurance</small></span></div>
         <div class="sv2-sep"></div>
-        <div class="sv2-logro"><span class="sv2-num">FL</span><span class="sv2-label">Licenciada<br><small>vida en vigor</small></span></div>
+        <div class="sv2-logro"><span class="sv2-num">FL</span><span class="sv2-label" data-i18n="logro-fl">Licensed<br><small>life insurance</small></span></div>
         <div class="sv2-sep"></div>
-        <div class="sv2-logro"><span class="sv2-num">100%</span><span class="sv2-label">Atención<br><small>en español</small></span></div>
+        <div class="sv2-logro"><span class="sv2-num">100%</span><span class="sv2-label" data-i18n="logro-bi">Bilingual<br><small>English &amp; Spanish</small></span></div>
       </div>
       <div style="text-align:center">
-        <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20agendar%20mi%20asesor%C3%ADa%20gratuita." class="btn-primary" target="_blank" style="display:inline-block;margin-top:8px">Agenda tu asesoría gratuita →</a>
+        <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20agendar%20mi%20asesor%C3%ADa%20gratuita." class="btn-primary" target="_blank" style="display:inline-block;margin-top:8px" data-i18n="about-cta">Schedule your free consultation →</a>
       </div>
     </div>
   </div>
@@ -743,9 +767,9 @@
 <!-- TESTIMONIOS -->
 <section class="section" id="testimonios">
   <div style="text-align:center" class="reveal">
-    <div class="section-label center">Lo que dicen mis clientes</div>
-    <h2 class="section-title center">Familias reales.<br><em style="font-style:italic;color:var(--gold-dark)">Resultados reales.</em></h2>
-    <p class="section-sub center">La confianza no se pide — se construye. Estas son las palabras de personas que tomaron el primer paso.</p>
+    <div class="section-label center" data-i18n="test-label">What my clients say</div>
+    <h2 class="section-title center" data-i18n="test-title">Real families.<br><em style="font-style:italic;color:var(--gold-dark)">Real results.</em></h2>
+    <p class="section-sub center" data-i18n="test-sub">Trust is not asked for — it is built. These are the words of people who took the first step.</p>
   </div>
   <div class="test-grid reveal">
     <div class="test-card">
@@ -767,25 +791,25 @@
       <div class="test-autor"><div class="test-av" style="background:linear-gradient(135deg,#5a3a7a,#0a1a2a)">C</div><div><strong>Carlos V.</strong><span>Florida</span></div></div>
     </div>
   </div>
-  <p class="test-nota reveal">✔ Testimonios de clientes reales · Los resultados pueden variar según la situación de cada persona.</p>
+  <p class="test-nota reveal" data-i18n="test-nota">✔ Real client testimonials · Results may vary based on individual circumstances.</p>
 </section>
 
 <!-- ESTADOS / LICENCIAS -->
 <section class="section section-dark" id="licencias">
   <div style="text-align:center" class="reveal">
-    <div class="section-label center light">Autorización oficial</div>
-    <h2 class="section-title light center">Estados donde estoy licenciada</h2>
-    <p class="section-sub light center">Agente certificada para ejercer en los siguientes estados — tu protección está en manos de una profesional.</p>
+    <div class="section-label center light" data-i18n="lic-label">Official Authorization</div>
+    <h2 class="section-title light center" data-i18n="lic-title">States where I am licensed</h2>
+    <p class="section-sub light center" data-i18n="lic-sub">Certified agent authorized to practice in the following states — your protection is in professional hands.</p>
   </div>
   <div class="lic-grid reveal">
     <div class="lic-card">
-      <div class="lic-top"><span class="lic-emoji">🗽</span><span class="lic-badge">● Licencia activa</span></div>
+      <div class="lic-top"><span class="lic-emoji">🗽</span><span class="lic-badge"><span data-i18n="lic-badge">● Active License</span></span></div>
       <h3>New Jersey</h3>
       <div class="lic-fila"><span class="lic-label">Tipo</span><span>Life Insurance Producer</span></div>
       <div class="lic-fila"><span class="lic-label">N° de licencia</span><span class="lic-num">3003419400</span></div>
     </div>
     <div class="lic-card">
-      <div class="lic-top"><span class="lic-emoji">🌴</span><span class="lic-badge">● Licencia activa</span></div>
+      <div class="lic-top"><span class="lic-emoji">🌴</span><span class="lic-badge"><span data-i18n="lic-badge">● Active License</span></span></div>
       <h3>Florida</h3>
       <div class="lic-fila"><span class="lic-label">Tipo</span><span>Life Insurance Agent</span></div>
       <div class="lic-fila"><span class="lic-label">N° de licencia</span><span class="lic-num">G365745</span></div>
@@ -1065,8 +1089,195 @@
       </div>
     </div>
 
+        <div class="blog-date">20 junio 2026</div>
+        <div class="blog-link">Leer artículo →</div>
+      </div>
+    </div>
+
+    <div class="blog-card" onclick="openPost('post20')">
+      <div class="blog-card-top">
+        <div class="blog-cat">Life Insurance</div>
+        <div class="blog-title">Life Insurance at 30 vs. 50: Why Starting Early Changes Everything</div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-desc">The difference in cost between starting at 30 and waiting until 50 is not just money — it's your family's entire financial future.</div>
+        <div class="blog-date">Jan 10, 2026</div>
+        <div class="blog-link">Read article →</div>
+      </div>
+    </div>
+
+    <div class="blog-card" onclick="openPost('post21')">
+      <div class="blog-card-top">
+        <div class="blog-cat">Finance · IUL</div>
+        <div class="blog-title">IUL vs. 401(k): The Retirement Strategy Most Americans Overlook</div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-desc">Most people default to their employer's plan without considering a powerful alternative that offers tax-free retirement and built-in life insurance.</div>
+        <div class="blog-date">Feb 5, 2026</div>
+        <div class="blog-link">Read article →</div>
+      </div>
+    </div>
+
+    <div class="blog-card" onclick="openPost('post22')">
+      <div class="blog-card-top">
+        <div class="blog-cat">Life Insurance</div>
+        <div class="blog-title">5 Life Insurance Myths That Are Leaving Families Vulnerable</div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-desc">"It's too expensive." "I'm too young." "My job covers me." These myths could be costing your family everything.</div>
+        <div class="blog-date">Mar 1, 2026</div>
+        <div class="blog-link">Read article →</div>
+      </div>
+    </div>
+
+    <div class="blog-card" onclick="openPost('post23')">
+      <div class="blog-card-top">
+        <div class="blog-cat">Final Expense</div>
+        <div class="blog-title">Final Expense Insurance: Why Waiting Could Cost Your Family Thousands</div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-desc">Final expense insurance is one of the most overlooked policies — and one of the most important decisions a family can make.</div>
+        <div class="blog-date">Apr 2, 2026</div>
+        <div class="blog-link">Read article →</div>
+      </div>
+    </div>
+
+    <div class="blog-card" onclick="openPost('post24')">
+      <div class="blog-card-top">
+        <div class="blog-cat">Wealth · Legacy</div>
+        <div class="blog-title">How to Build Generational Wealth Starting With One Policy</div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-desc">Generational wealth doesn't start with a million dollars. It starts with one smart decision that protects your family today and multiplies wealth for tomorrow.</div>
+        <div class="blog-date">May 5, 2026</div>
+        <div class="blog-link">Read article →</div>
+      </div>
+    </div>
+
   </div>
 </section>
+
+<!-- ENGLISH POST MODALS -->
+<div id="post20" class="post-overlay" onclick="closePostOnOverlay(event,'post20')">
+  <div class="post-modal">
+    <button class="post-close" onclick="closePost('post20')">×</button>
+    <div class="post-cat">Life Insurance</div>
+    <h1 class="post-title">Life Insurance at 30 vs. 50: Why Starting Early Changes Everything</h1>
+    <div class="post-date">January 10, 2026</div>
+    <div class="post-content">
+      <p>There's a question I get asked all the time: "Is it too soon to think about life insurance?" My answer is always the same — the only time that's truly too soon is never. But waiting? That has a very real price.</p>
+      <h2>The Math That Changes Minds</h2>
+      <p>A healthy 30-year-old can get $500,000 in IUL coverage for roughly $150–$200 per month. The same coverage for a healthy 50-year-old costs $400–$600 per month — and that's if they qualify without health complications. Over 20 years, that difference adds up to tens of thousands of dollars in unnecessary premiums.</p>
+      <h2>It's Not Just About the Premium</h2>
+      <ul>
+        <li><strong>Lower premiums locked in for life</strong> — your rate is set at your current age and health</li>
+        <li><strong>More time for cash value to grow</strong> — the IUL's accumulation account has decades to compound</li>
+        <li><strong>Easier qualification</strong> — health conditions that develop in your 40s or 50s can make coverage more expensive or unavailable</li>
+        <li><strong>Longer protection</strong> — if you have young children, coverage from age 30 extends through their most vulnerable years</li>
+      </ul>
+      <h2>The Real Risk Is Waiting</h2>
+      <p>People don't skip life insurance because they can't afford it. They skip it because they don't think they need it yet. And then something changes — a health diagnosis, a job loss — and suddenly they're uninsurable or facing premiums they can't handle.</p>
+      <p><strong>Ready to see what your rate would be?</strong> <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%27d%20like%20a%20free%20life%20insurance%20quote." target="_blank">Message me for a free, no-pressure quote →</a></p>
+    </div>
+  </div>
+</div>
+
+<div id="post21" class="post-overlay" onclick="closePostOnOverlay(event,'post21')">
+  <div class="post-modal">
+    <button class="post-close" onclick="closePost('post21')">×</button>
+    <div class="post-cat">Finance · IUL</div>
+    <h1 class="post-title">IUL vs. 401(k): The Retirement Strategy Most Americans Overlook</h1>
+    <div class="post-date">February 5, 2026</div>
+    <div class="post-content">
+      <p>When people think about retirement savings, they think 401(k). It's the default — what HR sets up on day one. But for millions of Americans, especially self-employed workers, there's a more powerful alternative that very few people know about: the Indexed Universal Life policy.</p>
+      <h2>How a 401(k) Works</h2>
+      <p>You contribute pre-tax dollars, your money is invested in mutual funds, and when you retire you pay ordinary income tax on every dollar you withdraw. If the market drops, your balance drops. Required minimum distributions kick in at age 73 whether you need the money or not.</p>
+      <h2>How an IUL Works for Retirement</h2>
+      <ul>
+        <li><strong>0% floor:</strong> When the market drops, your cash value doesn't. You are protected from losses.</li>
+        <li><strong>Tax-free withdrawals:</strong> When structured correctly, you access cash value in retirement without paying income tax.</li>
+        <li><strong>No contribution limits:</strong> Unlike a 401(k) capped at $23,000/year, an IUL has no maximum.</li>
+        <li><strong>No required distributions:</strong> You access money on your terms, not the IRS's.</li>
+        <li><strong>Death benefit included:</strong> Your family is protected if something happens before retirement.</li>
+      </ul>
+      <h2>The Honest Comparison</h2>
+      <p>If your employer matches 401(k) contributions — take the match, it's free money. But after that, an IUL can be a superior vehicle for long-term tax-advantaged wealth building.</p>
+      <p><strong>Want to run the numbers?</strong> <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%27d%20like%20to%20compare%20IUL%20vs%20401k." target="_blank">Free consultation, no obligation →</a></p>
+    </div>
+  </div>
+</div>
+
+<div id="post22" class="post-overlay" onclick="closePostOnOverlay(event,'post22')">
+  <div class="post-modal">
+    <button class="post-close" onclick="closePost('post22')">×</button>
+    <div class="post-cat">Life Insurance</div>
+    <h1 class="post-title">5 Life Insurance Myths That Are Leaving Families Vulnerable</h1>
+    <div class="post-date">March 1, 2026</div>
+    <div class="post-content">
+      <p>Misinformation about life insurance is costing families their financial security. Here are the five myths I hear most often — and the truth behind each one.</p>
+      <h2>Myth 1: "It's too expensive."</h2>
+      <p>Most people overestimate the cost by 3–5 times. A healthy 35-year-old can get $250,000 of coverage for under $30/month. The real question isn't whether you can afford it — it's whether your family can afford for you not to have it.</p>
+      <h2>Myth 2: "I'm too young to need it."</h2>
+      <p>Young is exactly when you should get it. Premiums are lowest when you're healthy. Every year you wait, your rate increases — and your health could change, making coverage more expensive or unavailable.</p>
+      <h2>Myth 3: "My job covers me."</h2>
+      <p>Employer-provided coverage is typically 1–2x your salary — far below the recommended 10–15x. And the moment you leave that job? The coverage ends. You need a policy you own.</p>
+      <h2>Myth 4: "I don't need it if I'm single."</h2>
+      <p>Single people have final expenses, debts, and often aging parents who depend on them. Buying now locks in low rates for when you do have dependents.</p>
+      <h2>Myth 5: "Life insurance is only about death."</h2>
+      <p>Modern policies like IUL include living benefits — cash value you can access during your lifetime for retirement, emergencies, or investment. It's about building security while you're alive.</p>
+      <p><strong>Don't let myths cost your family.</strong> <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%20have%20questions%20about%20life%20insurance." target="_blank">Free consultation →</a></p>
+    </div>
+  </div>
+</div>
+
+<div id="post23" class="post-overlay" onclick="closePostOnOverlay(event,'post23')">
+  <div class="post-modal">
+    <button class="post-close" onclick="closePost('post23')">×</button>
+    <div class="post-cat">Final Expense</div>
+    <h1 class="post-title">Final Expense Insurance: Why Waiting Could Cost Your Family Thousands</h1>
+    <div class="post-date">April 2, 2026</div>
+    <div class="post-content">
+      <p>The average funeral in the United States costs between $8,000 and $15,000. That bill arrives at the worst possible moment — when your family is grieving, exhausted, and completely unprepared for a financial burden of that size. Final expense insurance exists to make sure that burden never falls on the people you love.</p>
+      <h2>What Is Final Expense Insurance?</h2>
+      <p>It's permanent whole life insurance designed to cover end-of-life costs — funeral services, burial or cremation, outstanding medical bills. Policies typically range from $5,000 to $30,000. Unlike term insurance, it doesn't expire and premiums never increase.</p>
+      <h2>The Real Cost of Waiting</h2>
+      <p>Final expense insurance is priced by your age at application. For $20,000 of coverage:</p>
+      <ul>
+        <li>At age 50: approximately $45–55/month</li>
+        <li>At age 60: approximately $70–90/month</li>
+        <li>At age 70: approximately $120–160/month</li>
+        <li>At age 80: significantly higher, with possible health restrictions</li>
+      </ul>
+      <p>Every year you wait adds to your monthly cost — for the same coverage. Use our Final Expense Calculator above to see your exact numbers.</p>
+      <h2>Who Should Consider This?</h2>
+      <p>Adults over 50 who want to protect family from funeral costs, people who may not qualify for larger policies due to health, and anyone wanting guaranteed coverage without a medical exam.</p>
+      <p><strong>Want to see your exact rate?</strong> <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%27d%20like%20a%20final%20expense%20insurance%20quote." target="_blank">Message me for a free quote →</a></p>
+    </div>
+  </div>
+</div>
+
+<div id="post24" class="post-overlay" onclick="closePostOnOverlay(event,'post24')">
+  <div class="post-modal">
+    <button class="post-close" onclick="closePost('post24')">×</button>
+    <div class="post-cat">Wealth · Legacy</div>
+    <h1 class="post-title">How to Build Generational Wealth Starting With One Policy</h1>
+    <div class="post-date">May 5, 2026</div>
+    <div class="post-content">
+      <p>Generational wealth sounds like something reserved for the ultra-rich. But it starts with a decision, not a fortune — and one of the most powerful vehicles for building it is a life insurance policy.</p>
+      <h2>What Is Generational Wealth, Really?</h2>
+      <p>Simply put: assets that transfer from one generation to the next, giving the next generation a head start the previous one didn't have. The difference between your children starting at zero — like you did — and starting with a safety net, an education fund, or seed capital for their own dreams.</p>
+      <h2>Why Life Insurance Is the Foundation</h2>
+      <ul>
+        <li><strong>The death benefit passes tax-free.</strong> Unlike most inherited assets, life insurance proceeds are received by beneficiaries free of federal income tax.</li>
+        <li><strong>It protects the wealth you're building.</strong> If something happens to you early, the death benefit immediately creates the legacy you intended to build over decades.</li>
+        <li><strong>Cash value grows tax-advantaged.</strong> An IUL's cash value grows linked to market indexes, protected from losses, and can be accessed tax-free for retirement or education.</li>
+      </ul>
+      <h2>A Simple Example</h2>
+      <p>A 35-year-old contributes $400/month into a properly structured IUL. Over 30 years, their cash value can grow to $300,000–$500,000 — accessible tax-free in retirement. Throughout those 30 years, their family has a $500,000+ death benefit. At passing, the remaining benefit goes to their children — tax-free. One policy. One decision. One generation of intentional action.</p>
+      <p><strong>Ready to start building yours?</strong> <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%27d%20like%20to%20learn%20about%20building%20generational%20wealth." target="_blank">Schedule your free consultation →</a></p>
+    </div>
+  </div>
+</div>
 
 <!-- POST MODALS -->
 <div class="post-overlay" id="post1" onclick="closePostOnOverlay(event, 'post1')">
@@ -1430,9 +1641,9 @@
 <div class="divider"></div>
 <section class="section section-alt" id="calculadoras">
   <div style="text-align:center" class="reveal">
-    <div class="section-label center">Herramientas Gratuitas</div>
-    <h2 class="section-title center">Calculadoras financieras<br>para tomar mejores decisiones</h2>
-    <p class="section-sub center">Herramientas interactivas para que entiendas exactamente cuánto necesitas y cuánto puede crecer tu dinero.</p>
+    <div class="section-label center" data-i18n="calc-label">Free Tools</div>
+    <h2 class="section-title center" data-i18n="calc-title">Financial calculators<br>to make better decisions</h2>
+    <p class="section-sub center" data-i18n="calc-sub">Interactive tools so you understand exactly how much you need and how much your money can grow.</p>
   </div>
 
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1100px;margin:60px auto 0" class="reveal">
@@ -1483,19 +1694,130 @@
     </a>
 
     <div style="background:linear-gradient(135deg,#0a1a2a,#12314d);padding:36px 32px;display:flex;flex-direction:column;justify-content:center">
-      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:white;margin-bottom:12px;font-style:italic">¿Tienes preguntas sobre los resultados?</div>
-      <div style="font-size:13px;color:rgba(250,247,242,0.6);line-height:1.7;margin-bottom:24px">Después de usar cualquier calculadora, podemos analizar juntos los resultados y diseñar tu plan personalizado.</div>
-      <a href="https://wa.me/19086774196?text=Hola,%20us%C3%A9%20una%20de%20sus%20calculadoras%20y%20tengo%20preguntas" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#c9a86a,#a07840);color:#0a1a2a;padding:12px 24px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none">Hablar con un experto →</a>
+      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:white;margin-bottom:12px;font-style:italic" data-i18n="calc-q">Questions about your results?</div>
+      <div style="font-size:13px;color:rgba(250,247,242,0.6);line-height:1.7;margin-bottom:24px" data-i18n="calc-q-sub">After using any calculator, we can analyze the results together and design your personalized plan.</div>
+      <a href="https://wa.me/19086774196?text=Hi,%20I%20used%20one%20of%20your%20calculators%20and%20have%20questions" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#c9a86a,#a07840);color:#0a1a2a;padding:12px 24px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none" data-i18n="calc-expert">Talk to an expert →</a>
     </div>
 
   </div>
+
+  <!-- FINAL EXPENSE CALCULATOR -->
+  <div style="max-width:1100px;margin:48px auto 0" class="reveal">
+    <div style="background:linear-gradient(135deg,#0a1a2a,#0f3545);border-radius:20px;padding:48px;border:1px solid rgba(201,168,106,0.2)">
+      <div style="text-align:center;margin-bottom:36px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px" data-i18n="fe-label">Final Expense Calculator</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:28px;color:var(--cream);margin:0 0 12px" data-i18n="fe-title">What does waiting really cost you?</h3>
+        <p style="font-size:15px;color:rgba(250,247,242,0.6);max-width:540px;margin:0 auto;line-height:1.7" data-i18n="fe-sub">Enter your current age and see how much more you pay by waiting to get a Final Expense policy.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:320px 1fr;gap:40px;align-items:start">
+        <div style="background:rgba(255,255,255,0.05);border-radius:14px;padding:28px;border:1px solid rgba(201,168,106,0.15)">
+          <label style="display:block;font-size:13px;font-weight:600;color:var(--gold);margin-bottom:8px" data-i18n="fe-age-label">Your current age</label>
+          <input type="range" id="fe-age" min="40" max="75" value="50" oninput="calcFinalExpense()"
+            style="width:100%;accent-color:#c9a86a;margin-bottom:8px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:rgba(250,247,242,0.4)">
+            <span>40</span><span id="fe-age-display" style="color:var(--gold);font-weight:700;font-size:18px">50</span><span>75</span>
+          </div>
+          <div style="margin-top:20px">
+            <label style="display:block;font-size:13px;font-weight:600;color:var(--gold);margin-bottom:8px" data-i18n="fe-coverage-label">Coverage amount</label>
+            <select id="fe-coverage" onchange="calcFinalExpense()"
+              style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(201,168,106,0.3);border-radius:10px;color:var(--cream);font-size:14px;outline:none">
+              <option value="10000">$10,000</option>
+              <option value="15000">$15,000</option>
+              <option value="20000" selected>$20,000</option>
+              <option value="25000">$25,000</option>
+              <option value="30000">$30,000</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="fe-results" style="display:flex;flex-direction:column;gap:16px"></div>
+      </div>
+
+      <div id="fe-cta" style="text-align:center;margin-top:36px;padding-top:28px;border-top:1px solid rgba(201,168,106,0.15)">
+        <p style="color:rgba(250,247,242,0.6);font-size:14px;margin-bottom:16px" data-i18n="fe-cta-text">The best time to get covered was yesterday. The second best time is today.</p>
+        <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%20used%20the%20Final%20Expense%20calculator%20and%20want%20to%20get%20covered%20now." target="_blank"
+          style="display:inline-block;padding:15px 36px;background:#25D366;color:#fff;font-weight:700;font-size:15px;border-radius:50px;text-decoration:none;box-shadow:0 8px 28px rgba(37,211,102,0.35)" data-i18n="fe-cta-btn">Get covered today →</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  function calcFinalExpense() {
+    const age    = parseInt(document.getElementById('fe-age').value);
+    const cov    = parseInt(document.getElementById('fe-coverage').value);
+    document.getElementById('fe-age-display').textContent = age;
+    // Base monthly rate per $1,000 by age bracket (approximate market averages, non-tobacco female)
+    function rate(a) {
+      if (a <= 44) return 1.80;
+      if (a <= 49) return 2.20;
+      if (a <= 54) return 2.80;
+      if (a <= 59) return 3.60;
+      if (a <= 64) return 4.80;
+      if (a <= 69) return 6.50;
+      if (a <= 74) return 9.20;
+      return 13.50;
+    }
+    const units      = cov / 1000;
+    const nowMonthly = (rate(age) * units).toFixed(2);
+    const at60Monthly= (rate(60) * units).toFixed(2);
+    const at70Monthly= (rate(70) * units).toFixed(2);
+    const at80Monthly= (rate(80) * units).toFixed(2);
+
+    // Extra cost over 20 years of waiting (vs acting now)
+    function extraCost(futureAge, futureMonthly) {
+      const yearsLeft = Math.max(0, futureAge - age);
+      // premiums missed by not starting now (opportunity cost simplified)
+      const nowTotal  = parseFloat(nowMonthly) * 12 * 20;
+      const futureTotal= parseFloat(futureMonthly) * 12 * 20;
+      return Math.max(0, futureTotal - nowTotal).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+    }
+
+    const lang = document.documentElement.lang || 'en';
+    const labels = {
+      en: { now:'Your rate today', at60:'If you wait until 60', at70:'If you wait until 70', at80:'If you wait until 80', mo:'/mo', extra:'extra over 20 yrs', savings:'You save', acting:'by acting today', best:'Best time to act' },
+      es: { now:'Tu prima hoy', at60:'Si esperas a los 60', at70:'Si esperas a los 70', at80:'Si esperas a los 80', mo:'/mes', extra:'extra en 20 años', savings:'Ahorras', acting:'actuando hoy', best:'Mejor momento' }
+    };
+    const l = labels[lang] || labels.en;
+
+    function row(label, monthly, isNow, compareMonthly) {
+      const diff = compareMonthly ? ((parseFloat(monthly) - parseFloat(compareMonthly)) / parseFloat(compareMonthly) * 100).toFixed(0) : 0;
+      const pctBadge = isNow ? `<span style="background:rgba(37,211,102,0.15);color:#6fcf97;padding:4px 10px;border-radius:50px;font-size:11px;font-weight:700">✔ ${l.best}</span>` :
+        `<span style="background:rgba(255,100,100,0.12);color:#ff8080;padding:4px 10px;border-radius:50px;font-size:11px;font-weight:700">+${diff}% más caro</span>`;
+      const bar = isNow ? 30 : Math.min(100, 30 + parseInt(diff));
+      return `
+        <div style="background:rgba(255,255,255,0.04);border:1px solid ${isNow?'rgba(37,211,102,0.3)':'rgba(250,247,242,0.08)'};border-radius:14px;padding:20px 24px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <span style="font-size:14px;color:rgba(250,247,242,0.7)">${label}</span>
+            ${pctBadge}
+          </div>
+          <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:10px">
+            <span style="font-family:'Playfair Display',serif;font-size:32px;color:${isNow?'#6fcf97':'var(--gold)'}">$${monthly}</span>
+            <span style="font-size:13px;color:rgba(250,247,242,0.4)">${l.mo}</span>
+          </div>
+          <div style="background:rgba(255,255,255,0.06);border-radius:4px;height:6px;overflow:hidden">
+            <div style="height:100%;width:${bar}%;background:${isNow?'#6fcf97':'var(--gold)'};border-radius:4px;transition:width 0.5s ease"></div>
+          </div>
+        </div>`;
+    }
+
+    const r60 = age < 60 ? row(l.at60, at60Monthly, false, nowMonthly) : '';
+    const r70 = age < 70 ? row(l.at70, at70Monthly, false, nowMonthly) : '';
+    const r80 = row(l.at80, at80Monthly, false, nowMonthly);
+
+    document.getElementById('fe-results').innerHTML =
+      row(l.now, nowMonthly, true, null) + r60 + r70 + r80;
+  }
+  calcFinalExpense();
+  </script>
+
 </section>
 
 <!-- TEAM -->
 <section class="section section-alt" id="equipo">
   <div style="text-align:center" class="reveal">
-    <div class="section-label center">El Equipo</div>
-    <h2 class="section-title center">Personas reales,<br>resultados reales</h2>
+    <div class="section-label center" data-i18n="team-label">The Team</div>
+    <h2 class="section-title center" data-i18n="team-title">Real people,<br>real results</h2>
   </div>
 
   <div class="team-card reveal">
@@ -1504,8 +1826,8 @@
     </div>
     <div>
       <div class="team-name">Yunersy — JCNay</div>
-      <div class="team-role">Agente de Seguros de Vida · NJ/NY</div>
-      <div class="team-bio">Agente licenciada especializada en estrategias IUL y protección familiar para la comunidad hispana en USA. Con experiencia directa como emprendedora e inmigrante, entiende los desafíos reales de las familias latinas y diseña soluciones financieras que realmente funcionan.</div>
+      <div class="team-role" data-i18n="team-role">Life Insurance Agent · NJ &amp; FL</div>
+      <div class="team-bio" data-i18n="team-bio">Licensed agent specialized in IUL strategies and family protection for the Hispanic community in the USA. With direct experience as an entrepreneur and immigrant, she understands the real challenges of Latino families and designs financial solutions that truly work.</div>
     </div>
   </div>
 </section>
@@ -1515,24 +1837,24 @@
 <!-- UNETE -->
 <section class="section section-dark" id="unete">
   <div style="text-align:center; position:relative; z-index:1" class="reveal">
-    <div class="section-label center light">Oportunidad de Carrera</div>
-    <h2 class="section-title light center">¿Quieres una carrera<br>con propósito e ingresos ilimitados?</h2>
-    <p class="section-sub light center">Únete al equipo JCNay Vida. Te capacitamos desde cero para convertirte en agente de seguros de vida y construir tu propio negocio ayudando a familias hispanas.</p>
+    <div class="section-label center light" data-i18n="join-label">Career Opportunity</div>
+    <h2 class="section-title light center" data-i18n="join-title">Want a career<br>with purpose and unlimited income?</h2>
+    <p class="section-sub light center" data-i18n="join-sub">Join the JCNay Vida team. We train you from scratch to become a life insurance agent and build your own business helping Hispanic families.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:40px">
-      <a href="https://wa.me/19086774196?text=Hola,%20me%20interesa%20unirme%20al%20equipo%20JCNay%20Vida%20Team" class="btn-primary" target="_blank">💬 Quiero Unirme al Equipo</a>
+      <a href="https://wa.me/19086774196?text=Hola,%20me%20interesa%20unirme%20al%20equipo%20JCNay%20Vida%20Team" class="btn-primary" target="_blank"><span data-i18n="join-cta">💬 I Want to Join the Team</span></a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:800px;margin:48px auto 0">
       <div style="text-align:center;padding:24px;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,106,0.2)">
         <div style="font-family:'Playfair Display',serif;font-size:32px;color:var(--gold-light)">$0</div>
-        <div style="font-size:12px;color:rgba(250,247,242,0.5);margin-top:4px">Costo para empezar</div>
+        <div style="font-size:12px;color:rgba(250,247,242,0.5);margin-top:4px" data-i18n="join-cost">Cost to start</div>
       </div>
       <div style="text-align:center;padding:24px;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,106,0.2)">
         <div style="font-family:'Playfair Display',serif;font-size:32px;color:var(--gold-light)">100%</div>
-        <div style="font-size:12px;color:rgba(250,247,242,0.5);margin-top:4px">Remoto desde casa</div>
+        <div style="font-size:12px;color:rgba(250,247,242,0.5);margin-top:4px" data-i18n="join-remote">100% remote from home</div>
       </div>
       <div style="text-align:center;padding:24px;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,106,0.2)">
         <div style="font-family:'Playfair Display',serif;font-size:32px;color:var(--gold-light)">∞</div>
-        <div style="font-size:12px;color:rgba(250,247,242,0.5);margin-top:4px">Ingresos ilimitados</div>
+        <div style="font-size:12px;color:rgba(250,247,242,0.5);margin-top:4px" data-i18n="join-income">Unlimited income</div>
       </div>
     </div>
   </div>
@@ -1541,9 +1863,9 @@
 <!-- CONTACT -->
 <section class="section section-dark" id="contacto">
   <div style="text-align:center;margin-bottom:60px;position:relative;z-index:1" class="reveal">
-    <div class="section-label center light">Contacto</div>
-    <h2 class="section-title light center">Hablemos sobre<br>tu futuro financiero</h2>
-    <p class="section-sub light center">Consulta gratuita, sin compromiso. Te respondemos en menos de 24 horas.</p>
+    <div class="section-label center light" data-i18n="contact-label">Contact</div>
+    <h2 class="section-title light center" data-i18n="contact-title">Let's talk about<br>your financial future</h2>
+    <p class="section-sub light center" data-i18n="contact-sub">Free consultation, no commitment. We respond within 24 hours.</p>
   </div>
 
   <div class="contact-grid reveal">
@@ -1565,43 +1887,43 @@
       <div class="contact-item">
         <div class="contact-icon">📍</div>
         <div>
-          <div class="contact-label">Área de servicio</div>
+          <div class="contact-label" data-i18n="contact-area">Service Area</div>
           <div class="contact-value">New Jersey · Florida · Todo USA</div>
         </div>
       </div>
       <div class="contact-item">
         <div class="contact-icon">🕐</div>
         <div>
-          <div class="contact-label">Disponibilidad</div>
-          <div class="contact-value">Lunes a Sábado · 9am – 8pm EST</div>
+          <div class="contact-label" data-i18n="contact-avail">Availability</div>
+          <div class="contact-value" data-i18n="contact-hours">Monday to Saturday · 9am – 8pm EST</div>
         </div>
       </div>
       <div style="margin-top:32px">
-        <a href="https://wa.me/19086774196?text=Hola,%20quiero%20una%20consulta%20gratuita%20sobre%20seguros%20de%20vida" class="btn-primary" target="_blank" style="display:inline-block">💬 Escribir por WhatsApp ahora</a>
+        <a href="https://wa.me/19086774196?text=Hola,%20quiero%20una%20consulta%20gratuita%20sobre%20seguros%20de%20vida" class="btn-primary" target="_blank" style="display:inline-block"><span data-i18n="contact-wa">💬 Message on WhatsApp now</span></a>
       </div>
     </div>
 
     <div class="contact-form">
-      <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--cream);margin-bottom:24px;font-weight:400">Cuéntanos sobre<br><em style="color:var(--gold-light)">tu situación</em></div>
+      <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--cream);margin-bottom:24px;font-weight:400" data-i18n="form-title">Tell us about<br><em style="color:var(--gold-light)">your situation</em></div>
       <div class="form-group">
-        <label>Tu nombre</label>
-        <input type="text" id="c-nombre" placeholder="María García">
+        <label data-i18n="form-name">Your name</label>
+        <input type="text" id="c-nombre" placeholder="Maria Garcia" data-i18n-placeholder="form-placeholder-name">
       </div>
       <div class="form-group">
-        <label>¿Qué te interesa?</label>
+        <label data-i18n="form-interest">What are you interested in?</label>
         <select id="c-interes">
-          <option>Seguro de vida IUL</option>
-          <option>Retiro libre de impuestos</option>
-          <option>Protección familiar</option>
-          <option>Unirme como agente</option>
-          <option>Educación financiera</option>
+          <option data-i18n="opt-iul">IUL Life Insurance</option>
+          <option data-i18n="opt-ret">Tax-Free Retirement</option>
+          <option data-i18n="opt-fam">Family Protection</option>
+          <option data-i18n="opt-age">Join as an Agent</option>
+          <option data-i18n="opt-edu">Financial Education</option>
         </select>
       </div>
       <div class="form-group">
-        <label>Mensaje</label>
-        <textarea id="c-mensaje" rows="3" placeholder="Cuéntame un poco sobre tu situación..."></textarea>
+        <label data-i18n="form-msg">Message</label>
+        <textarea id="c-mensaje" rows="3" placeholder="Tell me a little about your situation..." data-i18n-placeholder="form-placeholder-msg"></textarea>
       </div>
-      <button onclick="sendContactWA()" style="display:block;width:100%;text-align:center;padding:14px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(135deg,#c9a86a,#a07840);color:var(--navy);border:none;cursor:pointer">Enviar por WhatsApp ✦</button>
+      <button onclick="sendContactWA()" style="display:block;width:100%;text-align:center;padding:14px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(135deg,#c9a86a,#a07840);color:var(--navy);border:none;cursor:pointer" data-i18n="form-btn">Send via WhatsApp ✦</button>
     </div>
   </div>
 </section>
@@ -1610,10 +1932,10 @@
 <footer>
   <div class="footer-brand">JCNay <span>Vida</span> Team</div>
   <div class="footer-links">
-    <a href="#servicios">Servicios</a>
+    <a href="#servicios" data-i18n="nav-services">Services</a>
     <a href="#blog">Blog</a>
-    <a href="#equipo">Equipo</a>
-    <a href="#unete">Únete</a>
+    <a href="#equipo" data-i18n="nav-team">Team</a>
+    <a href="#unete" data-i18n="nav-join">Join</a>
     <a href="#contacto">Contacto</a>
     <a href="https://wa.me/19086774196" target="_blank">WhatsApp</a>
   </div>
@@ -1761,5 +2083,166 @@ function sendChat() {
   });
 }
 </script>
+<!-- LANGUAGE TOGGLE JS -->
+<script>
+const T = {
+  en: {
+    "nav-services":"Services","nav-calc":"Calculators","nav-team":"Team",
+    "nav-contact":"Contact","nav-join":"Join","nav-cta":"Free Consultation",
+    "hero-eyebrow":"Licensed Agent · New Jersey &amp; Florida",
+    "hero-title":"Protect your family today<br>and build a future of<br><em>financial peace of mind.</em>",
+    "hero-sub":"Personalized guidance in English and Spanish for Hispanic families in the United States. No fine print, no pressure — just clarity and a plan that truly works.",
+    "hero-cta":"Schedule your free consultation",
+    "stat-licensed":"Licensed","stat-spanish":"Bilingual","stat-consult":"Initial consultation",
+    "badge-title":"Licensed Agent · NJ &amp; FL",
+    "about-label":"My Story",
+    "about-title":"I am Yunersy.<br><em style='font-style:italic;color:var(--gold-dark)'>I came to this country<br>with a suitcase full of dreams.</em>",
+    "about-p1":"As a Hispanic immigrant, I know firsthand what it means to work hard, dream big, and at the same time feel that silent fear: <strong>What happens if something happens to me? Who protects the ones I love most?</strong>",
+    "about-p2":"That question changed my life. Today my mission is to help Hispanic families in the United States make financial decisions with clarity — to protect what they love most, build a legacy, and live with real peace of mind.",
+    "about-p3":"I don't sell you a product. I guide you to understand your options, in your language, without pressure and with full transparency. Because I believe <strong>trust is earned, not demanded.</strong>",
+    "val-1":"🤝 Honesty","val-2":"❤️ Service","val-3":"🌱 Purpose","val-4":"🎯 Clarity",
+    "logro-nj":"Licensed<br><small>life insurance</small>",
+    "logro-fl":"Licensed<br><small>life insurance</small>",
+    "logro-bi":"Bilingual<br><small>English &amp; Spanish</small>",
+    "about-cta":"Schedule your free consultation →",
+    "prob-label":"Does this sound familiar?",
+    "prob-title":"The questions that keep<br><em style='font-style:italic;color:var(--gold-light)'>families awake at night</em>",
+    "prob-sub":"You are not alone. For every one of these concerns there is a clear solution — and I will explain it to you in your language.",
+    "prob-h1":"What happens to my family if I'm gone?","prob-p1":"If something happens to you tomorrow, could your family keep their home and move forward? A plan changes everything.","prob-t1":"✔ Protect your family",
+    "prob-h2":"Who would pay the final expenses?","prob-p2":"A funeral in the USA can cost between $8,000 and $15,000. That burden should not fall on those who are already grieving.","prob-t2":"✔ Final expenses covered",
+    "prob-h3":"Is my money working for me or going to the IRS?","prob-p3":"There are legal strategies to grow your money linked to the market and withdraw it in the future <strong>tax-free.</strong>","prob-t3":"✔ Living benefits · Growth without risk",
+    "prob-h4":"How do I build wealth without earning millions?","prob-p4":"You don't need to be rich to plan. You need to plan to build generational wealth for your children.","prob-t4":"✔ Financial planning tailored to you",
+    "prob-h5":"Will I be able to retire without depending on Social Security?","prob-p5":"Social Security only covers 40% of your prior income. Families who plan ahead retire with true freedom.","prob-t5":"✔ Savings for the future",
+    "prob-h6":"Do I understand my options or just hear jargon?","prob-p6":"IUL, term life, whole life… If no one explained what each one means, making an informed decision is impossible. That is exactly what I do with you.","prob-t6":"✔ Financial education in your language",
+    "prob-cta":"Schedule your free consultation — no cost",
+    "test-label":"What my clients say",
+    "test-title":"Real families.<br><em style='font-style:italic;color:var(--gold-dark)'>Real results.</em>",
+    "test-sub":"Trust is not asked for — it is built. These are the words of people who took the first step.",
+    "test-nota":"✔ Real client testimonials · Results may vary based on individual circumstances.",
+    "lic-label":"Official Authorization","lic-title":"States where I am licensed",
+    "lic-sub":"Certified agent authorized to practice in the following states — your protection is in professional hands.",
+    "lic-badge":"● Active License","lic-type-producer":"Life Insurance Producer","lic-type-agent":"Life Insurance Agent",
+    "lic-num-label":"License #","lic-num-label2":"License #",
+    "blog-label":"Resources &amp; Education","blog-title":"Learn, decide, and<br>protect what you love most",
+    "blog-sub":"Articles and guides to help you make the best financial decisions for your family.",
+    "calc-label":"Free Tools","calc-title":"Financial calculators<br>to make better decisions",
+    "calc-sub":"Interactive tools so you understand exactly how much you need and how much your money can grow.",
+    "calc-q":"Questions about your results?","calc-q-sub":"After using any calculator, we can analyze the results together and design your personalized plan.","calc-expert":"Talk to an expert →",
+    "fe-label":"Final Expense Calculator","fe-title":"What does waiting really cost you?",
+    "fe-sub":"Enter your current age and see how much more you pay by waiting to get a Final Expense policy.",
+    "fe-age-label":"Your current age","fe-coverage-label":"Coverage amount",
+    "fe-cta-text":"The best time to get covered was yesterday. The second best time is today.",
+    "fe-cta-btn":"Get covered today →",
+    "team-label":"The Team","team-title":"Real people,<br>real results",
+    "team-role":"Life Insurance Agent · NJ &amp; FL",
+    "team-bio":"Licensed agent specialized in IUL strategies and family protection for the Hispanic community in the USA. With direct experience as an entrepreneur and immigrant, she understands the real challenges of Latino families and designs financial solutions that truly work.",
+    "join-label":"Career Opportunity","join-title":"Want a career<br>with purpose and unlimited income?",
+    "join-sub":"Join the JCNay Vida team. We train you from scratch to become a life insurance agent and build your own business helping Hispanic families.",
+    "join-cta":"💬 I Want to Join the Team","join-cost":"Cost to start","join-remote":"100% remote from home","join-income":"Unlimited income",
+    "contact-label":"Contact","contact-title":"Let's talk about<br>your financial future",
+    "contact-sub":"Free consultation, no commitment. We respond within 24 hours.",
+    "contact-area":"Service Area","contact-avail":"Availability","contact-hours":"Monday to Saturday · 9am – 8pm EST",
+    "contact-wa":"💬 Message on WhatsApp now",
+    "form-title":"Tell us about<br><em style='color:var(--gold-light)'>your situation</em>",
+    "form-name":"Your name","form-placeholder-name":"Maria Garcia",
+    "form-interest":"What are you interested in?",
+    "opt-iul":"IUL Life Insurance","opt-ret":"Tax-Free Retirement","opt-fam":"Family Protection","opt-age":"Join as an Agent","opt-edu":"Financial Education",
+    "form-msg":"Message","form-placeholder-msg":"Tell me a little about your situation...","form-btn":"Send via WhatsApp ✦"
+  },
+  es: {
+    "nav-services":"Servicios","nav-calc":"Calculadoras","nav-team":"Equipo",
+    "nav-contact":"Contacto","nav-join":"Únete","nav-cta":"Consulta Gratis",
+    "hero-eyebrow":"Agente Licenciada · New Jersey &amp; Florida",
+    "hero-title":"Protege hoy a tu familia<br>y construye un futuro<br><em>financiero con tranquilidad.</em>",
+    "hero-sub":"Asesoría personalizada en español para familias hispanas en Estados Unidos. Sin letra pequeña, sin presiones — solo claridad y un plan que realmente funciona.",
+    "hero-cta":"Agenda tu asesoría gratuita",
+    "stat-licensed":"Licenciada","stat-spanish":"En español","stat-consult":"Consulta inicial",
+    "badge-title":"Agente Licenciada · NJ &amp; FL",
+    "about-label":"Mi historia",
+    "about-title":"Soy Yunersy.<br><em style='font-style:italic;color:var(--gold-dark)'>Llegué a este país<br>con una maleta llena de sueños.</em>",
+    "about-p1":"Como inmigrante hispana, conozco de cerca lo que significa trabajar duro, soñar en grande y al mismo tiempo sentir ese miedo silencioso: <strong>¿qué pasa si algo me ocurre? ¿Quién protege a los que más amo?</strong>",
+    "about-p2":"Esa pregunta cambió mi vida. Hoy mi misión es ayudar a las familias hispanas en Estados Unidos a tomar decisiones financieras con claridad — para proteger lo que más aman, construir un legado y vivir con tranquilidad real.",
+    "about-p3":"No te vendo un producto. Te acompaño a entender tus opciones, en tu idioma, sin presiones y con total transparencia. Porque creo que <strong>la confianza se gana, no se pide.</strong>",
+    "val-1":"🤝 Honestidad","val-2":"❤️ Servicio","val-3":"🌱 Propósito","val-4":"🎯 Claridad",
+    "logro-nj":"Licenciada<br><small>vida en vigor</small>",
+    "logro-fl":"Licenciada<br><small>vida en vigor</small>",
+    "logro-bi":"Atención<br><small>en español</small>",
+    "about-cta":"Agenda tu asesoría gratuita →",
+    "prob-label":"¿Te suena familiar?",
+    "prob-title":"Las preguntas que mantienen<br><em style='font-style:italic;color:var(--gold-light)'>a las familias despierto por las noches</em>",
+    "prob-sub":"No estás solo. Para cada una de estas preocupaciones existe una solución clara — y yo te la explico en tu idioma.",
+    "prob-h1":"¿Qué pasa con mi familia si yo falto?","prob-p1":"Si algo te ocurre mañana, ¿tu familia podría mantener su hogar y seguir adelante? Un plan cambia todo.","prob-t1":"✔ Proteger a tu familia",
+    "prob-h2":"¿Quién pagaría los gastos finales?","prob-p2":"Un funeral en USA puede costar entre $8,000 y $15,000. Esa carga no debería caer sobre las personas que ya están sufriendo.","prob-t2":"✔ Gastos finales cubiertos",
+    "prob-h3":"¿Mi dinero está trabajando para mí o se lo lleva el IRS?","prob-p3":"Existen estrategias legales para que tu dinero crezca vinculado al mercado y puedas retirarlo en el futuro <strong>sin pagar impuestos.</strong>","prob-t3":"✔ Beneficios en vida · Crecimiento sin riesgo",
+    "prob-h4":"¿Cómo construyo patrimonio sin ganar millones?","prob-p4":"No necesitas ser rico para planificar. Necesitas planificar para construir riqueza generacional para tus hijos.","prob-t4":"✔ Planificación financiera a tu medida",
+    "prob-h5":"¿Podré retirarme sin depender del Social Security?","prob-p5":"El Social Security solo cubre el 40% de tus ingresos previos. Las familias que planifican a tiempo se retiran con verdadera libertad.","prob-t5":"✔ Ahorro para el futuro",
+    "prob-h6":"¿Entiendo mis opciones o solo escucho términos?","prob-p6":"IUL, term life, whole life… Si nadie te explicó qué significa cada cosa, tomar una decisión informada es imposible. Eso es exactamente lo que hago contigo.","prob-t6":"✔ Educación financiera en tu idioma",
+    "prob-cta":"Agenda tu asesoría gratuita — es sin costo",
+    "test-label":"Lo que dicen mis clientes",
+    "test-title":"Familias reales.<br><em style='font-style:italic;color:var(--gold-dark)'>Resultados reales.</em>",
+    "test-sub":"La confianza no se pide — se construye. Estas son las palabras de personas que tomaron el primer paso.",
+    "test-nota":"✔ Testimonios de clientes reales · Los resultados pueden variar según la situación de cada persona.",
+    "lic-label":"Autorización oficial","lic-title":"Estados donde estoy licenciada",
+    "lic-sub":"Agente certificada para ejercer en los siguientes estados — tu protección está en manos de una profesional.",
+    "lic-badge":"● Licencia activa","lic-type-producer":"Life Insurance Producer","lic-type-agent":"Life Insurance Agent",
+    "lic-num-label":"N° de licencia","lic-num-label2":"N° de licencia",
+    "blog-label":"Recursos &amp; Educación","blog-title":"Aprende, decide y<br>protege lo que más amas",
+    "blog-sub":"Artículos y guías en español para que tomes las mejores decisiones financieras para tu familia.",
+    "calc-label":"Herramientas Gratuitas","calc-title":"Calculadoras financieras<br>para tomar mejores decisiones",
+    "calc-sub":"Herramientas interactivas para que entiendas exactamente cuánto necesitas y cuánto puede crecer tu dinero.",
+    "calc-q":"¿Tienes preguntas sobre los resultados?","calc-q-sub":"Después de usar cualquier calculadora, podemos analizar juntos los resultados y diseñar tu plan personalizado.","calc-expert":"Hablar con un experto →",
+    "fe-label":"Calculadora — Seguro de Gastos Finales","fe-title":"¿Cuánto te cuesta realmente esperar?",
+    "fe-sub":"Ingresa tu edad actual y ve cuánto más pagas si esperas para obtener una póliza de gastos finales.",
+    "fe-age-label":"Tu edad actual","fe-coverage-label":"Monto de cobertura",
+    "fe-cta-text":"El mejor momento para asegurarte fue ayer. El segundo mejor momento es hoy.",
+    "fe-cta-btn":"Asegúrate hoy →",
+    "team-label":"El Equipo","team-title":"Personas reales,<br>resultados reales",
+    "team-role":"Agente de Seguros de Vida · NJ &amp; FL",
+    "team-bio":"Agente licenciada especializada en estrategias IUL y protección familiar para la comunidad hispana en USA. Con experiencia directa como emprendedora e inmigrante, entiende los desafíos reales de las familias latinas y diseña soluciones financieras que realmente funcionan.",
+    "join-label":"Oportunidad de Carrera","join-title":"¿Quieres una carrera<br>con propósito e ingresos ilimitados?",
+    "join-sub":"Únete al equipo JCNay Vida. Te capacitamos desde cero para convertirte en agente de seguros de vida y construir tu propio negocio ayudando a familias hispanas.",
+    "join-cta":"💬 Quiero Unirme al Equipo","join-cost":"Costo para empezar","join-remote":"Remoto desde casa","join-income":"Ingresos ilimitados",
+    "contact-label":"Contacto","contact-title":"Hablemos sobre<br>tu futuro financiero",
+    "contact-sub":"Consulta gratuita, sin compromiso. Te respondemos en menos de 24 horas.",
+    "contact-area":"Área de servicio","contact-avail":"Disponibilidad","contact-hours":"Lunes a Sábado · 9am – 8pm EST",
+    "contact-wa":"💬 Escribir por WhatsApp ahora",
+    "form-title":"Cuéntanos sobre<br><em style='color:var(--gold-light)'>tu situación</em>",
+    "form-name":"Tu nombre","form-placeholder-name":"María García",
+    "form-interest":"¿Qué te interesa?",
+    "opt-iul":"Seguro de vida IUL","opt-ret":"Retiro libre de impuestos","opt-fam":"Protección familiar","opt-age":"Unirme como agente","opt-edu":"Educación financiera",
+    "form-msg":"Mensaje","form-placeholder-msg":"Cuéntame un poco sobre tu situación...","form-btn":"Enviar por WhatsApp ✦"
+  }
+};
+
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  localStorage.setItem('jcnay-lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang] && T[lang][key]) el.innerHTML = T[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (T[lang] && T[lang][key]) el.placeholder = T[lang][key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  // Update WA links based on language
+  const waHero = document.querySelector('.btn-wa-hero');
+  if (waHero) {
+    waHero.href = lang === 'en'
+      ? 'https://wa.me/19086774196?text=Hi%20Yunersy,%20I%27d%20like%20to%20schedule%20a%20free%20consultation.'
+      : 'https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20agendar%20mi%20asesor%C3%ADa%20gratuita.';
+  }
+  // Recalculate final expense with new labels
+  if (typeof calcFinalExpense === 'function') calcFinalExpense();
+}
+
+// Init on load
+const _initLang = localStorage.getItem('jcnay-lang') || 'en';
+document.addEventListener('DOMContentLoaded', () => setLang(_initLang));
+</script>
+
 </body>
 </html>

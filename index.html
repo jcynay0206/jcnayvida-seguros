@@ -1653,6 +1653,15 @@
       </div>
     </a>
 
+    <a href="https://jcynay0206.github.io/final-expense" target="_blank" style="text-decoration:none">
+      <div style="background:white;padding:36px 32px;border-top:3px solid transparent;transition:all 0.3s;cursor:pointer">
+        <div style="font-size:40px;margin-bottom:16px">💸</div>
+        <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#0a1a2a;margin-bottom:10px" data-i18n="calc-c-fe-title">Final Expense</div>
+        <div style="font-size:13px;color:#6b7280;line-height:1.7;margin-bottom:16px" data-i18n="calc-c-fe-desc">See exactly how much more your monthly premium costs if you wait — every year you delay, the rate goes up permanently.</div>
+        <div style="font-size:12px;font-weight:600;color:#a07840;display:flex;align-items:center;gap:6px" data-i18n="calc-now">Calculate now →</div>
+      </div>
+    </a>
+
     <a href="https://jcynay0206.github.io/calculadora-universitaria" target="_blank" style="text-decoration:none">
       <div style="background:white;padding:36px 32px;border-top:3px solid transparent;transition:all 0.3s;cursor:pointer">
         <div style="font-size:40px;margin-bottom:16px">🎓</div>
@@ -1716,115 +1725,6 @@
 
   </div>
 
-  <!-- FINAL EXPENSE CALCULATOR -->
-  <div style="max-width:1100px;margin:48px auto 0;width:100%" class="reveal">
-    <div style="background:linear-gradient(135deg,#0a1a2a,#0f3545);border-radius:20px;padding:48px;border:1px solid rgba(201,168,106,0.2)">
-      <div style="text-align:center;margin-bottom:36px">
-        <div style="font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px" data-i18n="fe-label">Final Expense Calculator</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:28px;color:var(--cream);margin:0 0 12px" data-i18n="fe-title">What does waiting really cost you?</h3>
-        <p style="font-size:15px;color:rgba(250,247,242,0.6);max-width:540px;margin:0 auto;line-height:1.7" data-i18n="fe-sub">Enter your current age and see how much more you pay by waiting to get a Final Expense policy.</p>
-      </div>
-
-      <div style="display:grid;grid-template-columns:320px 1fr;gap:40px;align-items:start">
-        <div style="background:rgba(255,255,255,0.05);border-radius:14px;padding:28px;border:1px solid rgba(201,168,106,0.15)">
-          <label style="display:block;font-size:13px;font-weight:600;color:var(--gold);margin-bottom:8px" data-i18n="fe-age-label">Your current age</label>
-          <input type="range" id="fe-age" min="40" max="75" value="50" oninput="calcFinalExpense()"
-            style="width:100%;accent-color:#c9a86a;margin-bottom:8px">
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:rgba(250,247,242,0.4)">
-            <span>40</span><span id="fe-age-display" style="color:var(--gold);font-weight:700;font-size:18px">50</span><span>75</span>
-          </div>
-          <div style="margin-top:20px">
-            <label style="display:block;font-size:13px;font-weight:600;color:var(--gold);margin-bottom:8px" data-i18n="fe-coverage-label">Coverage amount</label>
-            <select id="fe-coverage" onchange="calcFinalExpense()"
-              style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(201,168,106,0.3);border-radius:10px;color:var(--cream);font-size:14px;outline:none">
-              <option value="10000">$10,000</option>
-              <option value="15000">$15,000</option>
-              <option value="20000" selected>$20,000</option>
-              <option value="25000">$25,000</option>
-              <option value="30000">$30,000</option>
-            </select>
-          </div>
-        </div>
-
-        <div id="fe-results" style="display:flex;flex-direction:column;gap:16px"></div>
-      </div>
-
-      <div id="fe-cta" style="text-align:center;margin-top:36px;padding-top:28px;border-top:1px solid rgba(201,168,106,0.15)">
-        <p style="color:rgba(250,247,242,0.6);font-size:14px;margin-bottom:16px" data-i18n="fe-cta-text">The best time to get covered was yesterday. The second best time is today.</p>
-        <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%20used%20the%20Final%20Expense%20calculator%20and%20want%20to%20get%20covered%20now." target="_blank"
-          style="display:inline-block;padding:15px 36px;background:#25D366;color:#fff;font-weight:700;font-size:15px;border-radius:50px;text-decoration:none;box-shadow:0 8px 28px rgba(37,211,102,0.35)" data-i18n="fe-cta-btn">Get covered today →</a>
-      </div>
-    </div>
-  </div>
-
-  <script>
-  function calcFinalExpense() {
-    const age    = parseInt(document.getElementById('fe-age').value);
-    const cov    = parseInt(document.getElementById('fe-coverage').value);
-    document.getElementById('fe-age-display').textContent = age;
-    // Base monthly rate per $1,000 by age bracket (approximate market averages, non-tobacco female)
-    function rate(a) {
-      if (a <= 44) return 1.80;
-      if (a <= 49) return 2.20;
-      if (a <= 54) return 2.80;
-      if (a <= 59) return 3.60;
-      if (a <= 64) return 4.80;
-      if (a <= 69) return 6.50;
-      if (a <= 74) return 9.20;
-      return 13.50;
-    }
-    const units      = cov / 1000;
-    const nowMonthly = (rate(age) * units).toFixed(2);
-    const at60Monthly= (rate(60) * units).toFixed(2);
-    const at70Monthly= (rate(70) * units).toFixed(2);
-    const at80Monthly= (rate(80) * units).toFixed(2);
-
-    // Extra cost over 20 years of waiting (vs acting now)
-    function extraCost(futureAge, futureMonthly) {
-      const yearsLeft = Math.max(0, futureAge - age);
-      // premiums missed by not starting now (opportunity cost simplified)
-      const nowTotal  = parseFloat(nowMonthly) * 12 * 20;
-      const futureTotal= parseFloat(futureMonthly) * 12 * 20;
-      return Math.max(0, futureTotal - nowTotal).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
-    }
-
-    const lang = document.documentElement.lang || 'en';
-    const labels = {
-      en: { now:'Your rate today', at60:'If you wait until 60', at70:'If you wait until 70', at80:'If you wait until 80', mo:'/mo', extra:'extra over 20 yrs', savings:'You save', acting:'by acting today', best:'Best time to act' },
-      es: { now:'Tu prima hoy', at60:'Si esperas a los 60', at70:'Si esperas a los 70', at80:'Si esperas a los 80', mo:'/mes', extra:'extra en 20 años', savings:'Ahorras', acting:'actuando hoy', best:'Mejor momento' }
-    };
-    const l = labels[lang] || labels.en;
-
-    function row(label, monthly, isNow, compareMonthly) {
-      const diff = compareMonthly ? ((parseFloat(monthly) - parseFloat(compareMonthly)) / parseFloat(compareMonthly) * 100).toFixed(0) : 0;
-      const pctBadge = isNow ? `<span style="background:rgba(37,211,102,0.15);color:#6fcf97;padding:4px 10px;border-radius:50px;font-size:11px;font-weight:700">✔ ${l.best}</span>` :
-        `<span style="background:rgba(255,100,100,0.12);color:#ff8080;padding:4px 10px;border-radius:50px;font-size:11px;font-weight:700">+${diff}% más caro</span>`;
-      const bar = isNow ? 30 : Math.min(100, 30 + parseInt(diff));
-      return `
-        <div style="background:rgba(255,255,255,0.04);border:1px solid ${isNow?'rgba(37,211,102,0.3)':'rgba(250,247,242,0.08)'};border-radius:14px;padding:20px 24px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-            <span style="font-size:14px;color:rgba(250,247,242,0.7)">${label}</span>
-            ${pctBadge}
-          </div>
-          <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:10px">
-            <span style="font-family:'Playfair Display',serif;font-size:32px;color:${isNow?'#6fcf97':'var(--gold)'}">$${monthly}</span>
-            <span style="font-size:13px;color:rgba(250,247,242,0.4)">${l.mo}</span>
-          </div>
-          <div style="background:rgba(255,255,255,0.06);border-radius:4px;height:6px;overflow:hidden">
-            <div style="height:100%;width:${bar}%;background:${isNow?'#6fcf97':'var(--gold)'};border-radius:4px;transition:width 0.5s ease"></div>
-          </div>
-        </div>`;
-    }
-
-    const r60 = age < 60 ? row(l.at60, at60Monthly, false, nowMonthly) : '';
-    const r70 = age < 70 ? row(l.at70, at70Monthly, false, nowMonthly) : '';
-    const r80 = row(l.at80, at80Monthly, false, nowMonthly);
-
-    document.getElementById('fe-results').innerHTML =
-      row(l.now, nowMonthly, true, null) + r60 + r70 + r80;
-  }
-  calcFinalExpense();
-  </script>
 
 </section>
 
@@ -2194,16 +2094,30 @@ var KB = {
 
 // ── HELPERS
 function detectLang(text) {
-  var esWords = ['hola','qué','que','cómo','como','cuánto','cuanto','seguro','vida','necesito','familia','tengo','quiero','puedo','gracias','ayuda','dinero','póliza','poliza','jubilación','jubilacion','retiro','hipoteca','gastos','finales','universidad','carrera','licencia'];
+  // Check for Spanish indicators: accented vowels, ñ, or Spanish words
+  if (/[áéíóúüñ¿¡]/i.test(text)) return 'es';
   var lower = text.toLowerCase();
+  var esWords = ['hola','qué','que','cómo','como','cuánto','cuanto','seguro','vida',
+    'necesito','familia','tengo','quiero','puedo','gracias','ayuda','dinero',
+    'póliza','poliza','jubilación','jubilacion','retiro','hipoteca','gastos',
+    'finales','universidad','carrera','licencia','información','informacion',
+    'quiero','sobre','para','cómo','como','también','tambien','más','mas',
+    'cuando','donde','cuál','cual','buenas','buenos','tardes','noches','dias',
+    'estoy','quiero','tengo','busco','ción','sion','ción','hablar','escribir',
+    'llamar','contactar','proteger','familia','hijos','esposa','esposo','casa',
+    'dinero','banco','ahorro','invertir','pagar','mensual','anual','años','meses'];
   for (var i = 0; i < esWords.length; i++) {
     if (lower.indexOf(esWords[i]) !== -1) return 'es';
   }
+  // Check for Spanish patterns
+  if (/\b(el|la|los|las|un|una|de|del|en|con|por|que|es|son|ser|mi|mis|mi|su|sus)\b/.test(lower)) return 'es';
   return null;
 }
 
 function syncLang() {
-  lang = (document.documentElement.lang || 'en') === 'es' ? 'es' : 'en';
+  // Always use site toggle as baseline, only override if user typed in other language
+  var siteLang = document.documentElement.lang === 'es' ? 'es' : 'en';
+  if (lang !== siteLang && lang !== 'userOverride') lang = siteLang;
   document.getElementById('bot-status').textContent = UI[lang].status;
   document.getElementById('chat-input').placeholder = UI[lang].placeholder;
 }
@@ -2272,9 +2186,15 @@ function offerLead() {
 }
 
 function processInput(text) {
-  // Detect language from input
+  // Detect language — site toggle is the baseline
+  var siteLang = document.documentElement.lang === 'es' ? 'es' : 'en';
   var detected = detectLang(text);
-  if (detected) lang = detected;
+  // If user typed in the opposite language → use that. Otherwise use site toggle.
+  if (detected && detected !== siteLang) {
+    lang = detected; // User typed opposite language
+  } else {
+    lang = siteLang; // Default to site toggle
+  }
   syncLang();
 
   setQuickReplies([]);
@@ -2362,6 +2282,8 @@ window.toggleChat = function() {
     box.style.display = 'flex';
     box.style.flexDirection = 'column';
     if (document.getElementById('chat-messages').children.length === 0) {
+      // Always sync with site toggle on open
+      lang = document.documentElement.lang === 'es' ? 'es' : 'en';
       setTimeout(function(){
         addMsg(UI[lang].welcome, 'bot');
         setTimeout(function(){ setQuickReplies(UI[lang].quickStart); }, 400);
@@ -2433,7 +2355,7 @@ const T = {
     "blog-sub":"Articles and guides to help you make the best financial decisions for your family.",
     "calc-label":"Free Tools","calc-title":"Financial calculators<br>to make better decisions",
     "calc-sub":"Interactive tools so you understand exactly how much you need and how much your money can grow.",
-    "calc-c1-title":"Financial Shield","calc-c1-desc":"Calculate how much life insurance coverage your family needs based on your income, debts, and dependents.","calc-c2-title":"College Fund","calc-c2-desc":"Discover how much you need to save today to cover your children's college without going into debt.","calc-c3-title":"D.I.M.E. Method","calc-c3-desc":"The professional method to calculate the exact coverage your family needs — Debt, Income, Mortgage, and Education.","calc-c4-title":"IUL Projection","calc-c4-desc":"Simulate how your money would grow in an IUL — with the 0% floor and S&P 500 upside potential.","calc-c5-title":"IUL vs. Bank","calc-c5-desc":"How much more would you have earned in an IUL vs. a bank account over the last 10 years? The numbers will surprise you.","calc-now":"Calculate now →","calc-c7-title":"Mortgage Protection","calc-c7-desc":"If something happens to you, would your family keep the house? Calculate exactly how much coverage your mortgage needs.","calc-c8-title":"How Much Do I Need?","calc-c8-desc":"The most complete analysis: income, debts, future expenses and assets — get your exact recommended coverage amount.","calc-c6-title":"IUL vs. Bank — Min to Max","calc-c6-desc":"See your money grow from the worst to the best IUL scenario vs. a savings account. Even minimum growth beats the bank.","lic-type-label":"Type","lic-type-label2":"Type","test-p1":"Yunersy explained everything with patience and clarity I had never encountered. I finally understood how life insurance could also grow my money. My family is protected and I sleep soundly.","test-p2":"As a single mom I was afraid I couldn't protect my kids if something happened to me. Yunersy guided me without pressure and we found a plan that fits my budget. She's more than an advisor — she truly cares.","test-p3":"I thought life insurance was only for older or wealthy people. Yunersy completely changed my perspective and today I have a policy that also works as an investment. I wish I had started sooner.","test-loc1":"New Jersey","calc-compare":"View comparison →","calc-q":"Questions about your results?","calc-q-sub":"After using any calculator, we can analyze the results together and design your personalized plan.","calc-expert":"Talk to an expert →",
+    "calc-c1-title":"Financial Shield","calc-c1-desc":"Calculate how much life insurance coverage your family needs based on your income, debts, and dependents.","calc-c2-title":"College Fund","calc-c2-desc":"Discover how much you need to save today to cover your children's college without going into debt.","calc-c3-title":"D.I.M.E. Method","calc-c3-desc":"The professional method to calculate the exact coverage your family needs — Debt, Income, Mortgage, and Education.","calc-c4-title":"IUL Projection","calc-c4-desc":"Simulate how your money would grow in an IUL — with the 0% floor and S&P 500 upside potential.","calc-c5-title":"IUL vs. Bank","calc-c5-desc":"How much more would you have earned in an IUL vs. a bank account over the last 10 years? The numbers will surprise you.","calc-now":"Calculate now →","calc-c-fe-title":"Final Expense","calc-c-fe-desc":"See exactly how much more your monthly premium costs if you wait — every year you delay, the rate goes up permanently.","calc-c7-title":"Mortgage Protection","calc-c7-desc":"If something happens to you, would your family keep the house? Calculate exactly how much coverage your mortgage needs.","calc-c8-title":"How Much Do I Need?","calc-c8-desc":"The most complete analysis: income, debts, future expenses and assets — get your exact recommended coverage amount.","calc-c6-title":"IUL vs. Bank — Min to Max","calc-c6-desc":"See your money grow from the worst to the best IUL scenario vs. a savings account. Even minimum growth beats the bank.","lic-type-label":"Type","lic-type-label2":"Type","test-p1":"Yunersy explained everything with patience and clarity I had never encountered. I finally understood how life insurance could also grow my money. My family is protected and I sleep soundly.","test-p2":"As a single mom I was afraid I couldn't protect my kids if something happened to me. Yunersy guided me without pressure and we found a plan that fits my budget. She's more than an advisor — she truly cares.","test-p3":"I thought life insurance was only for older or wealthy people. Yunersy completely changed my perspective and today I have a policy that also works as an investment. I wish I had started sooner.","test-loc1":"New Jersey","calc-compare":"View comparison →","calc-q":"Questions about your results?","calc-q-sub":"After using any calculator, we can analyze the results together and design your personalized plan.","calc-expert":"Talk to an expert →",
     "fe-label":"Final Expense Calculator","fe-title":"What does waiting really cost you?",
     "fe-sub":"Enter your current age and see how much more you pay by waiting to get a Final Expense policy.",
     "fe-age-label":"Your current age","fe-coverage-label":"Coverage amount",
@@ -2496,7 +2418,7 @@ const T = {
     "blog-sub":"Artículos y guías en español para que tomes las mejores decisiones financieras para tu familia.",
     "calc-label":"Herramientas Gratuitas","calc-title":"Calculadoras financieras<br>para tomar mejores decisiones",
     "calc-sub":"Herramientas interactivas para que entiendas exactamente cuánto necesitas y cuánto puede crecer tu dinero.",
-    "calc-c1-title":"Escudo Financiero","calc-c1-desc":"Calcula cuánta cobertura de seguro de vida necesita tu familia según tus ingresos, deudas y dependientes.","calc-c2-title":"Fondo Universitario","calc-c2-desc":"Descubre cuánto necesitas ahorrar hoy para cubrir la universidad de tus hijos sin endeudarte.","calc-c3-title":"Método D.I.M.E.","calc-c3-desc":"El método profesional para calcular la cobertura exacta que necesita tu familia — Deuda, Ingresos, Manutención y Educación.","calc-c4-title":"Proyección IUL","calc-c4-desc":"Simula cómo crecería tu dinero en un IUL — con el piso del 0% y el potencial del S&P 500.","calc-c5-title":"IUL vs Banco","calc-c5-desc":"¿Cuánto más hubieras ganado en un IUL vs una cuenta bancaria en los últimos 10 años? Los números te van a sorprender.","calc-now":"Calcular ahora →","calc-c7-title":"Protección Hipotecaria","calc-c7-desc":"Si algo te pasa, ¿tu familia se quedará en la casa? Calcula exactamente cuánta cobertura necesita tu hipoteca.","calc-c8-title":"¿Cuánto Necesito?","calc-c8-desc":"El análisis más completo: ingresos, deudas, gastos futuros y activos — obtén el monto exacto de cobertura recomendado.","calc-c6-title":"IUL vs. Banco — Del Mínimo al Máximo","calc-c6-desc":"Ve cómo crece tu dinero desde el peor hasta el mejor escenario del IUL vs. una cuenta de ahorros. Incluso el crecimiento mínimo supera al banco.","lic-type-label":"Tipo","lic-type-label2":"Tipo","test-p1":"Yunersy me explicó todo con una paciencia y claridad que nunca había encontrado. Finalmente entendí cómo el seguro de vida también podía hacerme crecer dinero. Mi familia está protegida y yo duermo tranquilo.","test-p2":"Como mamá soltera tenía miedo de no poder proteger a mis hijos si me pasaba algo. Yunersy me orientó sin presiones y encontramos un plan que cabe en mi presupuesto. Es más que una asesora — es alguien que de verdad se preocupa.","test-p3":"Pensaba que los seguros de vida eran solo para gente mayor o muy rica. Yunersy cambió completamente mi perspectiva y hoy tengo una póliza que también funciona como inversión. Ojalá hubiera empezado antes.","test-loc1":"Nueva Jersey","calc-compare":"Ver comparación →","calc-q":"¿Tienes preguntas sobre los resultados?","calc-q-sub":"Después de usar cualquier calculadora, podemos analizar juntos los resultados y diseñar tu plan personalizado.","calc-expert":"Hablar con un experto →",
+    "calc-c1-title":"Escudo Financiero","calc-c1-desc":"Calcula cuánta cobertura de seguro de vida necesita tu familia según tus ingresos, deudas y dependientes.","calc-c2-title":"Fondo Universitario","calc-c2-desc":"Descubre cuánto necesitas ahorrar hoy para cubrir la universidad de tus hijos sin endeudarte.","calc-c3-title":"Método D.I.M.E.","calc-c3-desc":"El método profesional para calcular la cobertura exacta que necesita tu familia — Deuda, Ingresos, Manutención y Educación.","calc-c4-title":"Proyección IUL","calc-c4-desc":"Simula cómo crecería tu dinero en un IUL — con el piso del 0% y el potencial del S&P 500.","calc-c5-title":"IUL vs Banco","calc-c5-desc":"¿Cuánto más hubieras ganado en un IUL vs una cuenta bancaria en los últimos 10 años? Los números te van a sorprender.","calc-now":"Calcular ahora →","calc-c-fe-title":"Gastos Finales","calc-c-fe-desc":"Ve exactamente cuánto más cuesta tu prima mensual si esperas — cada año que demoras, la tarifa sube de forma permanente.","calc-c7-title":"Protección Hipotecaria","calc-c7-desc":"Si algo te pasa, ¿tu familia se quedará en la casa? Calcula exactamente cuánta cobertura necesita tu hipoteca.","calc-c8-title":"¿Cuánto Necesito?","calc-c8-desc":"El análisis más completo: ingresos, deudas, gastos futuros y activos — obtén el monto exacto de cobertura recomendado.","calc-c6-title":"IUL vs. Banco — Del Mínimo al Máximo","calc-c6-desc":"Ve cómo crece tu dinero desde el peor hasta el mejor escenario del IUL vs. una cuenta de ahorros. Incluso el crecimiento mínimo supera al banco.","lic-type-label":"Tipo","lic-type-label2":"Tipo","test-p1":"Yunersy me explicó todo con una paciencia y claridad que nunca había encontrado. Finalmente entendí cómo el seguro de vida también podía hacerme crecer dinero. Mi familia está protegida y yo duermo tranquilo.","test-p2":"Como mamá soltera tenía miedo de no poder proteger a mis hijos si me pasaba algo. Yunersy me orientó sin presiones y encontramos un plan que cabe en mi presupuesto. Es más que una asesora — es alguien que de verdad se preocupa.","test-p3":"Pensaba que los seguros de vida eran solo para gente mayor o muy rica. Yunersy cambió completamente mi perspectiva y hoy tengo una póliza que también funciona como inversión. Ojalá hubiera empezado antes.","test-loc1":"Nueva Jersey","calc-compare":"Ver comparación →","calc-q":"¿Tienes preguntas sobre los resultados?","calc-q-sub":"Después de usar cualquier calculadora, podemos analizar juntos los resultados y diseñar tu plan personalizado.","calc-expert":"Hablar con un experto →",
     "fe-label":"Calculadora — Seguro de Gastos Finales","fe-title":"¿Cuánto te cuesta realmente esperar?",
     "fe-sub":"Ingresa tu edad actual y ve cuánto más pagas si esperas para obtener una póliza de gastos finales.",
     "fe-age-label":"Tu edad actual","fe-coverage-label":"Monto de cobertura",

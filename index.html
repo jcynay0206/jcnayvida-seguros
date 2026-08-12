@@ -2084,6 +2084,7 @@ var step = 'start'; // start | topic | lead-name | lead-wa | done
 var leadName = '';
 var chatOpen = false;
 var messageCount = 0;
+var topicCount = 0;
 
 // ── TRANSLATIONS
 var UI = {
@@ -2258,8 +2259,8 @@ function botReply(html, quick, delay) {
     removeTyping();
     addMsg(html, 'bot');
     setQuickReplies(quick || []);
-    if (messageCount >= 3 && step === 'topic') {
-      setTimeout(offerLead, 800);
+    if (topicCount >= 2 && step === 'topic') {
+      setTimeout(offerLead, 1200);
     }
   }, delay || 900);
 }
@@ -2324,25 +2325,28 @@ function processInput(text) {
   // ── Match knowledge base
   var kb = KB[lang === 'es' ? 'es' : 'en'];
 
+  function topicHit(text, quick) { topicCount++; botReply(text, quick); }
+
   if (lang === 'en') {
-    if (lower.match(/\biul\b|indexed universal|cash value|policy/)) return botReply(kb['iul'].text, kb['iul'].quick);
-    if (lower.match(/final expense|funeral|burial|death expense/)) return botReply(kb['final expense'].text, kb['final expense'].quick);
-    if (lower.match(/mortgage|home|house|property/)) return botReply(kb['mortgage'].text, kb['mortgage'].quick);
-    if (lower.match(/college|university|education|school|529|fafsa/)) return botReply(kb['college'].text, kb['college'].quick);
-    if (lower.match(/career|job|agent|license|income|earn|work/)) return botReply(kb['career'].text, kb['career'].quick);
-    if (lower.match(/cost|price|how much|afford|premium|monthly/)) return botReply(kb['cost'].text, kb['cost'].quick);
-    if (lower.match(/qualify|health|pre.existing|condition|age|apply/)) return botReply(kb['qualify'].text, kb['qualify'].quick);
-    if (lower.match(/tax|irs|free|401|retirement|withdraw/)) return botReply(lower.match(/401/) ? kb['401'].text : kb['tax'].text, lower.match(/401/) ? kb['401'].quick : kb['tax'].quick);
-    if (lower.match(/life insurance|what is|how does|explain/)) return botReply(kb['life insurance'].text, kb['life insurance'].quick);
+    if (lower.match(/\biul\b|indexed universal|cash value|policy/)) return topicHit(kb['iul'].text, kb['iul'].quick);
+    if (lower.match(/final expense|funeral|burial|death expense/)) return topicHit(kb['final expense'].text, kb['final expense'].quick);
+    if (lower.match(/mortgage|home|house|property/)) return topicHit(kb['mortgage'].text, kb['mortgage'].quick);
+    if (lower.match(/college|university|education|school|529|fafsa/)) return topicHit(kb['college'].text, kb['college'].quick);
+    if (lower.match(/career|job|agent|licens|income|earn|work/)) return topicHit(kb['career'].text, kb['career'].quick);
+    if (lower.match(/cost|price|how much|afford|premium|monthly/)) return topicHit(kb['cost'].text, kb['cost'].quick);
+    if (lower.match(/qualify|health|pre.existing|condition|age|apply/)) return topicHit(kb['qualify'].text, kb['qualify'].quick);
+    if (lower.match(/tax|irs|401|retirement|withdraw/)) return topicHit(lower.match(/401/) ? kb['401'].text : kb['tax'].text, lower.match(/401/) ? kb['401'].quick : kb['tax'].quick);
+    if (lower.match(/life insurance|what is|how does|explain|protect/)) return topicHit(kb['life insurance'].text, kb['life insurance'].quick);
+    if (lower.match(/\biul\b/)) return topicHit(kb['iul'].text, kb['iul'].quick);
   } else {
-    if (lower.match(/iul|indexado|valor en efectivo|póliza|poliza/)) return botReply(kb['iul'].text, kb['iul'].quick);
-    if (lower.match(/gastos finales|funeral|entierro|muerte/)) return botReply(kb['gastos finales'].text, kb['gastos finales'].quick);
-    if (lower.match(/hipoteca|casa|hogar|propiedad|vivienda/)) return botReply(kb['hipoteca'].text, kb['hipoteca'].quick);
-    if (lower.match(/universidad|colegio|educación|educacion|fondo|529|fafsa/)) return botReply(kb['universidad'].text, kb['universidad'].quick);
-    if (lower.match(/carrera|trabajo|agente|licencia|ingreso|ganar/)) return botReply(kb['carrera'].text, kb['carrera'].quick);
-    if (lower.match(/costo|precio|cuánto|cuanto|prima|mensual|pagar/)) return botReply(kb['costo'].text, kb['costo'].quick);
-    if (lower.match(/seguro de vida|qué es|como funciona|explica/)) return botReply(kb['seguro de vida'].text, kb['seguro de vida'].quick);
-    if (lower.match(/iul|indexado/)) return botReply(kb['iul'].text, kb['iul'].quick);
+    if (lower.match(/iul|indexado|valor en efectivo|p.liza/)) return topicHit(kb['iul'].text, kb['iul'].quick);
+    if (lower.match(/gastos final|funeral|entierro|muerte|sepeli/)) return topicHit(kb['gastos finales'].text, kb['gastos finales'].quick);
+    if (lower.match(/hipoteca|casa|hogar|propiedad|vivienda/)) return topicHit(kb['hipoteca'].text, kb['hipoteca'].quick);
+    if (lower.match(/universid|colegio|educaci|fondo|estudios|529|fafsa/)) return topicHit(kb['universidad'].text, kb['universidad'].quick);
+    if (lower.match(/carrera|trabajo|agente|licencia|ingreso|ganar|unirme/)) return topicHit(kb['carrera'].text, kb['carrera'].quick);
+    if (lower.match(/costo|precio|cu.nto|prima|mensual|pagar|vale/)) return topicHit(kb['costo'].text, kb['costo'].quick);
+    if (lower.match(/seguro|vida|proteger|familia|póliza|poliza|cobertura|beneficio/)) return topicHit(kb['seguro de vida'].text, kb['seguro de vida'].quick);
+    if (lower.match(/iul|indexado|retiro|jubil/)) return topicHit(kb['iul'].text, kb['iul'].quick);
   }
 
   // Fallback

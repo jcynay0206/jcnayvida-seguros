@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insurance Qualification Form — JCNay Vida Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--navy:#0a1a2a;--navy2:#12314d;--gold:#c9a86a;--gold-dark:#a07840;--cream:#faf7f2;--cream2:#f3eee7;--muted:#6b7280;--text:#1f2937;--red:#e74c3c;--green:#27ae60;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;}
+
+/* NAV */
+.topbar{background:rgba(10,26,42,0.98);border-bottom:1px solid rgba(201,168,106,0.2);padding:14px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.topbar-logo{font-family:'Playfair Display',serif;font-size:17px;color:var(--cream);text-decoration:none;display:flex;align-items:center;gap:8px;}
+.topbar-logo span{color:var(--gold);font-style:italic;}
+.back{font-size:12px;color:rgba(250,247,242,0.4);}
+.lang-toggle{display:flex;background:rgba(201,168,106,0.1);border:1px solid rgba(201,168,106,0.3);border-radius:50px;padding:3px;}
+.lang-btn{padding:4px 12px;border-radius:50px;border:none;font-size:12px;font-weight:700;cursor:pointer;background:transparent;color:rgba(250,247,242,0.5);transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.lang-btn.active{background:var(--gold-dark);color:#fff;}
+
+/* HERO */
+.form-hero{background:linear-gradient(140deg,#0a1a2a 0%,#0f3545 60%,#0a2218 100%);padding:48px 40px 40px;text-align:center;}
+.form-eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.form-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,36px);color:var(--cream);margin:0 0 10px;line-height:1.2;}
+.form-title em{font-style:italic;color:var(--gold);}
+.form-sub{font-size:14px;color:rgba(250,247,242,0.6);max-width:520px;margin:0 auto;line-height:1.7;}
+.save-notice{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:6px 14px;background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.3);border-radius:50px;font-size:12px;color:#6fcf97;font-weight:600;}
+
+/* PROGRESS */
+.progress-wrap{max-width:700px;margin:28px auto 0;padding:0 24px;}
+.progress-steps{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;transition:all 0.3s;flex-shrink:0;cursor:default;}
+.step-dot.done{background:var(--green);color:#fff;}
+.step-dot.active{background:var(--gold-dark);color:#fff;box-shadow:0 0 0 4px rgba(201,168,106,0.25);}
+.step-dot.pending{background:rgba(250,247,242,0.1);color:rgba(250,247,242,0.35);}
+.step-line{flex:1;height:2px;background:rgba(250,247,242,0.1);margin:0 6px;}
+.step-line.done{background:var(--green);}
+.progress-label{text-align:center;font-size:12px;color:rgba(250,247,242,0.5);margin-top:6px;}
+.progress-label strong{color:var(--gold);font-size:13px;}
+
+/* FORM CARD */
+.form-card{max-width:700px;margin:24px auto 48px;background:var(--cream);border-radius:20px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.4);}
+.form-card-header{background:var(--navy);padding:20px 28px;display:flex;align-items:center;gap:12px;}
+.fch-icon{width:40px;height:40px;border-radius:12px;background:rgba(201,168,106,0.15);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.fch-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--cream);}
+.fch-sub{font-size:12px;color:rgba(250,247,242,0.5);margin-top:2px;}
+
+/* STEPS */
+.form-step{display:none;padding:28px;}
+.form-step.active{display:block;}
+
+/* FIELDS */
+.field-group{margin-bottom:18px;}
+.field-row{display:grid;gap:16px;}
+.field-row-2{grid-template-columns:1fr 1fr;}
+.field-row-3{grid-template-columns:1fr 1fr 1fr;}
+.field-label{display:block;font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.req{color:var(--red);margin-left:2px;}
+.field-hint{font-size:11.5px;color:var(--muted);margin-top:4px;}
+.field-input,.field-select,.field-textarea{
+  width:100%;padding:12px 14px;border:1.5px solid var(--cream2);border-radius:10px;
+  font-size:14px;color:var(--navy);background:#fff;
+  font-family:'DM Sans',sans-serif;outline:none;
+  transition:border-color 0.2s,box-shadow 0.2s;
+}
+.field-input:focus,.field-select:focus,.field-textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,106,0.15);}
+.field-input.error,.field-select.error,.field-textarea.error{border-color:var(--red);box-shadow:0 0 0 3px rgba(231,76,60,0.1);}
+.field-textarea{resize:vertical;min-height:80px;}
+.error-msg{font-size:11.5px;color:var(--red);margin-top:4px;display:none;font-weight:600;}
+.error-msg.show{display:block;}
+
+/* RADIO / CHECKBOX GROUPS */
+.radio-grid{display:grid;gap:8px;}
+.radio-grid-2{grid-template-columns:1fr 1fr;}
+.radio-grid-3{grid-template-columns:1fr 1fr 1fr;}
+.radio-option,.check-option{
+  display:flex;align-items:center;gap:10px;padding:11px 14px;
+  border:1.5px solid var(--cream2);border-radius:10px;cursor:pointer;
+  transition:all 0.15s;font-size:13.5px;color:var(--navy);
+  background:#fff;user-select:none;
+}
+.radio-option:hover,.check-option:hover{border-color:var(--gold);}
+.radio-option input,.check-option input{display:none;}
+.radio-dot,.check-box{
+  width:18px;height:18px;border-radius:50%;border:2px solid #d0d5dd;
+  background:#fff;flex-shrink:0;transition:all 0.15s;display:flex;align-items:center;justify-content:center;
+}
+.check-box{border-radius:5px;}
+.radio-option.selected,.check-option.selected{border-color:var(--gold-dark);background:rgba(201,168,106,0.06);}
+.radio-option.selected .radio-dot{background:var(--gold-dark);border-color:var(--gold-dark);}
+.radio-option.selected .radio-dot::after{content:'';width:7px;height:7px;background:#fff;border-radius:50%;display:block;}
+.check-option.selected .check-box{background:var(--gold-dark);border-color:var(--gold-dark);}
+.check-option.selected .check-box::after{content:'✓';color:#fff;font-size:11px;font-weight:700;}
+.error-border{border-color:var(--red) !important;}
+
+/* DIVIDER */
+.form-divider{height:1px;background:var(--cream2);margin:20px 0;}
+.section-subtitle{font-family:'Playfair Display',serif;font-size:14px;color:var(--navy2);margin:20px 0 12px;display:flex;align-items:center;gap:8px;}
+.section-subtitle::after{content:'';flex:1;height:1px;background:var(--cream2);}
+
+/* BUTTONS */
+.btn-row{display:flex;gap:12px;margin-top:24px;}
+.btn-next{flex:1;padding:15px;background:linear-gradient(135deg,var(--gold),#e3cfa3);color:var(--navy);font-weight:800;font-size:15px;border:none;border-radius:12px;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(201,168,106,0.3);font-family:'DM Sans',sans-serif;}
+.btn-next:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,106,0.4);}
+.btn-back{padding:15px 20px;background:#fff;color:var(--muted);border:1.5px solid var(--cream2);border-radius:12px;cursor:pointer;font-size:14px;font-weight:600;font-family:'DM Sans',sans-serif;transition:all 0.15s;}
+.btn-back:hover{border-color:var(--navy);color:var(--navy);}
+
+/* VALIDATION ALERT */
+.validation-alert{background:rgba(231,76,60,0.08);border:1px solid rgba(231,76,60,0.3);border-radius:10px;padding:12px 16px;margin-bottom:16px;display:none;font-size:13px;color:#c0392b;font-weight:600;}
+.validation-alert.show{display:flex;align-items:center;gap:8px;}
+
+/* SUMMARY STEP */
+.summary-group{background:#fff;border:1px solid var(--cream2);border-radius:12px;overflow:hidden;margin-bottom:14px;}
+.sg-header{background:var(--navy);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;}
+.sg-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--cream);}
+.sg-edit{font-size:12px;color:var(--gold);cursor:pointer;text-decoration:none;font-weight:600;}
+.sg-edit:hover{text-decoration:underline;}
+.sg-body{padding:14px 16px;}
+.sg-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--cream2);font-size:13px;}
+.sg-row:last-child{border-bottom:none;}
+.sg-key{color:var(--muted);}
+.sg-val{color:var(--navy);font-weight:600;text-align:right;max-width:60%;}
+
+/* SUBMIT */
+.btn-submit{width:100%;padding:18px;background:#25D366;color:#fff;border:none;border-radius:12px;cursor:pointer;font-size:16px;font-weight:800;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 8px 28px rgba(37,211,102,0.35);transition:transform 0.2s,box-shadow 0.2s;margin-top:20px;}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(37,211,102,0.5);}
+
+/* SUCCESS */
+.success-screen{display:none;padding:48px 28px;text-align:center;}
+.success-icon{font-size:56px;margin-bottom:16px;}
+.success-title{font-family:'Playfair Display',serif;font-size:26px;color:var(--navy);margin-bottom:12px;}
+.success-sub{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:24px;}
+.success-wa{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;background:#25D366;color:#fff;font-weight:700;font-size:15px;border-radius:50px;text-decoration:none;box-shadow:0 8px 28px rgba(37,211,102,0.35);}
+
+/* FOOTER */
+.form-footer{padding:20px 40px;text-align:center;}
+.form-footer p{font-size:11px;color:rgba(250,247,242,0.2);line-height:1.7;}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .topbar{padding:12px 20px;}
+  .form-hero{padding:40px 20px 32px;}
+  .form-card{margin:16px 16px 40px;}
+  .form-step{padding:20px 16px;}
+  .field-row-2,.field-row-3,.radio-grid-2,.radio-grid-3{grid-template-columns:1fr;}
+  .btn-row{flex-direction:column-reverse;}
+  .progress-wrap{padding:0 16px;}
+  .step-dot{width:26px;height:26px;font-size:11px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a href="https://seguros.azurewebstudio.com" class="topbar-logo">
+    <span class="back">← </span>JCNay <span>Vida</span> Team
+  </a>
+  <div class="lang-toggle">
+    <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+  </div>
+</nav>
+
+<header class="form-hero">
+  <div class="form-eyebrow" data-i18n="eyebrow">Free Qualification — No Commitment</div>
+  <h1 class="form-title" data-i18n="title">Find out if you qualify<br><em>and what coverage fits you</em></h1>
+  <p class="form-sub" data-i18n="sub">Complete the form below. Yunersy will review your information and contact you within 24 hours with your personalized options — at no cost.</p>
+</header>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-steps" id="progressSteps">
+    <div class="step-dot active" id="dot-1">1</div>
+    <div class="step-line" id="line-1"></div>
+    <div class="step-dot pending" id="dot-2">2</div>
+    <div class="step-line" id="line-2"></div>
+    <div class="step-dot pending" id="dot-3">3</div>
+    <div class="step-line" id="line-3"></div>
+    <div class="step-dot pending" id="dot-4">4</div>
+    <div class="step-line" id="line-4"></div>
+    <div class="step-dot pending" id="dot-5">5</div>
+    <div class="step-line" id="line-5"></div>
+    <div class="step-dot pending" id="dot-6">✓</div>
+  </div>
+  <div class="progress-label" id="progressLabel">
+    <strong data-i18n="step-1-label">Step 1 of 6</strong> — <span data-i18n="step-1-name">Personal Information</span>
+  </div>
+</div>
+
+<!-- FORM CARD -->
+<div class="form-card">
+
+  <!-- ═══════════════════════════════════════════
+       STEP 1 — PERSONAL INFORMATION
+  ════════════════════════════════════════════ -->
+  <div class="form-card-header" id="card-header">
+    <div class="fch-icon" id="card-icon">👤</div>
+    <div>
+      <div class="fch-title" id="card-title" data-i18n="s1-title">Personal Information</div>
+      <div class="fch-sub" id="card-sub" data-i18n="s1-sub">Tell us about you so we can find the right coverage</div>
+    </div>
+  </div>
+
+  <div id="step-1" class="form-step active">
+    <div class="validation-alert" id="val-1">⚠️ <span id="val-1-msg">Please complete all required fields.</span></div>
+
+    <div class="field-row field-row-2">
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-firstname">First Name <span class="req">*</span></label>
+        <input type="text" class="field-input" id="firstName" data-i18n-ph="ph-firstname" placeholder="Maria">
+        <div class="error-msg" id="err-firstName" data-i18n="req-field">This field is required.</div>
+      </div>
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-lastname">Last Name <span class="req">*</span></label>
+        <input type="text" class="field-input" id="lastName" data-i18n-ph="ph-lastname" placeholder="García">
+        <div class="error-msg" id="err-lastName" data-i18n="req-field">This field is required.</div>
+      </div>
+    </div>
+
+    <div class="field-row field-row-3">
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-dob">Date of Birth <span class="req">*</span></label>
+        <input type="date" class="field-input" id="dob">
+        <div class="error-msg" id="err-dob" data-i18n="req-field">This field is required.</div>
+      </div>
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-gender">Gender <span class="req">*</span></label>
+        <select class="field-select" id="gender">
+          <option value="" data-i18n="sel-opt">Select...</option>
+          <option value="Female" data-i18n="g-female">Female</option>
+          <option value="Male" data-i18n="g-male">Male</option>
+        </select>
+        <div class="error-msg" id="err-gender" data-i18n="req-field">This field is required.</div>
+      </div>
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-marital">Marital Status</label>
+        <select class="field-select" id="marital">
+          <option value="" data-i18n="sel-opt">Select...</option>
+          <option value="Single" data-i18n="ms-single">Single</option>
+          <option value="Married" data-i18n="ms-married">Married</option>
+          <option value="Divorced" data-i18n="ms-divorced">Divorced</option>
+          <option value="Widowed" data-i18n="ms-widowed">Widowed</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row field-row-2">
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-state">State of Residence <span class="req">*</span></label>
+        <select class="field-select" id="state">
+          <option value="" data-i18n="sel-opt">Select...</option>
+          <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+          <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+          <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+          <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
+          <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
+          <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+          <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
+          <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
+          <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+          <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+          <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option>
+          <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
+          <option>Wisconsin</option><option>Wyoming</option><option>Puerto Rico</option>
+        </select>
+        <div class="error-msg" id="err-state" data-i18n="req-field">This field is required.</div>
+      </div>
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-dependents">Number of Dependents</label>
+        <select class="field-select" id="dependents">
+          <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+          <option value="3">3</option><option value="4">4</option><option value="5+">5+</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" data-i18n="f-employment">Employment Status</label>
+      <div class="radio-grid radio-grid-3">
+        <div class="radio-option" onclick="selectRadio(this,'employment','Employed')" id="emp-Employed">
+          <div class="radio-dot"></div><span data-i18n="emp-employed">Employed</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'employment','Self-Employed')" id="emp-Self-Employed">
+          <div class="radio-dot"></div><span data-i18n="emp-self">Self-Employed</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'employment','Unemployed')" id="emp-Unemployed">
+          <div class="radio-dot"></div><span data-i18n="emp-un">Unemployed</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'employment','Retired')" id="emp-Retired">
+          <div class="radio-dot"></div><span data-i18n="emp-retired">Retired</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'employment','Student')" id="emp-Student">
+          <div class="radio-dot"></div><span data-i18n="emp-student">Student</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-next" onclick="nextStep(1)" data-i18n="btn-next">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 2 — CONTACT INFORMATION
+  ════════════════════════════════════════════ -->
+  <div id="step-2" class="form-step">
+    <div class="validation-alert" id="val-2">⚠️ <span id="val-2-msg">Please complete all required fields.</span></div>
+
+    <div class="field-group">
+      <label class="field-label" data-i18n="f-phone">WhatsApp / Phone Number <span class="req">*</span></label>
+      <input type="tel" class="field-input" id="phone" placeholder="+1 (908) 000-0000">
+      <div class="field-hint" data-i18n="hint-phone">Yunersy will contact you on this number</div>
+      <div class="error-msg" id="err-phone" data-i18n="req-field">This field is required.</div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" data-i18n="f-email">Email Address <span class="req">*</span></label>
+      <input type="email" class="field-input" id="email" placeholder="your@email.com">
+      <div class="error-msg" id="err-email" data-i18n="req-email">Please enter a valid email.</div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" data-i18n="f-best-time">Best Time to Contact <span class="req">*</span></label>
+      <div class="radio-grid radio-grid-2">
+        <div class="radio-option" onclick="selectRadio(this,'bestTime','Morning (9am–12pm)')" id="bt-Morning (9am–12pm)">
+          <div class="radio-dot"></div><span data-i18n="bt-morning">☀️ Morning (9am–12pm)</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'bestTime','Afternoon (12pm–5pm)')" id="bt-Afternoon (12pm–5pm)">
+          <div class="radio-dot"></div><span data-i18n="bt-afternoon">🌤️ Afternoon (12–5pm)</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'bestTime','Evening (5pm–8pm)')" id="bt-Evening (5pm–8pm)">
+          <div class="radio-dot"></div><span data-i18n="bt-evening">🌙 Evening (5–8pm)</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'bestTime','Anytime')" id="bt-Anytime">
+          <div class="radio-dot"></div><span data-i18n="bt-anytime">🕐 Anytime</span>
+        </div>
+      </div>
+      <div class="error-msg" id="err-bestTime" data-i18n="req-select">Please select an option.</div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" data-i18n="f-lang-pref">Preferred Language</label>
+      <div class="radio-grid radio-grid-2">
+        <div class="radio-option" onclick="selectRadio(this,'langPref','English')" id="lp-English">
+          <div class="radio-dot"></div><span>🇺🇸 English</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'langPref','Spanish')" id="lp-Spanish">
+          <div class="radio-dot"></div><span>🇪🇸 Español</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="prevStep(2)" data-i18n="btn-back">← Back</button>
+      <button class="btn-next" onclick="nextStep(2)" data-i18n="btn-next">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 3 — HEALTH INFORMATION
+  ════════════════════════════════════════════ -->
+  <div id="step-3" class="form-step">
+    <div class="validation-alert" id="val-3">⚠️ <span id="val-3-msg">Please complete all required fields.</span></div>
+
+    <div class="field-group">
+      <label class="field-label" data-i18n="f-health">Overall Health <span class="req">*</span></label>
+      <div class="radio-grid radio-grid-2">
+        <div class="radio-option" onclick="selectRadio(this,'health','Excellent')" id="h-Excellent">
+          <div class="radio-dot"></div><span data-i18n="h-excellent">⭐⭐⭐⭐ Excellent</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'health','Good')" id="h-Good">
+          <div class="radio-dot"></div><span data-i18n="h-good">⭐⭐⭐ Good</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'health','Fair')" id="h-Fair">
+          <div class="radio-dot"></div><span data-i18n="h-fair">⭐⭐ Fair</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'health','Poor')" id="h-Poor">
+          <div class="radio-dot"></div><span data-i18n="h-poor">⭐ Poor / Health conditions</span>
+        </div>
+      </div>
+      <div class="error-msg" id="err-health" data-i18n="req-select">Please select an option.</div>
+    </div>
+
+    <div class="field-row field-row-2">
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-height">Height</label>
+        <input type="text" class="field-input" id="height" placeholder="e.g. 5'6&quot;">
+      </div>
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-weight">Weight (lbs)</label>
+        <input type="number" class="field-input" id="weight" placeholder="e.g. 145">
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" data-i18n="f-tobacco">Tobacco Use <span class="req">*</span></label>
+      <div class="radio-grid radio-grid-2">
+        <div class="radio-option" onclick="selectRadio(this,'tobacco','No — never or quit 3+ years ago')" id="t-No — never or quit 3+ years ago">
+          <div class="radio-dot"></div><span data-i18n="t-no">🚭 No — never or quit 3+ years ago</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'tobacco','Yes — current or quit less than 3 years')" id="t-Yes — current or quit less than 3 years">
+          <div class="radio-dot"></div><span data-i18n="t-yes">🚬 Yes / Quit less than 3 years</span>
+        </div>
+      </div>
+      <div class="error-msg" id="err-tobacco" data-i18n="req-select">Please select an option.</div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" data-i18n="f-conditions">Pre-existing Health Conditions</label>
+      <p class="field-hint" data-i18n="hint-conditions">Select all that apply (optional)</p>
+      <div class="radio-grid radio-grid-2" style="margin-top:8px">
+        <div class="check-option" onclick="toggleCheck(this,'conditions','Diabetes')" id="cond-Diabetes">
+          <div class="check-box"></div><span data-i18n="cond-diabetes">Diabetes</span>
+        </div>
+        <div class="check-option" onclick="toggleCheck(this,'conditions','Heart Disease')" id="cond-Heart Disease">
+          <div class="check-box"></div><span data-i18n="cond-heart">Heart Disease</span>
+        </div>
+        <div class="check-option" onclick="toggleCheck(this,'conditions','High Blood Pressure')" id="cond-High Blood Pressure">
+          <div class="check-box"></div><span data-i18n="cond-hbp">High Blood Pressure</span>
+        </div>
+        <div class="check-option" onclick="toggleCheck(this,'conditions','Cancer (past or present)')" id="cond-Cancer (past or present)">
+          <div class="check-box"></div><span data-i18n="cond-cancer">Cancer (past or present)</span>
+        </div>
+        <div class="check-option" onclick="toggleCheck(this,'conditions','COPD / Lung Disease')" id="cond-COPD / Lung Disease">
+          <div class="check-box"></div><span data-i18n="cond-lung">COPD / Lung Disease</span>
+        </div>
+        <div class="check-option" onclick="toggleCheck(this,'conditions','None of the above')" id="cond-None of the above">
+          <div class="check-box"></div><span data-i18n="cond-none">None of the above</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="prevStep(3)" data-i18n="btn-back">← Back</button>
+      <button class="btn-next" onclick="nextStep(3)" data-i18n="btn-next">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 4 — COVERAGE PREFERENCES
+  ════════════════════════════════════════════ -->
+  <div id="step-4" class="form-step">
+    <div class="validation-alert" id="val-4">⚠️ <span id="val-4-msg">Please complete all required fields.</span></div>
+
+    <div class="field-group">
+      <label class="field-label" data-i18n="f-coverage-type">Type of Coverage Interested In <span class="req">*</span></label>
+      <div class="radio-grid">
+        <div class="radio-option" onclick="selectRadio(this,'coverageType','IUL — Life Insurance + Tax-Free Retirement')" id="ct-IUL — Life Insurance + Tax-Free Retirement">
+          <div class="radio-dot"></div>
+          <div><div style="font-weight:700;font-size:13px" data-i18n="ct-iul">📈 IUL — Life Insurance + Tax-Free Retirement</div><div style="font-size:11.5px;color:var(--muted)" data-i18n="ct-iul-sub">Grow money linked to S&P 500 with 0% floor</div></div>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'coverageType','Term Life — Maximum coverage at lowest cost')" id="ct-Term Life — Maximum coverage at lowest cost">
+          <div class="radio-dot"></div>
+          <div><div style="font-weight:700;font-size:13px" data-i18n="ct-term">🛡️ Term Life — Maximum coverage at lowest cost</div><div style="font-size:11.5px;color:var(--muted)" data-i18n="ct-term-sub">10, 20 or 30-year coverage</div></div>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'coverageType','Final Expense — Funeral and end-of-life costs')" id="ct-Final Expense — Funeral and end-of-life costs">
+          <div class="radio-dot"></div>
+          <div><div style="font-weight:700;font-size:13px" data-i18n="ct-fe">💸 Final Expense — Funeral and end-of-life costs</div><div style="font-size:11.5px;color:var(--muted)" data-i18n="ct-fe-sub">No medical exam required, fast approval</div></div>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'coverageType','Mortgage Protection — Keep the family in the home')" id="ct-Mortgage Protection — Keep the family in the home">
+          <div class="radio-dot"></div>
+          <div><div style="font-weight:700;font-size:13px" data-i18n="ct-mort">🏠 Mortgage Protection — Keep the family in the home</div><div style="font-size:11.5px;color:var(--muted)" data-i18n="ct-mort-sub">Policy covers mortgage if you pass away</div></div>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'coverageType','Not sure — let Yunersy recommend')" id="ct-Not sure — let Yunersy recommend">
+          <div class="radio-dot"></div>
+          <div><div style="font-weight:700;font-size:13px" data-i18n="ct-unsure">🤔 Not sure — let Yunersy recommend</div><div style="font-size:11.5px;color:var(--muted)" data-i18n="ct-unsure-sub">She will explain all options in your consultation</div></div>
+        </div>
+      </div>
+      <div class="error-msg" id="err-coverageType" data-i18n="req-select">Please select an option.</div>
+    </div>
+
+    <div class="field-row field-row-2">
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-coverage-amount">Desired Coverage Amount</label>
+        <select class="field-select" id="coverageAmount">
+          <option value="" data-i18n="sel-opt">Select...</option>
+          <option value="Under $50,000">Under $50,000</option>
+          <option value="$50,000 – $100,000">$50,000 – $100,000</option>
+          <option value="$100,000 – $250,000">$100,000 – $250,000</option>
+          <option value="$250,000 – $500,000">$250,000 – $500,000</option>
+          <option value="$500,000+">$500,000+</option>
+          <option value="Not sure" data-i18n="not-sure">Not sure</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-budget">Monthly Budget <span class="req">*</span></label>
+        <select class="field-select" id="budget">
+          <option value="" data-i18n="sel-opt">Select...</option>
+          <option value="Under $50/mo">Under $50/mo</option>
+          <option value="$50–$100/mo">$50–$100/mo</option>
+          <option value="$100–$200/mo">$100–$200/mo</option>
+          <option value="$200–$300/mo">$200–$300/mo</option>
+          <option value="$300+/mo">$300+/mo</option>
+        </select>
+        <div class="error-msg" id="err-budget" data-i18n="req-select">Please select a budget.</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" data-i18n="f-current-ins">Do you currently have life insurance?</label>
+      <div class="radio-grid radio-grid-3">
+        <div class="radio-option" onclick="selectRadio(this,'currentIns','No')" id="ci-No">
+          <div class="radio-dot"></div><span data-i18n="ci-no">No</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'currentIns','Yes — employer')" id="ci-Yes — employer">
+          <div class="radio-dot"></div><span data-i18n="ci-employer">Yes — employer</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'currentIns','Yes — private policy')" id="ci-Yes — private policy">
+          <div class="radio-dot"></div><span data-i18n="ci-private">Yes — private policy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" data-i18n="f-goals">What are your main financial goals? (select all that apply)</label>
+      <div class="radio-grid radio-grid-2" style="margin-top:8px">
+        <div class="check-option" onclick="toggleCheck(this,'goals','Protect my family if I pass away')" id="goal-Protect my family if I pass away">
+          <div class="check-box"></div><span data-i18n="goal-protect">Protect my family if I pass away</span>
+        </div>
+        <div class="check-option" onclick="toggleCheck(this,'goals','Build tax-free retirement')" id="goal-Build tax-free retirement">
+          <div class="check-box"></div><span data-i18n="goal-retire">Build tax-free retirement</span>
+        </div>
+        <div class="check-option" onclick="toggleCheck(this,'goals','Save for my children college')" id="goal-Save for my children college">
+          <div class="check-box"></div><span data-i18n="goal-college">Save for my children's college</span>
+        </div>
+        <div class="check-option" onclick="toggleCheck(this,'goals','Cover funeral expenses')" id="goal-Cover funeral expenses">
+          <div class="check-box"></div><span data-i18n="goal-funeral">Cover funeral expenses</span>
+        </div>
+        <div class="check-option" onclick="toggleCheck(this,'goals','Protect my mortgage')" id="goal-Protect my mortgage">
+          <div class="check-box"></div><span data-i18n="goal-mortgage">Protect my mortgage</span>
+        </div>
+        <div class="check-option" onclick="toggleCheck(this,'goals','Build generational wealth')" id="goal-Build generational wealth">
+          <div class="check-box"></div><span data-i18n="goal-wealth">Build generational wealth</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="prevStep(4)" data-i18n="btn-back">← Back</button>
+      <button class="btn-next" onclick="nextStep(4)" data-i18n="btn-next">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 5 — BENEFICIARIES
+  ════════════════════════════════════════════ -->
+  <div id="step-5" class="form-step">
+    <div class="validation-alert" id="val-5">⚠️ <span id="val-5-msg">Please complete all required fields.</span></div>
+
+    <div class="section-subtitle" data-i18n="s5-primary">Primary Beneficiary</div>
+
+    <div class="field-row field-row-2">
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-ben-name">Full Name <span class="req">*</span></label>
+        <input type="text" class="field-input" id="benName" placeholder="Full name">
+        <div class="error-msg" id="err-benName" data-i18n="req-field">This field is required.</div>
+      </div>
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-ben-rel">Relationship <span class="req">*</span></label>
+        <select class="field-select" id="benRel">
+          <option value="" data-i18n="sel-opt">Select...</option>
+          <option value="Spouse/Partner" data-i18n="rel-spouse">Spouse / Partner</option>
+          <option value="Child" data-i18n="rel-child">Child</option>
+          <option value="Parent" data-i18n="rel-parent">Parent</option>
+          <option value="Sibling" data-i18n="rel-sibling">Sibling</option>
+          <option value="Other" data-i18n="rel-other">Other</option>
+        </select>
+        <div class="error-msg" id="err-benRel" data-i18n="req-select">Please select a relationship.</div>
+      </div>
+    </div>
+
+    <div class="field-row field-row-2">
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-ben-dob">Date of Birth (optional)</label>
+        <input type="date" class="field-input" id="benDob">
+      </div>
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-ben-pct">Percentage %</label>
+        <input type="number" class="field-input" id="benPct" value="100" min="1" max="100">
+      </div>
+    </div>
+
+    <div class="section-subtitle" data-i18n="s5-contingent">Contingent Beneficiary (optional)</div>
+
+    <div class="field-row field-row-2">
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-ben2-name">Full Name</label>
+        <input type="text" class="field-input" id="ben2Name" placeholder="Full name (optional)">
+      </div>
+      <div class="field-group">
+        <label class="field-label" data-i18n="f-ben2-rel">Relationship</label>
+        <select class="field-select" id="ben2Rel">
+          <option value="" data-i18n="sel-opt">Select...</option>
+          <option value="Spouse/Partner" data-i18n="rel-spouse">Spouse / Partner</option>
+          <option value="Child" data-i18n="rel-child">Child</option>
+          <option value="Parent" data-i18n="rel-parent">Parent</option>
+          <option value="Sibling" data-i18n="rel-sibling">Sibling</option>
+          <option value="Other" data-i18n="rel-other">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" data-i18n="f-notes">Additional Notes</label>
+      <textarea class="field-textarea" id="notes" data-i18n-ph="ph-notes" placeholder="Anything else Yunersy should know before your consultation..."></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="prevStep(5)" data-i18n="btn-back">← Back</button>
+      <button class="btn-next" onclick="nextStep(5)" data-i18n="btn-next-review">Review & Submit →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 6 — SUMMARY & SUBMIT
+  ════════════════════════════════════════════ -->
+  <div id="step-6" class="form-step">
+    <p style="font-size:14px;color:var(--muted);margin-bottom:20px" data-i18n="summary-intro">Review your information before submitting. Click "Edit" to go back and make changes.</p>
+
+    <div class="summary-group">
+      <div class="sg-header">
+        <span class="sg-title" data-i18n="sum-personal">👤 Personal Information</span>
+        <span class="sg-edit" onclick="goStep(1)" data-i18n="edit">Edit</span>
+      </div>
+      <div class="sg-body" id="sum-personal"></div>
+    </div>
+    <div class="summary-group">
+      <div class="sg-header">
+        <span class="sg-title" data-i18n="sum-contact">📱 Contact</span>
+        <span class="sg-edit" onclick="goStep(2)" data-i18n="edit">Edit</span>
+      </div>
+      <div class="sg-body" id="sum-contact"></div>
+    </div>
+    <div class="summary-group">
+      <div class="sg-header">
+        <span class="sg-title" data-i18n="sum-health">🏥 Health</span>
+        <span class="sg-edit" onclick="goStep(3)" data-i18n="edit">Edit</span>
+      </div>
+      <div class="sg-body" id="sum-health"></div>
+    </div>
+    <div class="summary-group">
+      <div class="sg-header">
+        <span class="sg-title" data-i18n="sum-coverage">🛡️ Coverage</span>
+        <span class="sg-edit" onclick="goStep(4)" data-i18n="edit">Edit</span>
+      </div>
+      <div class="sg-body" id="sum-coverage"></div>
+    </div>
+    <div class="summary-group">
+      <div class="sg-header">
+        <span class="sg-title" data-i18n="sum-ben">👨‍👩‍👧 Beneficiaries</span>
+        <span class="sg-edit" onclick="goStep(5)" data-i18n="edit">Edit</span>
+      </div>
+      <div class="sg-body" id="sum-ben"></div>
+    </div>
+
+    <div style="background:rgba(201,168,106,0.1);border:1px solid rgba(201,168,106,0.25);border-radius:12px;padding:16px 18px;margin:16px 0;font-size:13px;color:var(--muted);line-height:1.6" data-i18n="privacy-note">
+      🔒 Your information is private and will only be shared with Yunersy Salabarria of JCNay Vida Team for the purpose of your insurance consultation. It will not be sold or shared with third parties.
+    </div>
+
+    <button class="btn-submit" onclick="submitForm()">
+      <span style="font-size:20px">💬</span>
+      <span data-i18n="btn-submit">Send to Yunersy — Start My Consultation</span>
+    </button>
+
+    <div class="btn-row" style="margin-top:12px">
+      <button class="btn-back" onclick="prevStep(6)" data-i18n="btn-back">← Back</button>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="success-screen">
+    <div class="success-icon">🎉</div>
+    <div class="success-title" data-i18n="success-title">Your application was sent!</div>
+    <div class="success-sub" data-i18n="success-sub">Yunersy received all your information and will contact you within 24 hours to schedule your free, personalized consultation.<br><br>If you prefer, you can also reach out to her directly right now:</div>
+    <a href="#" id="success-wa-link" class="success-wa" target="_blank">
+      💬 <span data-i18n="success-wa-btn">Message Yunersy on WhatsApp</span>
+    </a>
+  </div>
+
+</div><!-- end form-card -->
+
+<div class="form-footer">
+  <p data-i18n="footer">JCNay Vida Team · Yunersy Salabarria · Licensed Agent NJ #3003419400 · FL #G365745 · Information provided is for qualification purposes only and does not constitute a policy offer or guarantee of coverage.</p>
+</div>
+
+<script>
+// ── STATE
+var currentStep = 1;
+var totalSteps = 6;
+var formData = {};
+var checkboxData = { conditions: [], goals: [] };
+var radioData = {};
+// ── TRANSLATIONS
+var T = {
+  en:{
+    "eyebrow":"Free Qualification — No Commitment",
+    "title":"Find out if you qualify<br><em>and what coverage fits you</em>",
+    "sub":"Complete the form below. Yunersy will review your information and contact you within 24 hours with your personalized options — at no cost.",
+    "save-notice":"Your progress is saved automatically",
+    "step-1-label":"Step 1 of 6","step-1-name":"Personal Information",
+    "step-2-label":"Step 2 of 6","step-2-name":"Contact Information",
+    "step-3-label":"Step 3 of 6","step-3-name":"Health Information",
+    "step-4-label":"Step 4 of 6","step-4-name":"Coverage Preferences",
+    "step-5-label":"Step 5 of 6","step-5-name":"Beneficiaries",
+    "step-6-label":"Step 6 of 6","step-6-name":"Review & Submit",
+    "s1-title":"Personal Information","s1-sub":"Tell us about you so we can find the right coverage",
+    "s2-title":"Contact Information","s2-sub":"How should Yunersy reach you?",
+    "s3-title":"Health Information","s3-sub":"This helps determine which products you qualify for",
+    "s4-title":"Coverage Preferences","s4-sub":"What are you looking to protect?",
+    "s5-title":"Beneficiaries","s5-sub":"Who will receive the benefit?",
+    "s6-title":"Review & Submit","s6-sub":"Almost done — review and send",
+    "s1-icon":"👤","s2-icon":"📱","s3-icon":"🏥","s4-icon":"🛡️","s5-icon":"👨‍👩‍👧","s6-icon":"✅",
+    "f-firstname":"First Name","ph-firstname":"Maria","f-lastname":"Last Name","ph-lastname":"García",
+    "f-dob":"Date of Birth","f-gender":"Gender","sel-opt":"Select...","g-female":"Female","g-male":"Male",
+    "f-marital":"Marital Status","ms-single":"Single","ms-married":"Married","ms-divorced":"Divorced","ms-widowed":"Widowed",
+    "f-state":"State of Residence","f-dependents":"Number of Dependents",
+    "f-employment":"Employment Status","emp-employed":"Employed","emp-self":"Self-Employed","emp-un":"Unemployed","emp-retired":"Retired","emp-student":"Student",
+    "f-phone":"WhatsApp / Phone Number","hint-phone":"Yunersy will contact you on this number",
+    "f-email":"Email Address","f-best-time":"Best Time to Contact",
+    "bt-morning":"☀️ Morning (9am–12pm)","bt-afternoon":"🌤️ Afternoon (12–5pm)","bt-evening":"🌙 Evening (5–8pm)","bt-anytime":"🕐 Anytime",
+    "f-lang-pref":"Preferred Language",
+    "f-health":"Overall Health","h-excellent":"⭐⭐⭐⭐ Excellent","h-good":"⭐⭐⭐ Good","h-fair":"⭐⭐ Fair","h-poor":"⭐ Poor / Health conditions",
+    "f-height":"Height","f-weight":"Weight (lbs)","f-tobacco":"Tobacco Use",
+    "t-no":"🚭 No — never or quit 3+ years ago","t-yes":"🚬 Yes / Quit less than 3 years",
+    "f-conditions":"Pre-existing Health Conditions","hint-conditions":"Select all that apply (optional)",
+    "cond-diabetes":"Diabetes","cond-heart":"Heart Disease","cond-hbp":"High Blood Pressure","cond-cancer":"Cancer (past or present)","cond-lung":"COPD / Lung Disease","cond-none":"None of the above",
+    "f-coverage-type":"Type of Coverage Interested In",
+    "ct-iul":"📈 IUL — Life Insurance + Tax-Free Retirement","ct-iul-sub":"Grow money linked to S&P 500 with 0% floor",
+    "ct-term":"🛡️ Term Life — Maximum coverage at lowest cost","ct-term-sub":"10, 20 or 30-year coverage",
+    "ct-fe":"💸 Final Expense — Funeral and end-of-life costs","ct-fe-sub":"No medical exam required, fast approval",
+    "ct-mort":"🏠 Mortgage Protection — Keep the family in the home","ct-mort-sub":"Policy covers mortgage if you pass away",
+    "ct-unsure":"🤔 Not sure — let Yunersy recommend","ct-unsure-sub":"She will explain all options in your consultation",
+    "f-coverage-amount":"Desired Coverage Amount","not-sure":"Not sure",
+    "f-budget":"Monthly Budget","f-current-ins":"Do you currently have life insurance?",
+    "ci-no":"No","ci-employer":"Yes — employer","ci-private":"Yes — private policy",
+    "f-goals":"What are your main financial goals?",
+    "goal-protect":"Protect my family if I pass away","goal-retire":"Build tax-free retirement",
+    "goal-college":"Save for my children's college","goal-funeral":"Cover funeral expenses",
+    "goal-mortgage":"Protect my mortgage","goal-wealth":"Build generational wealth",
+    "s5-primary":"Primary Beneficiary","s5-contingent":"Contingent Beneficiary (optional)",
+    "f-ben-name":"Full Name","f-ben-rel":"Relationship","f-ben-dob":"Date of Birth (optional)","f-ben-pct":"Percentage %",
+    "rel-spouse":"Spouse / Partner","rel-child":"Child","rel-parent":"Parent","rel-sibling":"Sibling","rel-other":"Other",
+    "f-ben2-name":"Full Name","f-ben2-rel":"Relationship",
+    "f-notes":"Additional Notes","ph-notes":"Anything else Yunersy should know before your consultation...",
+    "summary-intro":"Review your information before submitting. Click 'Edit' to go back and make changes.",
+    "sum-personal":"👤 Personal Information","sum-contact":"📱 Contact","sum-health":"🏥 Health","sum-coverage":"🛡️ Coverage","sum-ben":"👨‍👩‍👧 Beneficiaries",
+    "edit":"Edit","privacy-note":"🔒 Your information is private and will only be shared with Yunersy Salabarria of JCNay Vida Team for the purpose of your insurance consultation.",
+    "btn-next":"Continue →","btn-next-review":"Review & Submit →","btn-back":"← Back",
+    "btn-submit":"Send to Yunersy — Start My Consultation",
+    "success-title":"Your application was sent!",
+    "success-sub":"Yunersy received all your information and will contact you within 24 hours to schedule your free, personalized consultation.\n\nIf you prefer, you can also reach out to her directly right now:",
+    "success-wa-btn":"Message Yunersy on WhatsApp",
+    "req-field":"This field is required.","req-email":"Please enter a valid email.","req-select":"Please select an option.",
+    "val-required":"Please complete all required fields before continuing.",
+    "footer":"JCNay Vida Team · Yunersy Salabarria · Licensed Agent NJ #3003419400 · FL #G365745",
+    "sum-keys":{
+      "firstName":"First Name","lastName":"Last Name","dob":"Date of Birth","gender":"Gender","marital":"Marital Status","state":"State","dependents":"Dependents","employment":"Employment",
+      "phone":"Phone / WhatsApp","email":"Email","bestTime":"Best Contact Time","langPref":"Language",
+      "health":"Health","height":"Height","weight":"Weight","tobacco":"Tobacco","conditions":"Conditions",
+      "coverageType":"Coverage Type","coverageAmount":"Coverage Amount","budget":"Monthly Budget","currentIns":"Current Insurance","goals":"Goals",
+      "benName":"Primary Beneficiary","benRel":"Relationship","benPct":"Percentage","benDob":"Date of Birth","ben2Name":"Contingent Beneficiary","ben2Rel":"Relationship","notes":"Notes"
+    }
+  },
+  es:{
+    "eyebrow":"Calificación Gratuita — Sin Compromiso",
+    "title":"Descubre si calificas<br><em>y qué cobertura es para ti</em>",
+    "sub":"Completa el formulario. Yunersy revisará tu información y te contactará en 24 horas con tus opciones personalizadas — sin costo.",
+    "save-notice":"Tu progreso se guarda automáticamente",
+    "step-1-label":"Paso 1 de 6","step-1-name":"Información Personal",
+    "step-2-label":"Paso 2 de 6","step-2-name":"Información de Contacto",
+    "step-3-label":"Paso 3 de 6","step-3-name":"Información de Salud",
+    "step-4-label":"Paso 4 de 6","step-4-name":"Preferencias de Cobertura",
+    "step-5-label":"Paso 5 de 6","step-5-name":"Beneficiarios",
+    "step-6-label":"Paso 6 de 6","step-6-name":"Revisar y Enviar",
+    "s1-title":"Información Personal","s1-sub":"Cuéntanos sobre ti para encontrar la cobertura correcta",
+    "s2-title":"Información de Contacto","s2-sub":"¿Cómo debe Yunersy contactarte?",
+    "s3-title":"Información de Salud","s3-sub":"Esto nos ayuda a determinar para qué productos calificas",
+    "s4-title":"Preferencias de Cobertura","s4-sub":"¿Qué quieres proteger?",
+    "s5-title":"Beneficiarios","s5-sub":"¿Quién recibirá el beneficio?",
+    "s6-title":"Revisar y Enviar","s6-sub":"Casi listo — revisa y envía",
+    "s1-icon":"👤","s2-icon":"📱","s3-icon":"🏥","s4-icon":"🛡️","s5-icon":"👨‍👩‍👧","s6-icon":"✅",
+    "f-firstname":"Nombre","ph-firstname":"María","f-lastname":"Apellido","ph-lastname":"García",
+    "f-dob":"Fecha de Nacimiento","f-gender":"Género","sel-opt":"Selecciona...","g-female":"Femenino","g-male":"Masculino",
+    "f-marital":"Estado Civil","ms-single":"Soltero/a","ms-married":"Casado/a","ms-divorced":"Divorciado/a","ms-widowed":"Viudo/a",
+    "f-state":"Estado de Residencia","f-dependents":"Número de Dependientes",
+    "f-employment":"Situación Laboral","emp-employed":"Empleado/a","emp-self":"Trabajador/a Independiente","emp-un":"Desempleado/a","emp-retired":"Jubilado/a","emp-student":"Estudiante",
+    "f-phone":"WhatsApp / Teléfono","hint-phone":"Yunersy te contactará en este número",
+    "f-email":"Correo Electrónico","f-best-time":"Mejor Horario para Contactar",
+    "bt-morning":"☀️ Mañana (9am–12pm)","bt-afternoon":"🌤️ Tarde (12–5pm)","bt-evening":"🌙 Noche (5–8pm)","bt-anytime":"🕐 Cualquier momento",
+    "f-lang-pref":"Idioma Preferido",
+    "f-health":"Salud General","h-excellent":"⭐⭐⭐⭐ Excelente","h-good":"⭐⭐⭐ Buena","h-fair":"⭐⭐ Regular","h-poor":"⭐ Mala / Condiciones de salud",
+    "f-height":"Estatura","f-weight":"Peso (libras)","f-tobacco":"Uso de Tabaco",
+    "t-no":"🚭 No — nunca o dejé hace 3+ años","t-yes":"🚬 Sí / Dejé hace menos de 3 años",
+    "f-conditions":"Condiciones de Salud Preexistentes","hint-conditions":"Selecciona todas las que apliquen (opcional)",
+    "cond-diabetes":"Diabetes","cond-heart":"Enfermedades del Corazón","cond-hbp":"Presión Arterial Alta","cond-cancer":"Cáncer (pasado o presente)","cond-lung":"EPOC / Enfermedad Pulmonar","cond-none":"Ninguna de las anteriores",
+    "f-coverage-type":"Tipo de Cobertura de Interés",
+    "ct-iul":"📈 IUL — Seguro de Vida + Retiro Libre de Impuestos","ct-iul-sub":"Dinero vinculado al S&P 500 con piso del 0%",
+    "ct-term":"🛡️ Seguro Temporal — Máxima cobertura al menor costo","ct-term-sub":"Cobertura de 10, 20 o 30 años",
+    "ct-fe":"💸 Gastos Finales — Costos de funeral y fin de vida","ct-fe-sub":"Sin examen médico, aprobación rápida",
+    "ct-mort":"🏠 Protección Hipotecaria — La familia se queda en casa","ct-mort-sub":"La póliza cubre la hipoteca si falleces",
+    "ct-unsure":"🤔 No estoy seguro/a — que Yunersy recomiende","ct-unsure-sub":"Ella explicará todas las opciones en tu consulta",
+    "f-coverage-amount":"Monto de Cobertura Deseado","not-sure":"No estoy seguro/a",
+    "f-budget":"Presupuesto Mensual","f-current-ins":"¿Tienes seguro de vida actualmente?",
+    "ci-no":"No","ci-employer":"Sí — del empleador","ci-private":"Sí — póliza privada",
+    "f-goals":"¿Cuáles son tus metas financieras principales?",
+    "goal-protect":"Proteger a mi familia si fallezco","goal-retire":"Construir retiro libre de impuestos",
+    "goal-college":"Ahorrar para la universidad de mis hijos","goal-funeral":"Cubrir gastos de funeral",
+    "goal-mortgage":"Proteger mi hipoteca","goal-wealth":"Construir riqueza generacional",
+    "s5-primary":"Beneficiario Principal","s5-contingent":"Beneficiario Contingente (opcional)",
+    "f-ben-name":"Nombre Completo","f-ben-rel":"Relación","f-ben-dob":"Fecha de Nacimiento (opcional)","f-ben-pct":"Porcentaje %",
+    "rel-spouse":"Esposo/a · Pareja","rel-child":"Hijo/a","rel-parent":"Padre/Madre","rel-sibling":"Hermano/a","rel-other":"Otro",
+    "f-ben2-name":"Nombre Completo","f-ben2-rel":"Relación",
+    "f-notes":"Notas Adicionales","ph-notes":"¿Algo más que Yunersy deba saber antes de tu consulta?",
+    "summary-intro":"Revisa tu información antes de enviar. Haz clic en 'Editar' para regresar y hacer cambios.",
+    "sum-personal":"👤 Información Personal","sum-contact":"📱 Contacto","sum-health":"🏥 Salud","sum-coverage":"🛡️ Cobertura","sum-ben":"👨‍👩‍👧 Beneficiarios",
+    "edit":"Editar","privacy-note":"🔒 Tu información es privada y solo será compartida con Yunersy Salabarria de JCNay Vida Team para el propósito de tu consulta de seguros.",
+    "btn-next":"Continuar →","btn-next-review":"Revisar y Enviar →","btn-back":"← Atrás",
+    "btn-submit":"Enviar a Yunersy — Comenzar mi Consulta",
+    "success-title":"¡Tu solicitud fue enviada!",
+    "success-sub":"Yunersy recibió toda tu información y te contactará en 24 horas para agendar tu consulta gratuita y personalizada.\n\nSi prefieres, también puedes escribirle directamente ahora mismo:",
+    "success-wa-btn":"Escribir a Yunersy por WhatsApp",
+    "req-field":"Este campo es obligatorio.","req-email":"Por favor ingresa un email válido.","req-select":"Por favor selecciona una opción.",
+    "val-required":"Por favor completa todos los campos obligatorios antes de continuar.",
+    "footer":"JCNay Vida Team · Yunersy Salabarria · Agente Licenciada NJ #3003419400 · FL #G365745",
+    "sum-keys":{
+      "firstName":"Nombre","lastName":"Apellido","dob":"Fecha Nacimiento","gender":"Género","marital":"Estado Civil","state":"Estado","dependents":"Dependientes","employment":"Situación Laboral",
+      "phone":"Teléfono / WhatsApp","email":"Email","bestTime":"Mejor Horario","langPref":"Idioma",
+      "health":"Salud","height":"Estatura","weight":"Peso","tobacco":"Tabaco","conditions":"Condiciones",
+      "coverageType":"Tipo de Cobertura","coverageAmount":"Monto Deseado","budget":"Presupuesto Mensual","currentIns":"Seguro Actual","goals":"Metas",
+      "benName":"Beneficiario Principal","benRel":"Relación","benPct":"Porcentaje","benDob":"Fecha Nacimiento","ben2Name":"Beneficiario Contingente","ben2Rel":"Relación","notes":"Notas"
+    }
+  }
+};
+
+var lang = localStorage.getItem('jcnay-calc-lang') || 'en';
+
+// ── STEP META
+var STEPS = [
+  null,
+  {icon:'👤', i18n_title:'s1-title', i18n_sub:'s1-sub', i18n_label:'step-1-label', i18n_name:'step-1-name'},
+  {icon:'📱', i18n_title:'s2-title', i18n_sub:'s2-sub', i18n_label:'step-2-label', i18n_name:'step-2-name'},
+  {icon:'🏥', i18n_title:'s3-title', i18n_sub:'s3-sub', i18n_label:'step-3-label', i18n_name:'step-3-name'},
+  {icon:'🛡️', i18n_title:'s4-title', i18n_sub:'s4-sub', i18n_label:'step-4-label', i18n_name:'step-4-name'},
+  {icon:'👨‍👩‍👧', i18n_title:'s5-title', i18n_sub:'s5-sub', i18n_label:'step-5-label', i18n_name:'step-5-name'},
+  {icon:'✅', i18n_title:'s6-title', i18n_sub:'s6-sub', i18n_label:'step-6-label', i18n_name:'step-6-name'},
+];
+
+// ── VALIDATION RULES PER STEP
+var REQUIRED = {
+  1: ['firstName','lastName','dob','gender','state'],
+  2: ['phone','email','bestTime'],
+  3: ['health','tobacco'],
+  4: ['coverageType','budget'],
+  5: ['benName','benRel'],
+};
+
+// ── LANG
+function setLang(l){
+  lang = l;
+  localStorage.setItem('jcnay-calc-lang', l);
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k = el.getAttribute('data-i18n');
+    if(T[l][k]) el.innerHTML = T[l][k];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(function(el){
+    var k = el.getAttribute('data-i18n-ph');
+    if(T[l][k]) el.placeholder = T[l][k];
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.lang===l); });
+  updateHeader();
+  updateProgress();
+}
+
+// ── HEADER UPDATE
+function updateHeader(){
+  var s = STEPS[currentStep];
+  if(!s) return;
+  document.getElementById('card-icon').textContent = s.icon;
+  document.getElementById('card-title').innerHTML = T[lang][s.i18n_title]||'';
+  document.getElementById('card-sub').innerHTML = T[lang][s.i18n_sub]||'';
+}
+
+// ── PROGRESS
+function updateProgress(){
+  for(var i=1;i<=6;i++){
+    var dot = document.getElementById('dot-'+i);
+    var line = i<6 ? document.getElementById('line-'+i) : null;
+    if(!dot) continue;
+    dot.classList.remove('done','active','pending');
+    if(i<currentStep){ dot.classList.add('done'); dot.textContent=i; if(line)line.classList.add('done'); }
+    else if(i===currentStep){ dot.classList.add('active'); dot.textContent=i; }
+    else { dot.classList.add('pending'); dot.textContent=i; if(line) line.classList.remove('done'); }
+  }
+  // Step 6 dot text
+  var d6 = document.getElementById('dot-6');
+  if(d6) d6.textContent = currentStep===6?'6':'✓';
+  var s = STEPS[currentStep];
+  if(s){
+    document.getElementById('progressLabel').innerHTML = '<strong>'+T[lang][s.i18n_label]+'</strong> — '+T[lang][s.i18n_name];
+  }
+}
+
+// ── RADIO SELECT
+function selectRadio(el, key, value){
+  var parent = el.closest('.radio-grid,.field-group');
+  if(parent) parent.querySelectorAll('.radio-option').forEach(function(o){ o.classList.remove('selected'); });
+  el.classList.add('selected');
+  radioData[key] = value;
+  clearErr(key);
+}
+
+// ── CHECKBOX TOGGLE
+function toggleCheck(el, group, value){
+  el.classList.toggle('selected');
+  var arr = checkboxData[group] || [];
+  var idx = arr.indexOf(value);
+  if(idx>-1) arr.splice(idx,1); else arr.push(value);
+  checkboxData[group] = arr;
+}
+
+// ── ERROR HELPERS
+function showErr(id, msg){ var e=document.getElementById('err-'+id); if(e){e.textContent=msg||T[lang]['req-field'];e.classList.add('show');} var inp=document.getElementById(id); if(inp)inp.classList.add('error'); }
+function clearErr(id){ var e=document.getElementById('err-'+id); if(e)e.classList.remove('show'); var inp=document.getElementById(id); if(inp)inp.classList.remove('error'); }
+
+// ── VALIDATE STEP
+function validateStep(n){
+  var reqs = REQUIRED[n] || [];
+  var valid = true;
+  reqs.forEach(function(id){
+    var val;
+    if(radioData.hasOwnProperty(id)){ val=radioData[id]; }
+    else { var el=document.getElementById(id); val=el?el.value.trim():''; }
+    if(!val){
+      valid=false;
+      if(id==='email'){ showErr(id, T[lang]['req-email']); }
+      else if(['bestTime','health','tobacco','coverageType','budget','benRel','gender','state','marital'].indexOf(id)>-1){ showErr(id, T[lang]['req-select']); }
+      else showErr(id, T[lang]['req-field']);
+    } else {
+      clearErr(id);
+      if(id==='email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)){
+        valid=false; showErr(id, T[lang]['req-email']);
+      }
+    }
+  });
+  return valid;
+}
+
+// ── NAVIGATION
+function nextStep(n){
+  if(!validateStep(n)){ var v=document.getElementById('val-'+n); if(v){v.querySelector('span').textContent=T[lang]['val-required'];v.classList.add('show');} setTimeout(function(){if(v)v.classList.remove('show');},4000); return; }
+  var v=document.getElementById('val-'+n); if(v)v.classList.remove('show');
+  goStep(n+1);
+}
+function prevStep(n){ goStep(n-1); }
+function goStep(n){
+  document.getElementById('step-'+currentStep).classList.remove('active');
+  currentStep=n;
+  var target=document.getElementById('step-'+n);
+  if(target){target.classList.add('active');}
+  updateProgress(); updateHeader();
+  if(n===6) buildSummary();
+  window.scrollTo({top:document.querySelector('.form-card').offsetTop-20,behavior:'smooth'});
+}
+
+// ── BUILD SUMMARY
+function buildSummary(){
+  var keys = T[lang]['sum-keys'];
+  function row(k,v){ if(!v||v==='') return ''; return '<div class="sg-row"><span class="sg-key">'+keys[k]+'</span><span class="sg-val">'+(v||'—')+'</span></div>'; }
+  function getF(id){ var el=document.getElementById(id); return el?el.value:''; }
+  var conds = (checkboxData.conditions||[]).join(', ') || '—';
+  var goals  = (checkboxData.goals||[]).join(', ') || '—';
+  document.getElementById('sum-personal').innerHTML =
+    row('firstName',getF('firstName'))+row('lastName',getF('lastName'))+
+    row('dob',getF('dob'))+row('gender',getF('gender'))+row('marital',getF('marital'))+
+    row('state',getF('state'))+row('dependents',getF('dependents'))+row('employment',radioData['employment']||'');
+  document.getElementById('sum-contact').innerHTML =
+    row('phone',getF('phone'))+row('email',getF('email'))+
+    row('bestTime',radioData['bestTime']||'')+row('langPref',radioData['langPref']||'');
+  document.getElementById('sum-health').innerHTML =
+    row('health',radioData['health']||'')+row('height',getF('height'))+row('weight',getF('weight'))+
+    row('tobacco',radioData['tobacco']||'')+row('conditions',conds);
+  document.getElementById('sum-coverage').innerHTML =
+    row('coverageType',radioData['coverageType']||'')+row('coverageAmount',getF('coverageAmount'))+
+    row('budget',getF('budget'))+row('currentIns',radioData['currentIns']||'')+row('goals',goals);
+  document.getElementById('sum-ben').innerHTML =
+    row('benName',getF('benName'))+row('benRel',getF('benRel'))+row('benPct',getF('benPct')+'%')+
+    row('benDob',getF('benDob'))+row('ben2Name',getF('ben2Name'))+row('ben2Rel',getF('ben2Rel'))+
+    row('notes',getF('notes'));
+}
+
+// ── SUBMIT
+function submitForm(){
+  function getF(id){ var el=document.getElementById(id); return el?el.value.trim():''; }
+  var isES = lang==='es';
+  var lines = [];
+  if(isES){
+    lines.push('🛡️ NUEVA SOLICITUD DE CALIFICACIÓN — JCNay Vida Team');
+    lines.push('━━━━━━━━━━━━━━━━━━━━━━━━');
+    lines.push('👤 INFORMACIÓN PERSONAL');
+    lines.push('Nombre: '+getF('firstName')+' '+getF('lastName'));
+    lines.push('Fecha de Nacimiento: '+getF('dob'));
+    lines.push('Género: '+getF('gender'));
+    lines.push('Estado Civil: '+getF('marital'));
+    lines.push('Estado: '+getF('state'));
+    lines.push('Dependientes: '+getF('dependents'));
+    lines.push('Situación Laboral: '+(radioData['employment']||'—'));
+    lines.push('');
+    lines.push('📱 CONTACTO');
+    lines.push('Teléfono/WhatsApp: '+getF('phone'));
+    lines.push('Email: '+getF('email'));
+    lines.push('Mejor Horario: '+(radioData['bestTime']||'—'));
+    lines.push('Idioma: '+(radioData['langPref']||'—'));
+    lines.push('');
+    lines.push('🏥 SALUD');
+    lines.push('Salud General: '+(radioData['health']||'—'));
+    lines.push('Estatura: '+getF('height'));
+    lines.push('Peso: '+getF('weight')+' lbs');
+    lines.push('Tabaco: '+(radioData['tobacco']||'—'));
+    lines.push('Condiciones: '+((checkboxData.conditions||[]).join(', ')||'Ninguna'));
+    lines.push('');
+    lines.push('🛡️ COBERTURA');
+    lines.push('Tipo: '+(radioData['coverageType']||'—'));
+    lines.push('Monto deseado: '+getF('coverageAmount'));
+    lines.push('Presupuesto mensual: '+getF('budget'));
+    lines.push('Seguro actual: '+(radioData['currentIns']||'—'));
+    lines.push('Metas: '+((checkboxData.goals||[]).join(', ')||'—'));
+    lines.push('');
+    lines.push('👨‍👩‍👧 BENEFICIARIOS');
+    lines.push('Principal: '+getF('benName')+' ('+getF('benRel')+') — '+getF('benPct')+'%');
+    if(getF('ben2Name')) lines.push('Contingente: '+getF('ben2Name')+' ('+getF('ben2Rel')+')');
+    if(getF('notes')) lines.push('');
+    if(getF('notes')) lines.push('📝 NOTAS: '+getF('notes'));
+  } else {
+    lines.push('🛡️ NEW QUALIFICATION APPLICATION — JCNay Vida Team');
+    lines.push('━━━━━━━━━━━━━━━━━━━━━━━━');
+    lines.push('👤 PERSONAL INFORMATION');
+    lines.push('Name: '+getF('firstName')+' '+getF('lastName'));
+    lines.push('Date of Birth: '+getF('dob'));
+    lines.push('Gender: '+getF('gender'));
+    lines.push('Marital Status: '+getF('marital'));
+    lines.push('State: '+getF('state'));
+    lines.push('Dependents: '+getF('dependents'));
+    lines.push('Employment: '+(radioData['employment']||'—'));
+    lines.push('');
+    lines.push('📱 CONTACT');
+    lines.push('Phone/WhatsApp: '+getF('phone'));
+    lines.push('Email: '+getF('email'));
+    lines.push('Best Contact Time: '+(radioData['bestTime']||'—'));
+    lines.push('Language: '+(radioData['langPref']||'—'));
+    lines.push('');
+    lines.push('🏥 HEALTH');
+    lines.push('Overall Health: '+(radioData['health']||'—'));
+    lines.push('Height: '+getF('height'));
+    lines.push('Weight: '+getF('weight')+' lbs');
+    lines.push('Tobacco: '+(radioData['tobacco']||'—'));
+    lines.push('Conditions: '+((checkboxData.conditions||[]).join(', ')||'None'));
+    lines.push('');
+    lines.push('🛡️ COVERAGE');
+    lines.push('Type: '+(radioData['coverageType']||'—'));
+    lines.push('Desired Amount: '+getF('coverageAmount'));
+    lines.push('Monthly Budget: '+getF('budget'));
+    lines.push('Current Insurance: '+(radioData['currentIns']||'—'));
+    lines.push('Goals: '+((checkboxData.goals||[]).join(', ')||'—'));
+    lines.push('');
+    lines.push('👨‍👩‍👧 BENEFICIARIES');
+    lines.push('Primary: '+getF('benName')+' ('+getF('benRel')+') — '+getF('benPct')+'%');
+    if(getF('ben2Name')) lines.push('Contingent: '+getF('ben2Name')+' ('+getF('ben2Rel')+')');
+    if(getF('notes')) lines.push('');
+    if(getF('notes')) lines.push('📝 NOTES: '+getF('notes'));
+  }
+
+  var msg = lines.join('\n');
+  var waUrl = 'https://wa.me/19086774196?text='+encodeURIComponent(msg);
+  document.getElementById('success-wa-link').href = waUrl;
+
+  // Show success
+  document.querySelectorAll('.form-step').forEach(function(s){s.style.display='none';});
+  document.getElementById('card-header').style.display='none';
+  document.getElementById('success-screen').style.display='block';
+  document.getElementById('progressLabel').innerHTML = '✅ '+(isES?'¡Solicitud enviada!':'Application submitted!');
+
+  // Open WA
+  setTimeout(function(){ window.open(waUrl,'_blank'); }, 800);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── INIT
+document.addEventListener('DOMContentLoaded', function(){
+  setLang(lang);
+  updateProgress();
+  updateHeader();
+});
+</script>
+</body>
+</html>

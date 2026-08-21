@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdn.tailwindcss.com https://assets.calendly.com https://cdn-cgi https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.anthropic.com; frame-src https://calendly.com; object-src 'none'; base-uri 'self';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIyIiBmaWxsPSIjMGExYTJhIi8+CiAgPHRleHQgeD0iNTAiIHk9IjY4IiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSI0OCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNjOWE4NmEiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkpOPC90ZXh0Pgo8L3N2Zz4=">
 <link rel="shortcut icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIyIiBmaWxsPSIjMGExYTJhIi8+CiAgPHRleHQgeD0iNTAiIHk9IjY4IiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSI0OCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNjOWE4NmEiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkpOPC90ZXh0Pgo8L3N2Zz4=">
 <meta name="theme-color" content="#0a1a2a">
@@ -383,6 +387,8 @@
     display: flex; justify-content: space-between; align-items: center;
     flex-wrap: wrap; gap: 20px;
   }
+  @media(max-width:900px){footer>div:first-child{grid-template-columns:1fr 1fr!important}footer>div:first-child>div:first-child{grid-column:1/-1}}
+  @media(max-width:600px){footer>div:first-child{grid-template-columns:1fr!important}}
   .footer-brand {
     font-family: 'Playfair Display', serif;
     font-size: 18px; color: var(--cream);
@@ -485,7 +491,7 @@
         No fine print, no pressure — just clarity and a plan that truly works.
       </p>
       <div class="hero-ctas">
-        <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20agendar%20mi%20asesor%C3%ADa%20gratuita." class="btn-wa-hero" target="_blank">
+        <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20agendar%20mi%20asesor%C3%ADa%20gratuita." class="btn-wa-hero" target="_blank" rel="noopener noreferrer">
           <span class="hp-dot"></span> <span data-i18n="hero-cta">Schedule your free consultation</span>
         </a>
       </div>
@@ -688,7 +694,7 @@
   </div>
 
   <div style="text-align:center;margin-top:56px" class="reveal">
-    <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20agendar%20mi%20asesor%C3%ADa%20gratuita." class="btn-wa-hero" target="_blank">
+    <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20agendar%20mi%20asesor%C3%ADa%20gratuita." class="btn-wa-hero" target="_blank" rel="noopener noreferrer">
       <span class="hp-dot"></span> <span data-i18n="prob-cta">Schedule your free consultation — no cost</span>
     </a>
   </div>
@@ -764,7 +770,7 @@
         <div class="sv2-logro"><span class="sv2-num">100%</span><span class="sv2-label" data-i18n="logro-bi">Bilingual<br><small>English &amp; Spanish</small></span></div>
       </div>
       <div style="text-align:center">
-        <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20agendar%20mi%20asesor%C3%ADa%20gratuita." class="btn-primary" target="_blank" style="display:inline-block;margin-top:8px" data-i18n="about-cta">Schedule your free consultation →</a>
+        <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20agendar%20mi%20asesor%C3%ADa%20gratuita." class="btn-primary" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px" data-i18n="about-cta">Schedule your free consultation →</a>
       </div>
     </div>
   </div>
@@ -1179,7 +1185,7 @@
       </ul>
       <h2>The Real Risk Is Waiting</h2>
       <p>People don't skip life insurance because they can't afford it. They skip it because they don't think they need it yet. And then something changes — a health diagnosis, a job loss — and suddenly they're uninsurable or facing premiums they can't handle.</p>
-      <p><strong>Ready to see what your rate would be?</strong> <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%27d%20like%20a%20free%20life%20insurance%20quote." target="_blank">Message me for a free, no-pressure quote →</a></p>
+      <p><strong>Ready to see what your rate would be?</strong> <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%27d%20like%20a%20free%20life%20insurance%20quote." target="_blank" rel="noopener noreferrer">Message me for a free, no-pressure quote →</a></p>
     </div>
   </div>
 </div>
@@ -1204,7 +1210,7 @@
       </ul>
       <h2>The Honest Comparison</h2>
       <p>If your employer matches 401(k) contributions — take the match, it's free money. But after that, an IUL can be a superior vehicle for long-term tax-advantaged wealth building.</p>
-      <p><strong>Want to run the numbers?</strong> <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%27d%20like%20to%20compare%20IUL%20vs%20401k." target="_blank">Free consultation, no obligation →</a></p>
+      <p><strong>Want to run the numbers?</strong> <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%27d%20like%20to%20compare%20IUL%20vs%20401k." target="_blank" rel="noopener noreferrer">Free consultation, no obligation →</a></p>
     </div>
   </div>
 </div>
@@ -1227,7 +1233,7 @@
       <p>Single people have final expenses, debts, and often aging parents who depend on them. Buying now locks in low rates for when you do have dependents.</p>
       <h2>Myth 5: "Life insurance is only about death."</h2>
       <p>Modern policies like IUL include living benefits — cash value you can access during your lifetime for retirement, emergencies, or investment. It's about building security while you're alive.</p>
-      <p><strong>Don't let myths cost your family.</strong> <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%20have%20questions%20about%20life%20insurance." target="_blank">Free consultation →</a></p>
+      <p><strong>Don't let myths cost your family.</strong> <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%20have%20questions%20about%20life%20insurance." target="_blank" rel="noopener noreferrer">Free consultation →</a></p>
     </div>
   </div>
 </div>
@@ -1253,7 +1259,7 @@
       <p>Every year you wait adds to your monthly cost — for the same coverage. Use our Final Expense Calculator above to see your exact numbers.</p>
       <h2>Who Should Consider This?</h2>
       <p>Adults over 50 who want to protect family from funeral costs, people who may not qualify for larger policies due to health, and anyone wanting guaranteed coverage without a medical exam.</p>
-      <p><strong>Want to see your exact rate?</strong> <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%27d%20like%20a%20final%20expense%20insurance%20quote." target="_blank">Message me for a free quote →</a></p>
+      <p><strong>Want to see your exact rate?</strong> <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%27d%20like%20a%20final%20expense%20insurance%20quote." target="_blank" rel="noopener noreferrer">Message me for a free quote →</a></p>
     </div>
   </div>
 </div>
@@ -1276,7 +1282,7 @@
       </ul>
       <h2>A Simple Example</h2>
       <p>A 35-year-old contributes $400/month into a properly structured IUL. Over 30 years, their cash value can grow to $300,000–$500,000 — accessible tax-free in retirement. Throughout those 30 years, their family has a $500,000+ death benefit. At passing, the remaining benefit goes to their children — tax-free. One policy. One decision. One generation of intentional action.</p>
-      <p><strong>Ready to start building yours?</strong> <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%27d%20like%20to%20learn%20about%20building%20generational%20wealth." target="_blank">Schedule your free consultation →</a></p>
+      <p><strong>Ready to start building yours?</strong> <a href="https://wa.me/19086774196?text=Hi%20Yunersy,%20I%27d%20like%20to%20learn%20about%20building%20generational%20wealth." target="_blank" rel="noopener noreferrer">Schedule your free consultation →</a></p>
     </div>
   </div>
 </div>
@@ -1305,7 +1311,7 @@
       <p>Entre 10 y 15 veces tu ingreso anual es un buen punto de partida. Si ganas $60,000 al año, una cobertura de $100,000 probablemente no es suficiente.</p>
       <h2>Conclusión</h2>
       <p>Elegir el seguro de vida ideal no se trata de comprar algo. Se trata de <strong>diseñar un plan</strong>. Protección + crecimiento + ventajas fiscales. Esa combinación puede cambiar el futuro de una familia.</p>
-      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><strong>¿Quieres una consulta gratuita?</strong> Escríbenos por WhatsApp al <a href="https://wa.me/19086774196" style="color:#a07840" target="_blank">(908) 677-4196</a> y analizamos tu situación sin compromiso.</p>
+      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><strong>¿Quieres una consulta gratuita?</strong> Escríbenos por WhatsApp al <a href="https://wa.me/19086774196" style="color:#a07840" target="_blank" rel="noopener noreferrer">(908) 677-4196</a> y analizamos tu situación sin compromiso.</p>
     </div>
   </div>
 </div>
@@ -1330,7 +1336,7 @@
       </ul>
       <h2>Un ejemplo real</h2>
       <p>Si ganas $50,000 al año, tienes una hipoteca de $200,000, dos hijos y tu cónyuge no trabaja, probablemente necesitas entre $700,000 y $1,000,000 de cobertura. Una póliza de $100,000 no protege realmente a tu familia.</p>
-      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><strong>¿Quieres calcular tu cobertura ideal?</strong> Escríbenos por WhatsApp al <a href="https://wa.me/19086774196" style="color:#a07840" target="_blank">(908) 677-4196</a></p>
+      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><strong>¿Quieres calcular tu cobertura ideal?</strong> Escríbenos por WhatsApp al <a href="https://wa.me/19086774196" style="color:#a07840" target="_blank" rel="noopener noreferrer">(908) 677-4196</a></p>
     </div>
   </div>
 </div>
@@ -1353,7 +1359,7 @@
       </ul>
       <h2>¿Por qué los latinos lo están usando?</h2>
       <p>Porque es una herramienta que hace todo a la vez: protege a la familia, acumula riqueza y crea un retiro libre de impuestos. Para familias que no tienen acceso a grandes planes de inversión corporativos, el IUL puede ser su propio "plan de retiro privado".</p>
-      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><strong>¿Quieres saber si un IUL es para ti?</strong> <a href="https://wa.me/19086774196" style="color:#a07840" target="_blank">Escríbenos gratis por WhatsApp</a></p>
+      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><strong>¿Quieres saber si un IUL es para ti?</strong> <a href="https://wa.me/19086774196" style="color:#a07840" target="_blank" rel="noopener noreferrer">Escríbenos gratis por WhatsApp</a></p>
     </div>
   </div>
 </div>
@@ -1375,7 +1381,7 @@
       <p>A los 30 años un seguro cuesta la mitad que a los 45. Cada año que esperas, pagas más y calificas con más restricciones.</p>
       <h2>Error 5: No revisar la póliza</h2>
       <p>Tu vida cambia. Tu seguro debe ajustarse. Una póliza que tenía sentido a los 28 puede no ser suficiente a los 40 con hijos y una hipoteca.</p>
-      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><a href="https://wa.me/19086774196" style="color:#a07840" target="_blank">Habla con nosotros gratis</a> para revisar tu situación actual.</p>
+      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><a href="https://wa.me/19086774196" style="color:#a07840" target="_blank" rel="noopener noreferrer">Habla con nosotros gratis</a> para revisar tu situación actual.</p>
     </div>
   </div>
 </div>
@@ -1398,7 +1404,7 @@
       <p>Muchas compañías aseguradoras trabajan con residentes, incluso sin ciudadanía. Los seguros IUL, term life y whole life están disponibles para la mayoría de personas con ITIN.</p>
       <h2>Por qué es importante actuar ahora</h2>
       <p>Si algo te pasa sin un seguro, tu familia queda desprotegida. Sin ingresos, sin cobertura de deudas, sin un plan. Un seguro es el acto más responsable que puedes hacer por las personas que amas.</p>
-      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><strong>¿No sabes si calificas?</strong> <a href="https://wa.me/19086774196" style="color:#a07840" target="_blank">Escríbenos y te orientamos gratis.</a></p>
+      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><strong>¿No sabes si calificas?</strong> <a href="https://wa.me/19086774196" style="color:#a07840" target="_blank" rel="noopener noreferrer">Escríbenos y te orientamos gratis.</a></p>
     </div>
   </div>
 </div>
@@ -1419,7 +1425,7 @@
       <p>Los agentes que se especializan en IUL y estrategias de retiro ganan significativamente más que los generalistas.</p>
       <h2>¿Por qué con JCNay Vida Team?</h2>
       <p>Te capacitamos, te acompañamos y te damos las herramientas para construir tu negocio desde el día uno, en español.</p>
-      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><a href="https://wa.me/19086774196?text=Hola,%20me%20interesa%20unirme%20al%20equipo%20JCNay%20Vida" style="color:#a07840" target="_blank">Escríbenos para saber más sobre unirte al equipo →</a></p>
+      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><a href="https://wa.me/19086774196?text=Hola,%20me%20interesa%20unirme%20al%20equipo%20JCNay%20Vida" style="color:#a07840" target="_blank" rel="noopener noreferrer">Escríbenos para saber más sobre unirte al equipo →</a></p>
     </div>
   </div>
 </div>
@@ -1440,7 +1446,7 @@
       <p>Mientras pagas deudas, deja de crear deudas nuevas. No es fácil, pero es indispensable.</p>
       <h2>Paso 4: Empieza a proteger mientras pagas</h2>
       <p>Un seguro de vida no espera a que estés libre de deudas. Si algo te pasa mientras tienes deudas, tu familia hereda la situación. Protégete desde hoy.</p>
-      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><a href="https://wa.me/19086774196" style="color:#a07840" target="_blank">Habla con nosotros para crear tu plan financiero personalizado →</a></p>
+      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><a href="https://wa.me/19086774196" style="color:#a07840" target="_blank" rel="noopener noreferrer">Habla con nosotros para crear tu plan financiero personalizado →</a></p>
     </div>
   </div>
 </div>
@@ -1464,7 +1470,7 @@
       </ul>
       <h2>La diferencia generacional</h2>
       <p>Familias que no planifican dejan deudas. Familias que sí planifican dejan herencias. La diferencia es una decisión a tiempo.</p>
-      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><a href="https://wa.me/19086774196" style="color:#a07840" target="_blank">Diseña el legado de tu familia con nosotros →</a></p>
+      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><a href="https://wa.me/19086774196" style="color:#a07840" target="_blank" rel="noopener noreferrer">Diseña el legado de tu familia con nosotros →</a></p>
     </div>
   </div>
 </div>
@@ -1487,7 +1493,7 @@
       <p>En nuestra cultura, el dinero es un tema tabú. Pero esa cultura del silencio financiero nos cuesta generaciones de riqueza.</p>
       <h2>Error 5: No tener un plan</h2>
       <p>No necesitas ser rico para planificar. Necesitas planificar para ser rico. Una hora con un asesor financiero puede cambiar el rumbo de tu familia.</p>
-      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><a href="https://wa.me/19086774196" style="color:#a07840" target="_blank">Agenda tu consulta gratuita hoy →</a></p>
+      <p style="margin-top:32px;padding:20px;background:#faf7f2;border-left:3px solid #c9a86a"><a href="https://wa.me/19086774196" style="color:#a07840" target="_blank" rel="noopener noreferrer">Agenda tu consulta gratuita hoy →</a></p>
     </div>
   </div>
 </div>
@@ -1529,7 +1535,7 @@
         <li>Buscas flexibilidad para trabajar desde casa</li>
         <li>Estás dispuesto a aprender y aplicar lo que aprendes</li>
       </ul>
-      <p><strong>¿Quieres saber más sobre unirte al equipo JCNay Vida?</strong> <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20me%20interesa%20la%20carrera%20en%20seguros." target="_blank">Escríbeme por WhatsApp →</a></p>
+      <p><strong>¿Quieres saber más sobre unirte al equipo JCNay Vida?</strong> <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20me%20interesa%20la%20carrera%20en%20seguros." target="_blank" rel="noopener noreferrer">Escríbeme por WhatsApp →</a></p>
     </div>
   </div>
 </div>
@@ -1563,7 +1569,7 @@
       <p>Si tu empleador hace matching, aprovéchalo hasta el límite. Es dinero gratis que no deberías dejar sobre la mesa.</p>
       <h2>La conclusión honesta</h2>
       <p>No son enemigos — pueden complementarse. Pero para muchas familias hispanas sin acceso a un buen 401k, el IUL bien estructurado puede ser su plan de retiro privado más poderoso.</p>
-      <p><strong>¿Quieres saber si un IUL tiene sentido para ti?</strong> <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20saber%20si%20un%20IUL%20me%20conviene." target="_blank">Escríbeme gratis por WhatsApp →</a></p>
+      <p><strong>¿Quieres saber si un IUL tiene sentido para ti?</strong> <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20saber%20si%20un%20IUL%20me%20conviene." target="_blank" rel="noopener noreferrer">Escríbeme gratis por WhatsApp →</a></p>
     </div>
   </div>
 </div>
@@ -1597,7 +1603,7 @@
       </ul>
       <h2>El costo de esperar</h2>
       <p>A los 30 años, un seguro puede costar menos que tu suscripción de streaming al mes. A los 45, ese mismo nivel de cobertura cuesta dos o tres veces más. Cada año que esperas, pagas más por menos.</p>
-      <p><strong>¿Hablamos?</strong> <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20hablar%20sobre%20proteger%20a%20mi%20familia." target="_blank">Escríbeme por WhatsApp al (908) 677-4196 →</a></p>
+      <p><strong>¿Hablamos?</strong> <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20hablar%20sobre%20proteger%20a%20mi%20familia." target="_blank" rel="noopener noreferrer">Escríbeme por WhatsApp al (908) 677-4196 →</a></p>
     </div>
   </div>
 </div>
@@ -1631,7 +1637,7 @@
       <p>Los niños que crecen viendo a sus padres hablar de dinero con calma desarrollan una relación sana con las finanzas. "Estamos ahorrando para X" o "decidimos no gastar en esto porque tenemos una meta" son lecciones que valen más que cualquier clase.</p>
       <h2>El seguro de vida como conversación de amor</h2>
       <p>"Si algo me pasa, quiero que estén bien" es la frase más poderosa que un proveedor puede decirle a su familia — y un seguro bien diseñado es cómo lo demuestras con acción.</p>
-      <p><strong>¿Quieres que te ayude a empezar esta conversación?</strong> <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20hablar%20sobre%20planificaci%C3%B3n%20financiera%20familiar." target="_blank">Escríbeme por WhatsApp →</a></p>
+      <p><strong>¿Quieres que te ayude a empezar esta conversación?</strong> <a href="https://wa.me/19086774196?text=Hola%20Yunersy%2C%20quiero%20hablar%20sobre%20planificaci%C3%B3n%20financiera%20familiar." target="_blank" rel="noopener noreferrer">Escríbeme por WhatsApp →</a></p>
     </div>
   </div>
 </div>
@@ -1673,7 +1679,7 @@
     <div style="font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:12px" data-i18n="sched-eyebrow">Free Consultation</div>
     <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,36px);color:var(--navy);margin:0 0 12px;line-height:1.2" data-i18n="sched-title">Schedule your free consultation<br><em style="color:var(--gold-dark);font-style:italic">Pick a time that works for you</em></h2>
     <p style="font-size:15px;color:var(--muted);margin:0 0 28px;line-height:1.7" data-i18n="sched-sub">Choose a slot directly in Yunersy's calendar — no waiting, instant confirmation, with a reminder before your appointment.</p>
-    <a href="https://calendly.com/blindajefamiliarus" target="_blank"
+    <a href="https://calendly.com/blindajefamiliarus" target="_blank" rel="noopener noreferrer"
       style="display:inline-flex;align-items:center;gap:10px;padding:16px 40px;background:var(--navy);color:var(--cream);font-weight:700;font-size:15px;border-radius:50px;text-decoration:none;box-shadow:0 8px 28px rgba(10,26,42,0.25);transition:all 0.2s"
       onmouseover="this.style.background='var(--navy2)';this.style.transform='translateY(-2px)'"
       onmouseout="this.style.background='var(--navy)';this.style.transform='none'">
@@ -1696,7 +1702,7 @@
 
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1100px;margin:60px auto 0" class="reveal">
 
-    <a href="https://jcynay0206.github.io/escudo-financiero" target="_blank" style="text-decoration:none">
+    <a href="https://jcynay0206.github.io/escudo-financiero" target="_blank" rel="noopener noreferrer" style="text-decoration:none">
       <div style="background:white;padding:36px 32px;border-top:3px solid transparent;transition:all 0.3s;cursor:pointer">
         <div style="font-size:40px;margin-bottom:16px">🛡️</div>
         <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#0a1a2a;margin-bottom:10px" data-i18n="calc-c1-title">Financial Shield</div>
@@ -1705,7 +1711,7 @@
       </div>
     </a>
 
-    <a href="https://jcynay0206.github.io/final-expense" target="_blank" style="text-decoration:none">
+    <a href="https://jcynay0206.github.io/final-expense" target="_blank" rel="noopener noreferrer" style="text-decoration:none">
       <div style="background:white;padding:36px 32px;border-top:3px solid transparent;transition:all 0.3s;cursor:pointer">
         <div style="font-size:40px;margin-bottom:16px">💸</div>
         <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#0a1a2a;margin-bottom:10px" data-i18n="calc-c-fe-title">Final Expense</div>
@@ -1714,7 +1720,7 @@
       </div>
     </a>
 
-    <a href="https://jcynay0206.github.io/calculadora-universitaria" target="_blank" style="text-decoration:none">
+    <a href="https://jcynay0206.github.io/calculadora-universitaria" target="_blank" rel="noopener noreferrer" style="text-decoration:none">
       <div style="background:white;padding:36px 32px;border-top:3px solid transparent;transition:all 0.3s;cursor:pointer">
         <div style="font-size:40px;margin-bottom:16px">🎓</div>
         <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#0a1a2a;margin-bottom:10px" data-i18n="calc-c2-title">College Fund</div>
@@ -1724,7 +1730,7 @@
     </a>
 
 
-    <a href="https://jcynay0206.github.io/calculadora-iul" target="_blank" style="text-decoration:none">
+    <a href="https://jcynay0206.github.io/calculadora-iul" target="_blank" rel="noopener noreferrer" style="text-decoration:none">
       <div style="background:white;padding:36px 32px;border-top:3px solid transparent;transition:all 0.3s;cursor:pointer">
         <div style="font-size:40px;margin-bottom:16px">📈</div>
         <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#0a1a2a;margin-bottom:10px" data-i18n="calc-c4-title">IUL Projection</div>
@@ -1733,7 +1739,7 @@
       </div>
     </a>
 
-    <a href="https://jcynay0206.github.io/landing-seguros" target="_blank" style="text-decoration:none">
+    <a href="https://jcynay0206.github.io/landing-seguros" target="_blank" rel="noopener noreferrer" style="text-decoration:none">
       <div style="background:white;padding:36px 32px;border-top:3px solid transparent;transition:all 0.3s;cursor:pointer">
         <div style="font-size:40px;margin-bottom:16px">🏦</div>
         <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#0a1a2a;margin-bottom:10px" data-i18n="calc-c5-title">IUL vs. Bank</div>
@@ -1742,7 +1748,7 @@
       </div>
     </a>
 
-    <a href="https://jcynay0206.github.io/Banco-IUL" target="_blank" style="text-decoration:none">
+    <a href="https://jcynay0206.github.io/Banco-IUL" target="_blank" rel="noopener noreferrer" style="text-decoration:none">
       <div style="background:white;padding:36px 32px;border-top:3px solid transparent;transition:all 0.3s;cursor:pointer">
         <div style="font-size:40px;margin-bottom:16px">📊</div>
         <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#0a1a2a;margin-bottom:10px" data-i18n="calc-c6-title">IUL vs. Bank — Min to Max</div>
@@ -1751,7 +1757,7 @@
       </div>
     </a>
 
-    <a href="https://jcynay0206.github.io/mortgage-protection" target="_blank" style="text-decoration:none">
+    <a href="https://jcynay0206.github.io/mortgage-protection" target="_blank" rel="noopener noreferrer" style="text-decoration:none">
       <div style="background:white;padding:36px 32px;border-top:3px solid transparent;transition:all 0.3s;cursor:pointer">
         <div style="font-size:40px;margin-bottom:16px">🏠</div>
         <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#0a1a2a;margin-bottom:10px" data-i18n="calc-c7-title">Mortgage Protection</div>
@@ -1760,7 +1766,7 @@
       </div>
     </a>
 
-    <a href="https://jcynay0206.github.io/calculadora-d-i-m-e" target="_blank" style="text-decoration:none">
+    <a href="https://jcynay0206.github.io/calculadora-d-i-m-e" target="_blank" rel="noopener noreferrer" style="text-decoration:none">
       <div style="background:white;padding:36px 32px;border-top:3px solid transparent;transition:all 0.3s;cursor:pointer">
         <div style="font-size:40px;margin-bottom:16px">🛡️</div>
         <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#0a1a2a;margin-bottom:10px" data-i18n="calc-c8-title">How Much Do I Need?</div>
@@ -1772,7 +1778,7 @@
     <div style="background:linear-gradient(135deg,#0a1a2a,#12314d);padding:36px 32px;display:flex;flex-direction:column;justify-content:center">
       <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:white;margin-bottom:12px;font-style:italic" data-i18n="calc-q">Questions about your results?</div>
       <div style="font-size:13px;color:rgba(250,247,242,0.6);line-height:1.7;margin-bottom:24px" data-i18n="calc-q-sub">After using any calculator, we can analyze the results together and design your personalized plan.</div>
-      <a href="https://wa.me/19086774196?text=Hi,%20I%20used%20one%20of%20your%20calculators%20and%20have%20questions" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#c9a86a,#a07840);color:#0a1a2a;padding:12px 24px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none" data-i18n="calc-expert">Talk to an expert →</a>
+      <a href="https://wa.me/19086774196?text=Hi,%20I%20used%20one%20of%20your%20calculators%20and%20have%20questions" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(135deg,#c9a86a,#a07840);color:#0a1a2a;padding:12px 24px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none" data-i18n="calc-expert">Talk to an expert →</a>
     </div>
 
   </div>
@@ -1808,7 +1814,7 @@
     <h2 class="section-title light center" data-i18n="join-title">Want a career<br>with purpose and unlimited income?</h2>
     <p class="section-sub light center" data-i18n="join-sub">Join the JCNay Vida team. We train you from scratch to become a life insurance agent and build your own business helping Hispanic families.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:40px">
-      <a href="https://wa.me/19086774196?text=Hola,%20me%20interesa%20unirme%20al%20equipo%20JCNay%20Vida%20Team" class="btn-primary" target="_blank"><span data-i18n="join-cta">💬 I Want to Join the Team</span></a>
+      <a href="https://wa.me/19086774196?text=Hola,%20me%20interesa%20unirme%20al%20equipo%20JCNay%20Vida%20Team" class="btn-primary" target="_blank" rel="noopener noreferrer"><span data-i18n="join-cta">💬 I Want to Join the Team</span></a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:800px;margin:48px auto 0">
       <div style="text-align:center;padding:24px;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,106,0.2)">
@@ -1841,7 +1847,7 @@
         <div class="contact-icon">💬</div>
         <div>
           <div class="contact-label">WhatsApp</div>
-          <div class="contact-value"><a href="https://wa.me/19086774196" target="_blank">(908) 677-4196</a></div>
+          <div class="contact-value"><a href="https://wa.me/19086774196" target="_blank" rel="noopener noreferrer">(908) 677-4196</a></div>
         </div>
       </div>
       <div class="contact-item">
@@ -1866,7 +1872,7 @@
         </div>
       </div>
       <div style="margin-top:32px">
-        <a href="https://wa.me/19086774196?text=Hola,%20quiero%20una%20consulta%20gratuita%20sobre%20seguros%20de%20vida" class="btn-primary" target="_blank" style="display:inline-block"><span data-i18n="contact-wa">💬 Message on WhatsApp now</span></a>
+        <a href="https://wa.me/19086774196?text=Hola,%20quiero%20una%20consulta%20gratuita%20sobre%20seguros%20de%20vida" class="btn-primary" target="_blank" rel="noopener noreferrer" style="display:inline-block"><span data-i18n="contact-wa">💬 Message on WhatsApp now</span></a>
       </div>
     </div>
 
@@ -1896,20 +1902,70 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-brand">JCNay <span>Vida</span> Team</div>
-  <div class="footer-links">
-    <a href="#servicios" data-i18n="nav-services">Services</a>
-    <a href="#blog">Blog</a>
-    <a href="#equipo" data-i18n="nav-team">Team</a>
-    <a href="#unete" data-i18n="nav-join">Join</a>
-    <a href="#contacto">Contacto</a>
-    <a href="https://wa.me/19086774196" target="_blank">WhatsApp</a>
+<footer style="background:var(--navy);padding:0">
+
+  <!-- MAIN FOOTER GRID -->
+  <div style="max-width:1200px;margin:0 auto;padding:56px 40px 40px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px">
+
+    <!-- BRAND COL -->
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--cream);margin-bottom:14px">JCNay <span style="color:var(--gold);font-style:italic">Vida</span> Team</div>
+      <p style="font-size:13px;color:rgba(250,247,242,0.5);line-height:1.8;margin-bottom:24px;max-width:240px" data-i18n="footer-desc">Protecting families and building wealth through financial education and life insurance. Licensed Agent Yunersy Salabarria · NJ & FL.</p>
+      <!-- Social -->
+      <div style="display:flex;gap:10px">
+        <a href="https://www.instagram.com/azuregoldstudio" target="_blank" rel="noopener noreferrer" style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:16px;transition:all 0.2s" onmouseover="this.style.background='rgba(201,168,106,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.07)'">📸</a>
+        <a href="https://wa.me/19086774196" target="_blank" rel="noopener noreferrer" style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:16px;transition:all 0.2s" onmouseover="this.style.background='rgba(201,168,106,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.07)'">💬</a>
+        <a href="#" onclick="this.href='mail'+'to:'+'yuny1584'+'@'+'gmail.com';return true;" style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:16px;transition:all 0.2s" onmouseover="this.style.background='rgba(201,168,106,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.07)'">✉️</a>
+      </div>
+    </div>
+
+    <!-- SERVICES COL -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px" data-i18n="footer-col-services">Services</div>
+      <div style="display:flex;flex-direction:column;gap:11px">
+        <a href="#servicios" style="font-size:13px;color:rgba(250,247,242,0.55);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(250,247,242,0.55)'" data-i18n="fs-iul">📈 IUL Insurance</a>
+        <a href="#servicios" style="font-size:13px;color:rgba(250,247,242,0.55);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(250,247,242,0.55)'" data-i18n="fs-fe">💸 Final Expense</a>
+        <a href="#servicios" style="font-size:13px;color:rgba(250,247,242,0.55);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(250,247,242,0.55)'" data-i18n="fs-mort">🏠 Mortgage Protection</a>
+        <a href="#servicios" style="font-size:13px;color:rgba(250,247,242,0.55);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(250,247,242,0.55)'" data-i18n="fs-college">🎓 College Fund</a>
+        <a href="#servicios" style="font-size:13px;color:rgba(250,247,242,0.55);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(250,247,242,0.55)'" data-i18n="fs-retire">🌴 Retirement / IUL</a>
+      </div>
+    </div>
+
+    <!-- COMPANY COL -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px" data-i18n="footer-col-company">Company</div>
+      <div style="display:flex;flex-direction:column;gap:11px">
+        <a href="#sobre-mi" style="font-size:13px;color:rgba(250,247,242,0.55);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(250,247,242,0.55)'" data-i18n="fc-about">About Yunersy</a>
+        <a href="#testimonios" style="font-size:13px;color:rgba(250,247,242,0.55);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(250,247,242,0.55)'" data-i18n="fc-test">Testimonials</a>
+        <a href="#blog" style="font-size:13px;color:rgba(250,247,242,0.55);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(250,247,242,0.55)'">Blog</a>
+        <a href="#calculadoras" style="font-size:13px;color:rgba(250,247,242,0.55);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(250,247,242,0.55)'" data-i18n="fc-calc">Calculators</a>
+        <a href="#unete" style="font-size:13px;color:rgba(250,247,242,0.55);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(250,247,242,0.55)'" data-i18n="fc-join">Join the Team</a>
+      </div>
+    </div>
+
+    <!-- CONTACT COL -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px" data-i18n="footer-col-contact">Contact</div>
+      <div style="display:flex;flex-direction:column;gap:11px">
+        <a href="#" onclick="openQualModal();return false;" style="font-size:13px;color:rgba(250,247,242,0.55);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(250,247,242,0.55)'" data-i18n="fc-qualify">✅ Qualify Now</a>
+        <a href="https://calendly.com/blindajefamiliarus" target="_blank" rel="noopener noreferrer" style="font-size:13px;color:rgba(250,247,242,0.55);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(250,247,242,0.55)'" data-i18n="fc-schedule">📅 Schedule a Call</a>
+        <a href="https://wa.me/19086774196" target="_blank" rel="noopener noreferrer" style="font-size:13px;color:rgba(250,247,242,0.55);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(250,247,242,0.55)'">💬 WhatsApp</a>
+        <a href="#" onclick="this.href='mail'+'to:'+'yuny1584'+'@'+'gmail.com';return true;" style="font-size:13px;color:rgba(250,247,242,0.55);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(250,247,242,0.55)'">✉️ yuny1584@gmail.com</a>
+        <a href="tel:+19086774196" style="font-size:13px;color:rgba(250,247,242,0.55);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(250,247,242,0.55)'">📞 (908) 677-4196</a>
+      </div>
+    </div>
+
   </div>
-  <div>
-    <div class="footer-copy">© 2026 JCNay Vida Team · NJ · FL, USA</div>
-    <div class="footer-by">Desarrollado por <a href="https://ventas.azurewebstudio.com">Azure Gold Studio</a></div>
+
+  <!-- DIVIDER -->
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px"><div style="height:1px;background:rgba(250,247,242,0.08)"></div></div>
+
+  <!-- BOTTOM BAR -->
+  <div style="max-width:1200px;margin:0 auto;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+    <div style="font-size:11.5px;color:rgba(250,247,242,0.25)">© 2026 JCNay Vida Team · Licensed Agent NJ #3003419400 · FL #G365745</div>
+    <div style="font-size:11.5px;color:rgba(250,247,242,0.2)">Designed by <a href="https://ventas.azurewebstudio.com" target="_blank" rel="noopener noreferrer" style="color:rgba(201,168,106,0.5);text-decoration:none" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(201,168,106,0.5)'">Azure Gold Studio</a></div>
   </div>
+
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -2010,6 +2066,22 @@
 <script>
 (function(){
 
+// ── SECURITY: sanitize user input to prevent XSS
+function sanitize(str){
+  if(!str) return '';
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#x27;')
+    .replace(/\//g,'&#x2F;');
+}
+function sanitizeUrl(str){
+  if(!str) return '';
+  return String(str).replace(/[
+]/g,' ').substring(0,500);
+}
 var lang = 'en';
 var step = 'start';
 var topicCount = 0;
@@ -2275,7 +2347,7 @@ function processInput(text){
   document.getElementById('chat-input').placeholder = UI[lang].placeholder;
 
   setQR([]);
-  addMsg(text,'user');
+  addMsg(sanitize(text),'user');
   var lower = text.toLowerCase();
 
   // ── PRE-QUAL FLOW
@@ -2324,7 +2396,7 @@ function processInput(text){
     addTyping();
     setTimeout(function(){
       removeTyping();
-      addMsg(UI[lang].leadDone.replace('{name}',leadName)+'<br><br><a href="'+waLink+'" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#25D366;color:#fff;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px;margin-top:8px">'+UI[lang].btnWa+'</a>','bot');
+      addMsg(UI[lang].leadDone.replace('{name}',leadName)+'<br><br><a href="'+waLink+'" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#25D366;color:#fff;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px;margin-top:8px">'+UI[lang].btnWa+'</a>','bot');
       setQR([]);
     },900);
     return;
@@ -2344,8 +2416,8 @@ function processInput(text){
   // ── SCHEDULE → Calendly direct
   if(/schedule|agendar|cita|llamada|appointment|📅/.test(lower)){
     var calMsg = lang==='es'
-      ? 'Perfecto 📅 Puedes ver los horarios disponibles de Yunersy y reservar tu cita gratis aquí:<br><br><a href="https://calendly.com/blindajefamiliarus" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--navy,#0a1a2a);color:#fff;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px">📅 Abrir Calendario de Yunersy</a><br><br><span style="font-size:12px;color:#888">30 min · Gratis · Sin compromiso</span>'
-      : 'Perfect 📅 You can view Yunersy's available times and book your free consultation here:<br><br><a href="https://calendly.com/blindajefamiliarus" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#0a1a2a;color:#fff;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px">📅 Open Yunersy's Calendar</a><br><br><span style="font-size:12px;color:#888">30 min · Free · No obligation</span>';
+      ? 'Perfecto 📅 Puedes ver los horarios disponibles de Yunersy y reservar tu cita gratis aquí:<br><br><a href="https://calendly.com/blindajefamiliarus" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--navy,#0a1a2a);color:#fff;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px">📅 Abrir Calendario de Yunersy</a><br><br><span style="font-size:12px;color:#888">30 min · Gratis · Sin compromiso</span>'
+      : 'Perfect 📅 You can view Yunersy's available times and book your free consultation here:<br><br><a href="https://calendly.com/blindajefamiliarus" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#0a1a2a;color:#fff;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px">📅 Open Yunersy's Calendar</a><br><br><span style="font-size:12px;color:#888">30 min · Free · No obligation</span>';
     botReply(calMsg, []);
     return;
   }
@@ -2411,7 +2483,7 @@ document.head.appendChild(s);
     <div style="width:100%;max-width:1060px;background:var(--cream);border-radius:20px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.5);margin:auto;position:relative">
 
       <!-- CLOSE -->
-      <button onclick="closeQualModal()" style="position:absolute;top:16px;right:16px;z-index:10;background:rgba(10,26,42,0.08);border:none;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--navy)">✕</button>
+      <button onclick="closeQualModal()" style="position:absolute;top:12px;right:16px;z-index:10;background:rgba(250,247,242,0.15);border:1px solid rgba(250,247,242,0.2);border-radius:50px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;color:rgba(250,247,242,0.7);padding:6px 12px;font-family:'DM Sans',sans-serif;transition:all 0.2s" onmouseover="this.style.background='rgba(250,247,242,0.25)'" onmouseout="this.style.background='rgba(250,247,242,0.15)'">✕ <span id="close-btn-txt">Close</span></button>
 
       <!-- TOP TABS -->
       <div style="background:var(--navy);padding:0">
@@ -2557,6 +2629,10 @@ window.closeQualModal=closeQualModal;
 document.getElementById('qual-modal').addEventListener('click',function(e){
   if(e.target===this) closeQualModal();
 });
+// ESC key closes modal
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeQualModal();
+});
 
 function renderModal(){
   var lang=getLang(); var L=QML[lang];
@@ -2566,6 +2642,7 @@ function renderModal(){
   ['qw1','qw2','qw3','qw4','qw5'].forEach(function(id,i){document.getElementById(id).textContent=L.wl[i];});
   document.getElementById('qm-agent-sub').textContent=L.agentSub;
   // Tabs
+  var closeTxt=document.getElementById('close-btn-txt'); if(closeTxt)closeTxt.textContent=lang==='es'?'Cerrar':'Close';
   var tabsEl=document.getElementById('qm-tabs'); tabsEl.innerHTML='';
   L.tabs.forEach(function(t,i){
     var btn=document.createElement('button');
@@ -2732,7 +2809,7 @@ window.qmYNSel=function(key,val,el){
 
 function collectStep(s){
   var inputs=document.querySelectorAll('#qm-steps-wrap .qm-inp, #qm-steps-wrap .qm-sel, #qm-steps-wrap .qm-ta');
-  inputs.forEach(function(el){if(el.id&&el.type!=='file')qmData[el.id]=el.value;});
+  inputs.forEach(function(el){if(el.id&&el.type!=='file')qmData[el.id]=sanitizeUrl(el.value);});
   if(fi('qm-premium')) qmData.premium=fi('qm-premium').value;
 }
 
@@ -2811,7 +2888,8 @@ function submitQm(lang){
   var waUrl='https://wa.me/19086774196?text='+encodeURIComponent(lines.join('\n'));
   // Show success + open WhatsApp directly
   window.open(waUrl,'_blank');
-  document.getElementById('qm-steps-wrap').innerHTML='<div class="qm-success"><div style="font-size:52px;margin-bottom:16px">🎉</div><div style="font-family:\'Playfair Display\',serif;font-size:22px;color:var(--navy);margin-bottom:12px">'+L.successTitle+'</div><p style="color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:20px">'+L.successSub+'</p><a href="'+waUrl+'" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:#25D366;color:#fff;font-weight:800;font-size:15px;border-radius:50px;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,0.4)">💬 '+L.successBtn+'</a></div>';
+  var closeLbl=lang==='es'?'← Volver al sitio':'← Back to website';
+  document.getElementById('qm-steps-wrap').innerHTML='<div class="qm-success"><div style="font-size:52px;margin-bottom:16px">🎉</div><div style="font-family:\'Playfair Display\',serif;font-size:22px;color:var(--navy);margin-bottom:12px">'+L.successTitle+'</div><p style="color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:20px">'+L.successSub+'</p><a href="'+waUrl+'" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:#25D366;color:#fff;font-weight:800;font-size:15px;border-radius:50px;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,0.4);margin-bottom:16px">💬 '+L.successBtn+'</a><br><button onclick="closeQualModal()" style="padding:10px 24px;background:transparent;border:1.5px solid var(--cream2);border-radius:50px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;font-family:\'DM Sans\',sans-serif;margin-top:8px">'+closeLbl+'</button></div>';
   document.getElementById('qm-btn-row').innerHTML='';
 }
 
@@ -2860,7 +2938,7 @@ const T = {
     "lic-num-label":"License #","lic-num-label2":"License #",
     "blog-label":"Resources &amp; Education","blog-title":"Learn, decide, and<br>protect what you love most",
     "blog-sub":"Articles and guides to help you make the best financial decisions for your family.",
-    "sched-eyebrow":"Free Consultation","sched-title":"Schedule your free consultation<br><em style='color:var(--gold-dark);font-style:italic'>Pick a time that works for you</em>","sched-sub":"Choose a slot directly in Yunersy's calendar — no waiting, instant confirmation, with a reminder before your appointment.","sched-btn":"Open Calendar — Schedule Now","sched-note":"30-minute session · Free · No obligation · English or Spanish","qual-eyebrow":"Free Qualification — 2 Minutes","qual-title":"Find out if you qualify<br><em style='font-style:italic;color:var(--gold)'>and what coverage fits your family</em>","qual-sub":"Complete our qualification form and Yunersy will review your information and contact you within 24 hours — at no cost, no commitment.","qual-check1":"No medical exam initially","qual-check2":"Options from $30/mo","qual-check3":"Personalized plan in 24 hrs","qual-check4":"IUL, Term, or Final Expense","qual-check5":"100% free — no obligation","qual-check6":"In English or Spanish","qual-btn":"Find out if I qualify now","qual-note":"Takes about 2 minutes · Your information is private and only shared with Yunersy","calc-label":"Free Tools","calc-title":"Financial calculators<br>to make better decisions",
+    "footer-desc":"Protecting families and building wealth through financial education and life insurance. Licensed Agent Yunersy Salabarria · NJ & FL.","footer-col-services":"Services","fs-iul":"📈 IUL Insurance","fs-fe":"💸 Final Expense","fs-mort":"🏠 Mortgage Protection","fs-college":"🎓 College Fund","fs-retire":"🌴 Retirement / IUL","footer-col-company":"Company","fc-about":"About Yunersy","fc-test":"Testimonials","fc-calc":"Calculators","fc-join":"Join the Team","footer-col-contact":"Contact","fc-qualify":"✅ Qualify Now","fc-schedule":"📅 Schedule a Call","sched-eyebrow":"Free Consultation","sched-title":"Schedule your free consultation<br><em style='color:var(--gold-dark);font-style:italic'>Pick a time that works for you</em>","sched-sub":"Choose a slot directly in Yunersy's calendar — no waiting, instant confirmation, with a reminder before your appointment.","sched-btn":"Open Calendar — Schedule Now","sched-note":"30-minute session · Free · No obligation · English or Spanish","qual-eyebrow":"Free Qualification — 2 Minutes","qual-title":"Find out if you qualify<br><em style='font-style:italic;color:var(--gold)'>and what coverage fits your family</em>","qual-sub":"Complete our qualification form and Yunersy will review your information and contact you within 24 hours — at no cost, no commitment.","qual-check1":"No medical exam initially","qual-check2":"Options from $30/mo","qual-check3":"Personalized plan in 24 hrs","qual-check4":"IUL, Term, or Final Expense","qual-check5":"100% free — no obligation","qual-check6":"In English or Spanish","qual-btn":"Find out if I qualify now","qual-note":"Takes about 2 minutes · Your information is private and only shared with Yunersy","calc-label":"Free Tools","calc-title":"Financial calculators<br>to make better decisions",
     "calc-sub":"Interactive tools so you understand exactly how much you need and how much your money can grow.",
     "calc-c1-title":"Financial Shield","calc-c1-desc":"Calculate how much life insurance coverage your family needs based on your income, debts, and dependents.","calc-c2-title":"College Fund","calc-c2-desc":"Discover how much you need to save today to cover your children's college without going into debt.","calc-c3-title":"D.I.M.E. Method","calc-c3-desc":"The professional method to calculate the exact coverage your family needs — Debt, Income, Mortgage, and Education.","calc-c4-title":"IUL Projection","calc-c4-desc":"Simulate how your money would grow in an IUL — with the 0% floor and S&P 500 upside potential.","calc-c5-title":"IUL vs. Bank","calc-c5-desc":"How much more would you have earned in an IUL vs. a bank account over the last 10 years? The numbers will surprise you.","calc-now":"Calculate now →","calc-c-fe-title":"Final Expense","calc-c-fe-desc":"See exactly how much more your monthly premium costs if you wait — every year you delay, the rate goes up permanently.","calc-c7-title":"Mortgage Protection","calc-c7-desc":"If something happens to you, would your family keep the house? Calculate exactly how much coverage your mortgage needs.","calc-c8-title":"How Much Do I Need?","calc-c8-desc":"The most complete analysis: income, debts, future expenses and assets — get your exact recommended coverage amount.","calc-c6-title":"IUL vs. Bank — Min to Max","calc-c6-desc":"See your money grow from the worst to the best IUL scenario vs. a savings account. Even minimum growth beats the bank.","lic-type-label":"Type","lic-type-label2":"Type","test-p1":"Yunersy explained everything with patience and clarity I had never encountered. I finally understood how life insurance could also grow my money. My family is protected and I sleep soundly.","test-p2":"As a single mom I was afraid I couldn't protect my kids if something happened to me. Yunersy guided me without pressure and we found a plan that fits my budget. She's more than an advisor — she truly cares.","test-p3":"I thought life insurance was only for older or wealthy people. Yunersy completely changed my perspective and today I have a policy that also works as an investment. I wish I had started sooner.","test-loc1":"New Jersey","calc-compare":"View comparison →","calc-q":"Questions about your results?","calc-q-sub":"After using any calculator, we can analyze the results together and design your personalized plan.","calc-expert":"Talk to an expert →",
     "fe-label":"Final Expense Calculator","fe-title":"What does waiting really cost you?",
@@ -2923,7 +3001,7 @@ const T = {
     "lic-num-label":"N° de licencia","lic-num-label2":"N° de licencia",
     "blog-label":"Recursos &amp; Educación","blog-title":"Aprende, decide y<br>protege lo que más amas",
     "blog-sub":"Artículos y guías en español para que tomes las mejores decisiones financieras para tu familia.",
-    "sched-eyebrow":"Consulta Gratuita","sched-title":"Agenda tu consulta gratuita<br><em style='color:var(--gold-dark);font-style:italic'>Elige el horario que más te convenga</em>","sched-sub":"Elige un horario directamente en el calendario de Yunersy — sin espera, confirmación instantánea y recordatorio antes de tu cita.","sched-btn":"Abrir Calendario — Agendar Ahora","sched-note":"Sesión de 30 minutos · Gratis · Sin compromiso · En inglés o español","qual-eyebrow":"Calificación Gratuita — 2 Minutos","qual-title":"Descubre si calificas<br><em style='font-style:italic;color:var(--gold)'>y qué cobertura es para tu familia</em>","qual-sub":"Completa nuestro formulario de calificación y Yunersy revisará tu información y te contactará en 24 horas con tus opciones personalizadas — sin costo, sin compromiso.","qual-check1":"Sin examen médico inicial","qual-check2":"Opciones desde $30/mes","qual-check3":"Plan personalizado en 24 hrs","qual-check4":"IUL, Temporal o Gastos Finales","qual-check5":"100% gratis — sin compromiso","qual-check6":"En inglés o español","qual-btn":"Descubrir si califico ahora","qual-note":"Toma unos 2 minutos · Tu información es privada y solo se comparte con Yunersy","calc-label":"Herramientas Gratuitas","calc-title":"Calculadoras financieras<br>para tomar mejores decisiones",
+    "footer-desc":"Protegiendo familias y construyendo riqueza a través de la educación financiera y el seguro de vida. Agente Licenciada Yunersy Salabarria · NJ & FL.","footer-col-services":"Servicios","fs-iul":"📈 Seguro IUL","fs-fe":"💸 Gastos Finales","fs-mort":"🏠 Protección Hipotecaria","fs-college":"🎓 Fondo Universitario","fs-retire":"🌴 Retiro / IUL","footer-col-company":"Empresa","fc-about":"Sobre Yunersy","fc-test":"Testimonios","fc-calc":"Calculadoras","fc-join":"Únete al Equipo","footer-col-contact":"Contacto","fc-qualify":"✅ Calificar Ahora","fc-schedule":"📅 Agendar una Llamada","sched-eyebrow":"Consulta Gratuita","sched-title":"Agenda tu consulta gratuita<br><em style='color:var(--gold-dark);font-style:italic'>Elige el horario que más te convenga</em>","sched-sub":"Elige un horario directamente en el calendario de Yunersy — sin espera, confirmación instantánea y recordatorio antes de tu cita.","sched-btn":"Abrir Calendario — Agendar Ahora","sched-note":"Sesión de 30 minutos · Gratis · Sin compromiso · En inglés o español","qual-eyebrow":"Calificación Gratuita — 2 Minutos","qual-title":"Descubre si calificas<br><em style='font-style:italic;color:var(--gold)'>y qué cobertura es para tu familia</em>","qual-sub":"Completa nuestro formulario de calificación y Yunersy revisará tu información y te contactará en 24 horas con tus opciones personalizadas — sin costo, sin compromiso.","qual-check1":"Sin examen médico inicial","qual-check2":"Opciones desde $30/mes","qual-check3":"Plan personalizado en 24 hrs","qual-check4":"IUL, Temporal o Gastos Finales","qual-check5":"100% gratis — sin compromiso","qual-check6":"En inglés o español","qual-btn":"Descubrir si califico ahora","qual-note":"Toma unos 2 minutos · Tu información es privada y solo se comparte con Yunersy","calc-label":"Herramientas Gratuitas","calc-title":"Calculadoras financieras<br>para tomar mejores decisiones",
     "calc-sub":"Herramientas interactivas para que entiendas exactamente cuánto necesitas y cuánto puede crecer tu dinero.",
     "calc-c1-title":"Escudo Financiero","calc-c1-desc":"Calcula cuánta cobertura de seguro de vida necesita tu familia según tus ingresos, deudas y dependientes.","calc-c2-title":"Fondo Universitario","calc-c2-desc":"Descubre cuánto necesitas ahorrar hoy para cubrir la universidad de tus hijos sin endeudarte.","calc-c3-title":"Método D.I.M.E.","calc-c3-desc":"El método profesional para calcular la cobertura exacta que necesita tu familia — Deuda, Ingresos, Manutención y Educación.","calc-c4-title":"Proyección IUL","calc-c4-desc":"Simula cómo crecería tu dinero en un IUL — con el piso del 0% y el potencial del S&P 500.","calc-c5-title":"IUL vs Banco","calc-c5-desc":"¿Cuánto más hubieras ganado en un IUL vs una cuenta bancaria en los últimos 10 años? Los números te van a sorprender.","calc-now":"Calcular ahora →","calc-c-fe-title":"Gastos Finales","calc-c-fe-desc":"Ve exactamente cuánto más cuesta tu prima mensual si esperas — cada año que demoras, la tarifa sube de forma permanente.","calc-c7-title":"Protección Hipotecaria","calc-c7-desc":"Si algo te pasa, ¿tu familia se quedará en la casa? Calcula exactamente cuánta cobertura necesita tu hipoteca.","calc-c8-title":"¿Cuánto Necesito?","calc-c8-desc":"El análisis más completo: ingresos, deudas, gastos futuros y activos — obtén el monto exacto de cobertura recomendado.","calc-c6-title":"IUL vs. Banco — Del Mínimo al Máximo","calc-c6-desc":"Ve cómo crece tu dinero desde el peor hasta el mejor escenario del IUL vs. una cuenta de ahorros. Incluso el crecimiento mínimo supera al banco.","lic-type-label":"Tipo","lic-type-label2":"Tipo","test-p1":"Yunersy me explicó todo con una paciencia y claridad que nunca había encontrado. Finalmente entendí cómo el seguro de vida también podía hacerme crecer dinero. Mi familia está protegida y yo duermo tranquilo.","test-p2":"Como mamá soltera tenía miedo de no poder proteger a mis hijos si me pasaba algo. Yunersy me orientó sin presiones y encontramos un plan que cabe en mi presupuesto. Es más que una asesora — es alguien que de verdad se preocupa.","test-p3":"Pensaba que los seguros de vida eran solo para gente mayor o muy rica. Yunersy cambió completamente mi perspectiva y hoy tengo una póliza que también funciona como inversión. Ojalá hubiera empezado antes.","test-loc1":"Nueva Jersey","calc-compare":"Ver comparación →","calc-q":"¿Tienes preguntas sobre los resultados?","calc-q-sub":"Después de usar cualquier calculadora, podemos analizar juntos los resultados y diseñar tu plan personalizado.","calc-expert":"Hablar con un experto →",
     "fe-label":"Calculadora — Seguro de Gastos Finales","fe-title":"¿Cuánto te cuesta realmente esperar?",
@@ -3098,8 +3176,8 @@ function closePopup(){
 }
 
 function submitPopup(){
-  var name=document.getElementById('popup-name').value.trim();
-  var wa=document.getElementById('popup-wa').value.trim();
+  var name=document.getElementById('popup-name').value.trim().substring(0,100);
+  var wa=document.getElementById('popup-wa').value.trim().replace(/[^0-9+\-\s\(\)]/g,'').substring(0,20);
   var isES=document.documentElement.lang==='es';
   var alertEl=document.getElementById('popup-alert');
   if(!name||!wa){

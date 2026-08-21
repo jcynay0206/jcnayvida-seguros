@@ -2521,437 +2521,311 @@ document.head.appendChild(s);
 
 })();
 </script>
-<!-- ═══════════════════════════════════════════════════
-     QUALIFICATION MODAL
-════════════════════════════════════════════════════ -->
-<div id="qual-modal" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(10,26,42,0.85);backdrop-filter:blur(6px);overflow-y:auto">
-  <div style="min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:20px 16px">
-    <div style="width:100%;max-width:1060px;background:var(--cream);border-radius:20px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.5);margin:auto;position:relative">
+<!-- QUALIFICATION MODAL — Simple & Reliable -->
+<div id="qual-modal" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(10,26,42,0.88);backdrop-filter:blur(6px);overflow-y:auto;padding:16px">
+  <div style="min-height:100%;display:flex;align-items:center;justify-content:center">
+    <div style="width:100%;max-width:680px;background:var(--cream);border-radius:20px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.5);position:relative">
 
-      <!-- CLOSE -->
-      <button onclick="closeQualModal()" style="position:absolute;top:12px;right:16px;z-index:10;background:rgba(250,247,242,0.15);border:1px solid rgba(250,247,242,0.2);border-radius:50px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;color:rgba(250,247,242,0.7);padding:6px 12px;font-family:'DM Sans',sans-serif;transition:all 0.2s" onmouseover="this.style.background='rgba(250,247,242,0.25)'" onmouseout="this.style.background='rgba(250,247,242,0.15)'">✕ <span id="close-btn-txt">Close</span></button>
-
-      <!-- TOP TABS -->
-      <div style="background:var(--navy);padding:0">
-        <div style="display:flex;align-items:center;overflow-x:auto;padding:0 20px" id="qm-tabs"></div>
+      <!-- HEADER -->
+      <div style="background:var(--navy);padding:16px 24px 0">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+          <div style="font-family:'Playfair Display',serif;font-size:16px;color:var(--cream)" id="qm2-title">Policy Qualification</div>
+          <button onclick="qm2Close()" style="background:rgba(255,255,255,0.1);border:none;color:rgba(255,255,255,0.7);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px">✕</button>
+        </div>
+        <!-- Progress tabs -->
+        <div style="display:flex;gap:2px" id="qm2-tabs"></div>
       </div>
 
-      <!-- BODY: form + sidebar -->
-      <div style="display:grid;grid-template-columns:1fr 300px;min-height:500px" id="qm-body">
+      <!-- FORM STEPS -->
+      <div style="padding:24px" id="qm2-content">
+        <div id="qm2-alert" style="display:none;background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.3);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:#c0392b;font-weight:600"></div>
+        <div id="qm2-steps"></div>
+        <div style="display:flex;gap:10px;margin-top:20px" id="qm2-btns"></div>
+      </div>
 
-        <!-- FORM AREA -->
-        <div style="padding:32px 36px 28px" id="qm-form-area">
-          <div id="qm-val-alert" style="display:none;background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.3);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:#c0392b;font-weight:600"></div>
-          <div id="qm-steps-wrap"></div>
-          <div style="display:flex;gap:12px;margin-top:24px" id="qm-btn-row"></div>
-        </div>
-
-        <!-- SIDEBAR -->
-        <div style="background:var(--navy);padding:28px 24px;display:flex;flex-direction:column;gap:20px">
-          <div>
-            <div style="font-size:15px;font-weight:700;color:var(--cream);margin-bottom:8px" id="qm-why-title">¿Por qué calificar?</div>
-            <p style="font-size:13px;color:rgba(250,247,242,0.6);line-height:1.7;margin-bottom:16px" id="qm-why-sub">En menos de 2 minutos sabrás exactamente qué cobertura te conviene y cuánto costaría.</p>
-            <div style="display:flex;flex-direction:column;gap:8px" id="qm-why-list">
-              <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gold)"><span>●</span><span id="qw1">Análisis personalizado de tu situación</span></div>
-              <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gold)"><span>●</span><span id="qw2">Opciones desde $30/mes sin examen</span></div>
-              <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gold)"><span>●</span><span id="qw3">Protección + ahorro en un solo plan</span></div>
-              <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gold)"><span>●</span><span id="qw4">Sin compromiso de contratación</span></div>
-              <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gold)"><span>●</span><span id="qw5">Respuesta garantizada en 24 horas</span></div>
-            </div>
-          </div>
-          <div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:16px;display:flex;align-items:center;gap:12px;margin-top:auto">
-            <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#a07840);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;color:var(--navy);flex-shrink:0">Y</div>
-            <div>
-              <div style="font-size:13px;font-weight:700;color:var(--cream)">Yunersy Salabarria</div>
-              <div style="font-size:11px;color:rgba(250,247,242,0.5)" id="qm-agent-sub">Agente Licenciada · JCNay Vida Team</div>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- end body -->
     </div>
   </div>
 </div>
 
 <style>
-.qm-step{display:none;animation:qmFade 0.25s ease}
-.qm-step.active{display:block}
-@keyframes qmFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.qm-tab{padding:14px 18px;border:none;background:none;color:rgba(250,247,242,0.45);font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.2s;font-family:'DM Sans',sans-serif}
-.qm-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
-.qm-tab.done{color:#6fcf97;border-bottom-color:#6fcf97}
-.qm-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:4px}
-.qm-sub{font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.5}
-.qm-section{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold-dark);margin:18px 0 10px;display:flex;align-items:center;gap:8px}
-.qm-section::after{content:'';flex:1;height:1px;background:var(--cream2)}
-.qm-grid{display:grid;gap:12px;margin-bottom:4px}
-.qm-g2{grid-template-columns:1fr 1fr}
-.qm-g3{grid-template-columns:1fr 1fr 1fr}
-.qm-field label{display:block;font-size:12px;font-weight:700;color:var(--navy);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.05em}
-.qm-req{color:var(--red)}
-.qm-inp,.qm-sel,.qm-ta{width:100%;padding:11px 13px;border:1.5px solid var(--cream2);border-radius:9px;font-size:13.5px;color:var(--navy);background:#fff;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s}
-.qm-inp:focus,.qm-sel:focus,.qm-ta:focus{border-color:var(--gold)}
-.qm-inp.err,.qm-sel.err{border-color:var(--red)}
-.qm-ta{resize:vertical;min-height:70px}
-.qm-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
-.qm-chip{padding:10px 16px;border:2px solid var(--cream2);border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;color:var(--navy);background:#fff;transition:all 0.15s;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:90px;text-align:center;font-family:'DM Sans',sans-serif}
-.qm-chip .chip-icon{font-size:22px}
-.qm-chip:hover{border-color:var(--gold)}
-.qm-chip.sel{border-color:var(--navy);background:var(--navy);color:var(--cream)}
-.qm-slider-wrap{margin:4px 0 12px}
-.qm-slider{width:100%;accent-color:var(--gold-dark);height:6px}
-.qm-slider-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px}
-.qm-slider-val{text-align:center;font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);margin-top:6px}
-.qm-yesno{display:flex;gap:8px}
-.qm-yn{padding:8px 24px;border:2px solid var(--cream2);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;background:#fff;color:var(--navy);font-family:'DM Sans',sans-serif;transition:all 0.15s}
-.qm-yn.sel{border-color:var(--navy);background:var(--navy);color:#fff}
-.qm-btn-next{flex:1;padding:13px;background:linear-gradient(135deg,var(--gold),#e3cfa3);color:var(--navy);font-weight:800;font-size:14px;border:none;border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
-.qm-btn-next:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,168,106,0.3)}
-.qm-btn-back{padding:13px 20px;background:#fff;border:1.5px solid var(--cream2);border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);font-family:'DM Sans',sans-serif}
-.qm-btn-submit{flex:1;padding:13px;background:#25D366;color:#fff;font-weight:800;font-size:14px;border:none;border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.2s}
-.qm-success{padding:48px 32px;text-align:center}
-@media(max-width:800px){
-  #qm-body{grid-template-columns:1fr}
-  #qm-body>div:last-child{display:none}
-  #qm-form-area{padding:20px}
-  .qm-g2,.qm-g3{grid-template-columns:1fr}
-}
+.qm2-step-panel{display:none}
+.qm2-step-panel.active{display:block}
+.qm2-label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--navy);margin-bottom:5px}
+.qm2-req{color:#e74c3c}
+.qm2-inp,.qm2-sel,.qm2-ta{width:100%;padding:11px 13px;border:1.5px solid var(--cream2);border-radius:9px;font-size:14px;color:var(--navy);background:#fff;font-family:'DM Sans',sans-serif;outline:none;box-sizing:border-box;transition:border-color 0.2s}
+.qm2-inp:focus,.qm2-sel:focus,.qm2-ta:focus{border-color:var(--gold)}
+.qm2-inp.err,.qm2-sel.err{border-color:#e74c3c}
+.qm2-ta{resize:vertical;min-height:70px}
+.qm2-g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.qm2-g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.qm2-sec{font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark);margin:16px 0 10px;display:flex;align-items:center;gap:8px}
+.qm2-sec::after{content:'';flex:1;height:1px;background:var(--cream2)}
+.qm2-chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+.qm2-chip{padding:9px 14px;border:2px solid var(--cream2);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;background:#fff;color:var(--navy);font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:6px;transition:all 0.15s}
+.qm2-chip:hover,.qm2-chip.on{border-color:var(--navy);background:var(--navy);color:var(--cream)}
+.qm2-yn{display:flex;gap:8px;margin-bottom:4px}
+.qm2-yn button{padding:8px 20px;border:1.5px solid var(--cream2);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;background:#fff;color:var(--navy);font-family:'DM Sans',sans-serif;transition:all 0.15s}
+.qm2-yn button.on{border-color:var(--navy);background:var(--navy);color:#fff}
+.qm2-tab-dot{height:4px;flex:1;border-radius:2px;background:rgba(255,255,255,0.15);transition:all 0.3s}
+.qm2-tab-dot.done{background:#6fcf97}
+.qm2-tab-dot.active{background:var(--gold)}
+.qm2-btn-next{flex:1;padding:13px;background:linear-gradient(135deg,var(--gold),#e3cfa3);color:var(--navy);font-weight:800;font-size:14px;border:none;border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.qm2-btn-back{padding:13px 18px;background:#fff;border:1.5px solid var(--cream2);border-radius:10px;cursor:pointer;font-size:13px;color:var(--muted);font-family:'DM Sans',sans-serif}
+.qm2-btn-send{flex:1;padding:13px;background:#25D366;color:#fff;font-weight:800;font-size:14px;border:none;border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px}
+@media(max-width:600px){.qm2-g2,.qm2-g3{grid-template-columns:1fr}}
 </style>
 
 <script>
 (function(){
-var qmStep = 1;
-var qmTotal = 6;
-var qmData = {};
-var qmChips = { polType: [] };
-var qmRadio = {};
-var qmYN = {};
+var qm2={step:1,total:6,chips:[],yn:{},data:{}};
+var isES=function(){return document.documentElement.lang==='es';};
 
-var QML = {
-  es:{
-    tabs:['Póliza','Personal','Salud','Laboral','Beneficiarios','Final'],
-    why:'¿Por qué calificar?',
-    whySub:'En menos de 2 minutos sabrás exactamente qué cobertura te conviene y cuánto costaría.',
-    wl:['Análisis personalizado de tu situación','Opciones desde $30/mes sin examen','Protección + ahorro en un solo plan','Sin compromiso de contratación','Respuesta garantizada en 24 horas'],
-    agentSub:'Agente Licenciada · JCNay Vida Team',
-    btnNext:'Siguiente →', btnBack:'← Anterior', btnSend:'Enviar Solicitud',
-    valMsg:'Por favor completa todos los campos obligatorios.',
-    successTitle:'¡Solicitud enviada!',
-    successSub:'Yunersy recibió toda tu información y te contactará en 24 horas para tu consulta gratuita y personalizada.',
-    successBtn:'Escribir a Yunersy por WhatsApp'
-  },
-  en:{
-    tabs:['Policy','Personal','Health','Employment','Beneficiaries','Final'],
-    why:'Why qualify?',
-    whySub:'In less than 2 minutes you will know exactly what coverage suits you and how much it would cost.',
-    wl:['Personalized analysis of your situation','Options from $30/mo without exam','Protection + savings in one plan','No obligation to purchase','Guaranteed response within 24 hours'],
-    agentSub:'Licensed Agent · JCNay Vida Team',
-    btnNext:'Next →', btnBack:'← Back', btnSend:'Send Application',
-    valMsg:'Please complete all required fields.',
-    successTitle:'Application sent!',
-    successSub:'Yunersy received all your information and will contact you within 24 hours for your free personalized consultation.',
-    successBtn:'Message Yunersy on WhatsApp'
+var STEPS_EN=['Policy','Personal','Health','Employment','Beneficiaries','Submit'];
+var STEPS_ES=['Póliza','Personal','Salud','Laboral','Beneficiarios','Enviar'];
+
+function qm2Render(){
+  var es=isES();
+  // Update title
+  document.getElementById('qm2-title').textContent=(es?'Calificación de Póliza':'Policy Qualification')+' — '+(es?STEPS_ES[qm2.step-1]:STEPS_EN[qm2.step-1]);
+  // Tabs
+  var tabs=document.getElementById('qm2-tabs'); tabs.innerHTML='';
+  for(var i=1;i<=qm2.total;i++){
+    var d=document.createElement('div');
+    d.className='qm2-tab-dot'+(i<qm2.step?' done':i===qm2.step?' active':'');
+    d.title=(es?STEPS_ES:STEPS_EN)[i-1];
+    tabs.appendChild(d);
   }
+  // Build step content
+  var html=qm2BuildStep(qm2.step,es);
+  document.getElementById('qm2-steps').innerHTML=html;
+  // Buttons
+  var btns=document.getElementById('qm2-btns'); btns.innerHTML='';
+  if(qm2.step>1){
+    var bb=document.createElement('button');
+    bb.className='qm2-btn-back';
+    bb.textContent=es?'← Atrás':'← Back';
+    bb.onclick=function(){qm2.step--;qm2Render();};
+    btns.appendChild(bb);
+  }
+  if(qm2.step<qm2.total){
+    var bn=document.createElement('button');
+    bn.className='qm2-btn-next';
+    bn.textContent=es?'Siguiente →':'Next →';
+    bn.onclick=function(){qm2Next(es);};
+    btns.appendChild(bn);
+  } else {
+    var bs=document.createElement('button');
+    bs.className='qm2-btn-send';
+    bs.innerHTML='<span>💬</span><span>'+(es?'Enviar a Yunersy':'Send to Yunersy')+'</span>';
+    bs.onclick=function(){qm2Send(es);};
+    btns.appendChild(bs);
+  }
+  document.getElementById('qm2-alert').style.display='none';
+  // Restore selections
+  qm2RestoreChips();
+  qm2RestoreYN();
+  qm2RestoreData();
+}
+
+function f(id,ph,req,type){
+  return '<div style="margin-bottom:12px"><label class="qm2-label">'+(req?'<span class="qm2-req">* </span>':'')+ph+'</label><input id="'+id+'" type="'+(type||'text')+'" class="qm2-inp" placeholder="'+ph+'"></div>';
+}
+function sel(id,label,opts,req){
+  var o=opts.map(function(x){return '<option value="'+(x.v||x)+'">'+(x.l||x)+'</option>';}).join('');
+  return '<div style="margin-bottom:12px"><label class="qm2-label">'+(req?'<span class="qm2-req">* </span>':'')+label+'</label><select id="'+id+'" class="qm2-sel"><option value="">—</option>'+o+'</select></div>';
+}
+function sec(t){return '<div class="qm2-sec">'+t+'</div>';}
+function ta(id,label,ph){return '<div style="margin-bottom:12px"><label class="qm2-label">'+label+'</label><textarea id="'+id+'" class="qm2-ta" placeholder="'+ph+'"></textarea></div>';}
+var STATES=['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming','Puerto Rico'];
+
+function qm2BuildStep(s,es){
+  var h='';
+  if(s===1){
+    h+='<p style="font-size:13px;color:var(--muted);margin-bottom:16px">'+(es?'Selecciona el tipo de seguro de tu interés (opcional) y el monto mensual.':'Select the type of coverage you are interested in (optional) and monthly amount.')+'</p>';
+    h+=sec(es?'TIPO DE PÓLIZA':'POLICY TYPE');
+    var chips=es
+      ?[{v:'IUL',icon:'📈',l:'IUL'},{v:'GastoFinal',icon:'💸',l:'Gasto Final'},{v:'Termino',icon:'🛡️',l:'A Término'},{v:'Ahorro',icon:'💰',l:'Ahorro'},{v:'Jubilacion',icon:'🌴',l:'Jubilación'}]
+      :[{v:'IUL',icon:'📈',l:'IUL'},{v:'FinalExpense',icon:'💸',l:'Final Expense'},{v:'Term',icon:'🛡️',l:'Term Life'},{v:'Savings',icon:'💰',l:'Savings'},{v:'Retirement',icon:'🌴',l:'Retirement'}];
+    h+='<div class="qm2-chip-row">';
+    chips.forEach(function(c){h+='<div class="qm2-chip'+(qm2.chips.indexOf(c.v)>-1?' on':'')+'" data-chip="'+c.v+'" onclick="this.classList.toggle('on');var i=window._qm2chips.indexOf(''+c.v+'');i>-1?window._qm2chips.splice(i,1):window._qm2chips.push(''+c.v+'')">'+c.icon+' '+c.l+'</div>';});
+    h+='</div>';
+    h+=sec(es?'PRIMA MENSUAL ($0 – $500)':'MONTHLY PREMIUM ($0 – $500)');
+    h+='<input type="range" id="qm2-premium" class="qm2-inp" style="padding:4px 0;border:none;background:transparent;box-shadow:none;accent-color:var(--gold-dark)" min="0" max="500" step="10" value="'+(qm2.data['qm2-premium']||200)+'" oninput="document.getElementById('qm2-pval').textContent='$'+this.value">';
+    h+='<div style="text-align:center;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--navy);margin-top:4px" id="qm2-pval">$'+(qm2.data['qm2-premium']||200)+'</div>';
+    h+=sec(es?'VALOR EXTRA':'EXTRA VALUE');
+    h+=f('qm2-extra',es?'Ej. 50000':'e.g. 50000');
+  }
+  else if(s===2){
+    h+='<div class="qm2-g2">'+f('qm2-fn',es?'Nombre *':'First Name *',true)+f('qm2-ln',es?'Apellido *':'Last Name *',true)+'</div>';
+    h+=f('qm2-email',es?'Correo Electrónico *':'Email *',true,'email');
+    h+='<div class="qm2-g2">'+f('qm2-dob',es?'Fecha de Nacimiento *':'Date of Birth *',true,'date')+f('qm2-phone',es?'Teléfono/WhatsApp *':'Phone/WhatsApp *',true,'tel')+'</div>';
+    h+='<div class="qm2-g2">'+f('qm2-addr',es?'Dirección *':'Address *',true)+f('qm2-city',es?'Ciudad *':'City *',true)+'</div>';
+    h+='<div class="qm2-g3">'+sel('qm2-state',es?'Estado *':'State *',STATES,true)+f('qm2-zip',es?'Código Postal *':'Zip *',true,'number')+sel('qm2-citizen',es?'Ciudadano/Residente':'Citizen/Resident',[{v:'US',l:es?'Ciudadano USA':'US Citizen'},{v:'PR',l:es?'Residente Permanente':'Perm. Resident'},{v:'DACA',l:'DACA'},{v:'Visa',l:'Visa/ITIN'}])+'</div>';
+    h+='<div class="qm2-g2">'+sel('qm2-idtype',es?'Tipo de ID':'ID Type',[{v:'DL',l:es?'Licencia':'Driver's License'},{v:'Pass',l:es?'Pasaporte':'Passport'},{v:'StateID',l:es?'ID Estatal':'State ID'},{v:'ITIN',l:'ITIN'}])+f('qm2-idnum',es?'Número de ID':'ID Number')+'</div>';
+    h+=f('qm2-country',es?'País de Origen':'Country of Origin');
+    h+=sec(es?'PADRES':'PARENTS');
+    h+='<div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:8px">'+(es?'¿Están vivos sus padres?':'Are your parents alive?')+'</div>';
+    h+='<div class="qm2-yn"><button data-yn="parents-yes" onclick="qm2YN(this,'parents','yes')">'+(es?'Sí':'Yes')+'</button><button data-yn="parents-no" onclick="qm2YN(this,'parents','no')">No</button></div>';
+  }
+  else if(s===3){
+    h+='<div class="qm2-g2">'+f('qm2-weight',es?'Peso (lbs/kg)':'Weight (lbs/kg)')+f('qm2-height',es?'Altura':'Height')+'</div>';
+    h+=sec(es?'MÉDICO DE CABECERA':'PRIMARY PHYSICIAN');
+    h+='<div class="qm2-g2">'+f('qm2-clinic',es?'Nombre de la Clínica':'Clinic Name')+f('qm2-clinic-phone',es?'Tel. de la Clínica':'Clinic Phone','','tel')+'</div>';
+    h+=f('qm2-clinic-addr',es?'Dirección de la Clínica':'Clinic Address');
+    h+='<div class="qm2-g2">'+f('qm2-doctor',es?'Nombre del Médico':'Doctor's Name')+f('qm2-last-checkup',es?'Último chequeo':'Last checkup','','date')+'</div>';
+    h+=ta('qm2-rx',es?'Prescripciones médicas (lista completa, dosis, frecuencia)':'Medical prescriptions (full list, doses, frequency)',es?'Medicamentos recetados...':'Prescribed medications...');
+  }
+  else if(s===4){
+    h+=sec(es?'DATOS LABORALES':'EMPLOYMENT');
+    h+='<div class="qm2-g2">'+f('qm2-employer',es?'Empleador':'Employer')+f('qm2-jobtitle',es?'Cargo/Puesto':'Job Title')+'</div>';
+    h+=f('qm2-income',es?'Ingreso Anual Estimado':'Estimated Annual Income','','number');
+    h+=sec(es?'INFORMACIÓN DE PAGO':'PAYMENT INFO');
+    h+='<div class="qm2-g2">'+f('qm2-account',es?'Número de Cuenta':'Account Number')+f('qm2-routing',es?'Número de Ruta':'Routing Number')+'</div>';
+    h+='<div class="qm2-g2">'+f('qm2-bank',es?'Banco':'Bank Name')+f('qm2-payee',es?'Nombre del Titular':'Account Holder')+'</div>';
+  }
+  else if(s===5){
+    [1,2,3,4].forEach(function(n){
+      var req=n===1;
+      h+=sec((es?'Beneficiario':'Beneficiary')+' '+n+(req?' *':''));
+      h+='<div class="qm2-g2">'+f('qm2-b'+n+'n',es?'Nombre completo':'Full name',req)+f('qm2-b'+n+'d',es?'Fecha nacimiento':'Date of birth',req,'date')+'</div>';
+      h+='<div class="qm2-g2">'+f('qm2-b'+n+'r',es?'Relación':'Relationship',req)+f('qm2-b'+n+'p',es?'Porcentaje %':'Percentage %',req,'number')+'</div>';
+    });
+  }
+  else if(s===6){
+    h+='<div style="background:var(--navy);border-radius:12px;padding:18px;margin-bottom:16px">';
+    h+='<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:12px">'+(es?'INFORMACIÓN DEL AGENTE':'AGENT INFORMATION')+'</div>';
+    h+='<div class="qm2-g2"><div style="margin-bottom:12px"><label class="qm2-label" style="color:rgba(250,247,242,0.6)">'+(es?'Agente':'Agent')+'</label><input class="qm2-inp" value="Yunersy Salabarria" readonly style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.1);color:var(--cream)"></div><div style="margin-bottom:12px"><label class="qm2-label" style="color:rgba(250,247,242,0.6)">'+(es?'Licencia NJ':'License NJ')+'</label><input class="qm2-inp" value="#3003419400" readonly style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.1);color:var(--cream)"></div></div></div>';
+    h+=sec(es?'DOCUMENTOS (OPCIONAL)':'DOCUMENTS (OPTIONAL)');
+    h+='<div class="qm2-g2"><div style="margin-bottom:12px"><label class="qm2-label">'+(es?'ID / Licencia (Frente)':'ID / License (Front)')+'</label><input type="file" id="qm2-idf" accept="image/*,.pdf" class="qm2-inp" style="padding:8px"></div><div style="margin-bottom:12px"><label class="qm2-label">'+(es?'ID / Licencia (Reverso)':'ID / License (Back)')+'</label><input type="file" id="qm2-idb" accept="image/*,.pdf" class="qm2-inp" style="padding:8px"></div></div>';
+    h+='<div style="background:rgba(201,168,106,0.1);border:1px solid rgba(201,168,106,0.2);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--muted)">🔒 '+(es?'Información confidencial. Solo utilizada para fines de calificación de seguro de vida.':'Confidential information. Used solely for life insurance qualification purposes.')+'</div>';
+  }
+  return h;
+}
+
+function qm2RestoreChips(){
+  window._qm2chips=qm2.chips;
+  document.querySelectorAll('.qm2-chip').forEach(function(el){
+    if(qm2.chips.indexOf(el.dataset.chip)>-1) el.classList.add('on');
+  });
+}
+function qm2RestoreYN(){
+  Object.keys(qm2.yn).forEach(function(k){
+    var btn=document.querySelector('[data-yn="'+k+'-'+qm2.yn[k]+'"]');
+    if(btn) btn.classList.add('on');
+  });
+}
+function qm2RestoreData(){
+  Object.keys(qm2.data).forEach(function(id){
+    var el=document.getElementById(id);
+    if(el && el.type!=='file') el.value=qm2.data[id];
+  });
+}
+
+window.qm2YN=function(btn,key,val){
+  qm2.yn[key]=val;
+  btn.parentElement.querySelectorAll('button').forEach(function(b){b.classList.remove('on');});
+  btn.classList.add('on');
 };
 
-function getLang(){ return document.documentElement.lang==='es'?'es':'en'; }
-
-function openQualModal(){
-  qmStep=1; qmData={}; qmChips={polType:[]}; qmRadio={}; qmYN={};
-  var modal=document.getElementById('qual-modal');
-  modal.style.display='block';
-  document.body.style.overflow='hidden';
-  renderModal();
+function qm2Collect(){
+  qm2.chips=window._qm2chips||qm2.chips;
+  document.querySelectorAll('[id^="qm2-"]').forEach(function(el){
+    if(el.id&&el.type!=='file') qm2.data[el.id]=el.value;
+  });
 }
-window.openQualModal=openQualModal;
 
-function closeQualModal(){
+function qm2Next(es){
+  qm2Collect();
+  var ok=true, first=null;
+  var required=[];
+  if(qm2.step===2) required=['qm2-fn','qm2-ln','qm2-email','qm2-phone','qm2-addr','qm2-city','qm2-state','qm2-zip'];
+  if(qm2.step===5) required=['qm2-b1n','qm2-b1r','qm2-b1p'];
+  required.forEach(function(id){
+    var el=document.getElementById(id);
+    if(!el||!el.value.trim()){ok=false;if(el){el.classList.add('err');if(!first)first=el;}}
+    else{if(el)el.classList.remove('err');}
+  });
+  if(!ok){
+    var al=document.getElementById('qm2-alert');
+    al.textContent='⚠️ '+(es?'Por favor completa todos los campos obligatorios.':'Please complete all required fields.');
+    al.style.display='block';
+    if(first) first.focus();
+    return;
+  }
+  qm2.step++;
+  qm2Render();
+  document.getElementById('qm2-content').scrollTop=0;
+}
+
+function qm2Send(es){
+  qm2Collect();
+  var d=qm2.data, g=function(k){return(d[k]||'').trim();};
+  var lines=[];
+  lines.push(es?'🛡️ NUEVA SOLICITUD — JCNay Vida Team':'🛡️ NEW APPLICATION — JCNay Vida Team');
+  lines.push('━━━━━━━━━━━━━━━━━━━━━━');
+  lines.push((es?'📋 PÓLIZA: ':'📋 POLICY: ')+(qm2.chips.join(', ')||'—')+' | $'+(g('qm2-premium')||'200')+'/mo');
+  lines.push('');
+  lines.push(es?'👤 PERSONAL':'👤 PERSONAL');
+  lines.push((es?'Nombre: ':'Name: ')+g('qm2-fn')+' '+g('qm2-ln'));
+  lines.push('Email: '+g('qm2-email'));
+  lines.push((es?'Tel: ':'Phone: ')+g('qm2-phone'));
+  lines.push((es?'Nac: ':'DOB: ')+g('qm2-dob'));
+  lines.push((es?'Dir: ':'Addr: ')+[g('qm2-addr'),g('qm2-city'),g('qm2-state'),g('qm2-zip')].filter(Boolean).join(', '));
+  lines.push('ID: '+g('qm2-idtype')+' '+g('qm2-idnum'));
+  if(g('qm2-country')) lines.push((es?'País: ':'Country: ')+g('qm2-country'));
+  if(g('qm2-citizen')) lines.push((es?'Status: ':'Status: ')+g('qm2-citizen'));
+  if(qm2.yn.parents) lines.push((es?'Padres vivos: ':'Parents alive: ')+qm2.yn.parents);
+  lines.push('');
+  lines.push(es?'🏥 SALUD':'🏥 HEALTH');
+  if(g('qm2-weight')) lines.push((es?'Peso: ':'Weight: ')+g('qm2-weight'));
+  if(g('qm2-height')) lines.push((es?'Altura: ':'Height: ')+g('qm2-height'));
+  if(g('qm2-clinic')) lines.push((es?'Clínica: ':'Clinic: ')+g('qm2-clinic')+' '+g('qm2-clinic-phone'));
+  if(g('qm2-doctor')) lines.push((es?'Médico: ':'Doctor: ')+g('qm2-doctor'));
+  if(g('qm2-last-checkup')) lines.push((es?'Último chequeo: ':'Last checkup: ')+g('qm2-last-checkup'));
+  if(g('qm2-rx')) lines.push((es?'Rx: ':'Rx: ')+g('qm2-rx'));
+  lines.push('');
+  lines.push(es?'💼 LABORAL':'💼 EMPLOYMENT');
+  if(g('qm2-employer')) lines.push((es?'Empleador: ':'Employer: ')+g('qm2-employer')+' | '+g('qm2-jobtitle'));
+  if(g('qm2-income')) lines.push((es?'Ingreso: $':'Income: $')+g('qm2-income'));
+  if(g('qm2-bank')) lines.push((es?'Banco: ':'Bank: ')+g('qm2-bank')+' | Cta: '+g('qm2-account')+' | Ruta: '+g('qm2-routing'));
+  lines.push('');
+  lines.push(es?'👨‍👩‍👧 BENEFICIARIOS':'👨‍👩‍👧 BENEFICIARIES');
+  [1,2,3,4].forEach(function(n){
+    var nm=g('qm2-b'+n+'n'); if(!nm) return;
+    lines.push(n+'. '+nm+' | '+g('qm2-b'+n+'r')+' | '+g('qm2-b'+n+'p')+'% | DOB: '+g('qm2-b'+n+'d'));
+  });
+  lines.push('');
+  lines.push('━━━━━━━━━━━━━━━━━━━━━━');
+  lines.push('Agente: Yunersy Salabarria | NJ #3003419400 | FL #G365745');
+
+  var waUrl='https://wa.me/19086774196?text='+encodeURIComponent(lines.join('
+'));
+
+  // Open WhatsApp immediately (must be synchronous in click handler)
+  var w=window.open(waUrl,'_blank');
+
+  // Show success in modal
+  document.getElementById('qm2-steps').innerHTML='<div style="text-align:center;padding:32px 0"><div style="font-size:48px;margin-bottom:16px">🎉</div><div style="font-family:'Playfair Display',serif;font-size:20px;color:var(--navy);margin-bottom:10px">'+(es?'¡Solicitud enviada!':'Application sent!')+'</div><p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px">'+(es?'Yunersy recibió tu información y te contactará en 24 horas.':'Yunersy received your information and will contact you within 24 hours.')+'</p><a href="'+waUrl+'" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:#25D366;color:#fff;border-radius:50px;text-decoration:none;font-weight:700;font-size:14px">💬 '+(es?'Abrir WhatsApp':'Open WhatsApp')+'</a></div>';
+  document.getElementById('qm2-btns').innerHTML='<button onclick="qm2Close()" style="padding:12px 24px;background:#fff;border:1.5px solid var(--cream2);border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);font-family:'DM Sans',sans-serif">'+(es?'← Volver al sitio':'← Back to website')+'</button>';
+  document.getElementById('qm2-alert').style.display='none';
+}
+
+window.openQualModal=function(){
+  qm2={step:1,total:6,chips:[],yn:{},data:{}};
+  window._qm2chips=[];
+  var m=document.getElementById('qual-modal');
+  m.style.display='block';
+  document.body.style.overflow='hidden';
+  qm2Render();
+};
+
+window.qm2Close=function(){
   document.getElementById('qual-modal').style.display='none';
   document.body.style.overflow='';
-}
-window.closeQualModal=closeQualModal;
-
-// Close on backdrop click
-document.getElementById('qual-modal').addEventListener('click',function(e){
-  if(e.target===this) closeQualModal();
-});
-// ESC key closes modal
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape') closeQualModal();
-});
-
-function renderModal(){
-  var lang=getLang(); var L=QML[lang];
-  // Sidebar text
-  document.getElementById('qm-why-title').textContent=L.why;
-  document.getElementById('qm-why-sub').textContent=L.whySub;
-  ['qw1','qw2','qw3','qw4','qw5'].forEach(function(id,i){document.getElementById(id).textContent=L.wl[i];});
-  document.getElementById('qm-agent-sub').textContent=L.agentSub;
-  // Tabs
-  var closeTxt=document.getElementById('close-btn-txt'); if(closeTxt)closeTxt.textContent=lang==='es'?'Cerrar':'Close';
-  var tabsEl=document.getElementById('qm-tabs'); tabsEl.innerHTML='';
-  L.tabs.forEach(function(t,i){
-    var btn=document.createElement('button');
-    btn.className='qm-tab'+(i+1===qmStep?' active':i+1<qmStep?' done':'');
-    btn.textContent=t;
-    tabsEl.appendChild(btn);
-  });
-  // Form content
-  buildStep(qmStep, lang);
-  // Buttons
-  var br=document.getElementById('qm-btn-row'); br.innerHTML='';
-  if(qmStep>1){var bb=document.createElement('button');bb.className='qm-btn-back';bb.textContent=L.btnBack;bb.onclick=function(){qmStep--;renderModal();};br.appendChild(bb);}
-  if(qmStep<qmTotal){var bn=document.createElement('button');bn.className='qm-btn-next';bn.textContent=L.btnNext;bn.onclick=function(){if(validateQmStep(lang))qmStep++,renderModal();};br.appendChild(bn);}
-  else{var bs=document.createElement('button');bs.className='qm-btn-submit';bs.innerHTML='<span>💬</span><span>'+L.btnSend+'</span>';bs.onclick=function(){submitQm(lang);};br.appendChild(bs);}
-  document.getElementById('qm-val-alert').style.display='none';
-}
-
-function fi(id){return document.getElementById(id);}
-function fv(id){var e=fi(id);return e?e.value.trim():'';}
-function inp(id,ph,req,type){return '<div class="qm-field"><label>'+(req?'<span class="qm-req">* </span>':'')+ph+'</label><input id="'+id+'" type="'+(type||'text')+'" class="qm-inp" placeholder="'+ph+'"></div>';}
-function sel(id,label,opts,req){
-  var o=opts.map(function(o){return '<option value="'+(o.v||o)+'">'+( o.l||o)+'</option>';}).join('');
-  return '<div class="qm-field"><label>'+(req?'<span class="qm-req">* </span>':'')+label+'</label><select id="'+id+'" class="qm-sel"><option value="">—</option>'+o+'</select></div>';
-}
-function ta(id,label,ph){return '<div class="qm-field"><label>'+label+'</label><textarea id="'+id+'" class="qm-ta" placeholder="'+ph+'"></textarea></div>';}
-function sec(t){return '<div class="qm-section">'+t+'</div>';}
-
-function buildStep(s,lang){
-  var isES=lang==='es';
-  var wrap=document.getElementById('qm-steps-wrap'); wrap.innerHTML='';
-  var html='';
-
-  if(s===1){
-    html+='<div class="qm-title">'+(isES?'¿Para qué quiere calificar?':'What would you like to qualify for?')+'</div>';
-    html+='<p class="qm-sub">'+(isES?'Selecciona el tipo de póliza que te interesa (opcional) y los montos.':'Select the policy type you are interested in (optional) and amounts.')+'</p>';
-    html+=sec(isES?'TIPO DE PÓLIZA *':'POLICY TYPE *');
-    var chips=[
-      {v:'IUL',icon:'📈',l:isES?'IUL':'IUL'},
-      {v:'GastoFinal',icon:'💸',l:isES?'Gasto Final':'Final Expense'},
-      {v:'Termino',icon:'🛡️',l:isES?'Póliza a Término':'Term Life'},
-      {v:'Ahorro',icon:'💰',l:isES?'Ahorro':'Savings'},
-      {v:'Jubilacion',icon:'🌴',l:isES?'Jubilación':'Retirement'}
-    ];
-    html+='<div class="qm-chips">';
-    chips.forEach(function(c){html+='<div class="qm-chip'+(qmChips.polType.indexOf(c.v)>-1?' sel':'')+'" onclick="qmToggleChip(\'polType\',\''+c.v+'\',this)"><span class="chip-icon">'+c.icon+'</span><span>'+c.l+'</span></div>';});
-    html+='</div>';
-    html+=sec(isES?'PRIMA MENSUAL ($0 – $500)':'MONTHLY PREMIUM ($0 – $500)');
-    var pv=qmData.premium||200;
-    html+='<div class="qm-slider-wrap"><input type="range" id="qm-premium" class="qm-slider" min="0" max="500" step="10" value="'+pv+'" oninput="document.getElementById(\'qm-pval\').textContent=\'$\'+this.value;qmData.premium=this.value"><div class="qm-slider-labels"><span>$0</span><span>$500</span></div><div class="qm-slider-val" id="qm-pval">$'+pv+'</div></div>';
-    html+=sec(isES?'VALOR EXTRA DE INVERSIÓN ($1,000 – $1,000,000)':'EXTRA INVESTMENT VALUE ($1,000 – $1,000,000)');
-    html+='<div class="qm-field"><input id="qm-extra-inv" type="number" class="qm-inp" placeholder="'+(isES?'ej. 50000':'e.g. 50000')+'"></div>';
-  }
-
-  else if(s===2){
-    html+='<div class="qm-title">'+(isES?'Información Personal':'Personal Information')+'</div>';
-    html+='<p class="qm-sub">'+(isES?'Tu información personal para preparar la póliza.':'Your personal information to prepare the policy.')+'</p>';
-    html+=sec(isES?'DATOS PERSONALES':'PERSONAL DATA');
-    html+='<div class="qm-grid qm-g2">'+inp('qm-fn',isES?'Nombre':'First Name',true)+inp('qm-ln',isES?'Apellido':'Last Name',true)+'</div>';
-    html+='<div class="qm-field"><label><span class="qm-req">* </span>'+(isES?'Correo Electrónico':'Email')+'</label><input id="qm-email" type="email" class="qm-inp" placeholder="example@email.com"></div>';
-    html+='<div class="qm-grid qm-g2">'+inp('qm-dob',isES?'Fecha de Nacimiento':'Date of Birth',true,'date')+inp('qm-phone',isES?'Teléfono *':'+1 Phone *',true,'tel')+'</div>';
-    html+='<div class="qm-grid qm-g2">'+inp('qm-addr',isES?'Dirección (Calle)':'Address (Street)',true)+inp('qm-city',isES?'Ciudad':'City',true)+'</div>';
-    html+='<div class="qm-grid qm-g3">';
-    var states=['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming','Puerto Rico'];
-    html+=sel('qm-state',isES?'Estado *':'State *',states,true);
-    html+=inp('qm-zip',isES?'Código Postal *':'Zip Code *',true,'number');
-    html+=sel('qm-citizen',isES?'Ciudadano/Residente':'Citizen/Resident',[
-      {v:'Ciudadano',l:isES?'Ciudadano USA':'US Citizen'},
-      {v:'Residente',l:isES?'Residente Permanente':'Permanent Resident'},
-      {v:'DACA',l:'DACA'},
-      {v:'Visa',l:'Visa/ITIN'}
-    ]);
-    html+='</div>';
-    html+='<div class="qm-grid qm-g2">';
-    html+=sel('qm-idtype',isES?'Tipo de ID':'ID Type',[
-      {v:'DL',l:isES?'Licencia de Conducir':'Driver\'s License'},
-      {v:'Passport',l:isES?'Pasaporte':'Passport'},
-      {v:'StateID',l:isES?'ID Estatal':'State ID'},
-      {v:'ITIN',l:'ITIN'},
-      {v:'Matricula',l:isES?'Matrícula Consular':'Consular ID'}
-    ]);
-    html+=inp('qm-idnum',isES?'Número de ID':'ID Number');
-    html+='</div>';
-    html+=inp('qm-country',isES?'País de Origen':'Country of Origin');
-    html+=sec(isES?'INFORMACIÓN FAMILIAR':'FAMILY INFORMATION');
-    html+='<div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:8px">'+(isES?'¿Están vivos sus padres?':'Are your parents alive?')+'</div>';
-    html+='<div class="qm-yesno"><button class="qm-yn'+(qmYN.parents==='yes'?' sel':'')+'" onclick="qmYNSel(\'parents\',\'yes\',this)">'+(isES?'Sí':'Yes')+'</button><button class="qm-yn'+(qmYN.parents==='no'?' sel':'')+'" onclick="qmYNSel(\'parents\',\'no\',this)">'+(isES?'No':'No')+'</button></div>';
-  }
-
-  else if(s===3){
-    html+='<div class="qm-title">'+(isES?'Información de Salud':'Health Information')+'</div>';
-    html+='<p class="qm-sub">'+(isES?'Esta información nos ayuda a encontrar la póliza con mejores condiciones para ti.':'This information helps us find the policy with the best conditions for you.')+'</p>';
-    html+=sec(isES?'INFORMACIÓN DE SALUD':'HEALTH DATA');
-    html+='<div class="qm-grid qm-g2">'+inp('qm-weight',isES?'Peso (libras o kg)':'Weight (lbs or kg)')+inp('qm-height',isES?'Altura':'Height (ft/in)')+'</div>';
-    html+=sec(isES?'MÉDICO DE CABECERA':'PRIMARY CARE PHYSICIAN');
-    html+='<div class="qm-grid qm-g2">'+inp('qm-clinic',isES?'Nombre de la Clínica':'Clinic Name')+inp('qm-clinic-phone',isES?'Teléfono de la Clínica':'Clinic Phone','','tel')+'</div>';
-    html+=inp('qm-clinic-addr',isES?'Dirección de la Clínica':'Clinic Address');
-    html+='<div class="qm-grid qm-g2">'+inp('qm-doctor',isES?'Nombre del Médico':'Doctor\'s Name')+inp('qm-last-checkup',isES?'¿Cuándo fue su último chequeo?':'Date of last checkup','','date')+'</div>';
-    html+=ta('qm-prescriptions',isES?'Describa con detalle cualquier prescripción médica que tenga':'Describe in detail any medical prescriptions you currently have',isES?'Liste todos los medicamentos recetados, dosis y frecuencia...':'List all prescribed medications, dosages and frequency...');
-  }
-
-  else if(s===4){
-    html+='<div class="qm-title">'+(isES?'Datos Laborales & Pago':'Employment & Payment')+'</div>';
-    html+='<p class="qm-sub">'+(isES?'Información de empleo y datos bancarios para la póliza.':'Employment information and banking data for the policy.')+'</p>';
-    html+=sec(isES?'DATOS LABORALES':'EMPLOYMENT DATA');
-    html+='<div class="qm-grid qm-g2">'+inp('qm-employer',isES?'Nombre del Empleador':'Employer Name')+inp('qm-jobtitle',isES?'Cargo / Puesto':'Job Title / Position')+'</div>';
-    html+=inp('qm-income',isES?'Ingreso Anual Estimado':'Estimated Annual Income','','number');
-    html+=sec(isES?'INFORMACIÓN DE PAGO':'PAYMENT INFORMATION');
-    html+='<div class="qm-grid qm-g2">'+inp('qm-account',isES?'Número de Cuenta':'Account Number')+inp('qm-routing',isES?'Número de Ruta':'Routing Number')+'</div>';
-    html+='<div class="qm-grid qm-g2">'+inp('qm-bank',isES?'Banco':'Bank Name')+inp('qm-payee',isES?'Nombre del Pagador':'Name on Account')+'</div>';
-  }
-
-  else if(s===5){
-    html+='<div class="qm-title">'+(isES?'Beneficiarios':'Beneficiaries')+'</div>';
-    html+='<p class="qm-sub">'+(isES?'Indica quiénes recibirán los beneficios de la póliza.':'Indicate who will receive the benefits of the policy.')+'</p>';
-    [1,2,3,4].forEach(function(n){
-      var isPrim=n===1;
-      html+=sec((isES?'Beneficiario':'Beneficiary')+' '+n+(isPrim&&isES?' (Obligatorio)':isPrim?' (Required)':''));
-      html+='<div class="qm-grid qm-g2">'+inp('qm-ben'+n+'name',isES?'Nombre completo':'Full name',isPrim)+inp('qm-ben'+n+'dob',isES?'Fecha de Nacimiento':'Date of Birth',isPrim,'date')+'</div>';
-      html+='<div class="qm-grid qm-g2">'+inp('qm-ben'+n+'rel',isES?'Relación con el asegurado':'Relationship to insured',isPrim)+inp('qm-ben'+n+'pct',isES?'Porcentaje %':'Percentage %',isPrim,'number')+'</div>';
-    });
-  }
-
-  else if(s===6){
-    html+='<div class="qm-title">'+(isES?'¡Casi listo!':'Almost done!')+'</div>';
-    html+='<p class="qm-sub">'+(isES?'Información del agente y documentos de identificación.':'Agent information and identification documents.')+'</p>';
-    html+=sec(isES?'INFORMACIÓN DEL AGENTE':'AGENT INFORMATION');
-    html+='<div class="qm-grid qm-g2"><div class="qm-field"><label>'+(isES?'Nombre del Agente':'Agent Name')+'</label><input class="qm-inp" value="Yunersy Salabarria" readonly style="background:var(--cream2)"></div>'+inp('qm-agent-lic',isES?'Licencia # (opcional)':'License # (optional)')+'</div>';
-    html+=sec(isES?'DOCUMENTOS DE IDENTIFICACIÓN (opcional)':'IDENTIFICATION DOCUMENTS (optional)');
-    html+='<div class="qm-grid qm-g2">';
-    html+='<div class="qm-field"><label>'+(isES?'ID / LICENCIA (FRENTE)':'ID / LICENSE (FRONT)')+'</label><input type="file" id="qm-id-front" accept="image/*,.pdf" class="qm-inp" style="padding:8px"></div>';
-    html+='<div class="qm-field"><label>'+(isES?'ID / LICENCIA (REVERSO)':'ID / LICENSE (BACK)')+'</label><input type="file" id="qm-id-back" accept="image/*,.pdf" class="qm-inp" style="padding:8px"></div>';
-    html+='</div>';
-    html+='<div style="background:rgba(201,168,106,0.1);border:1px solid rgba(201,168,106,0.2);border-radius:10px;padding:14px 16px;font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:12px">🔒 '+(isES?'Esta información es confidencial y utilizada únicamente para fines de calificación de seguro de vida.':'This information is confidential and used solely for life insurance qualification purposes.')+'</div>';
-  }
-
-  wrap.innerHTML=html;
-  // Re-apply saved values
-  Object.keys(qmData).forEach(function(k){
-    var el=fi(k); if(el && el.tagName!=='INPUT' || (el && el.type!=='range' && el.type!=='file')) { try{el.value=qmData[k];}catch(e){} }
-  });
-  // Re-apply chip selections
-  Object.keys(qmChips).forEach(function(g){
-    (qmChips[g]||[]).forEach(function(v){
-      var chips=document.querySelectorAll('.qm-chip');
-      chips.forEach(function(c){ if(c.onclick&&c.onclick.toString().indexOf("'"+v+"'")>-1) c.classList.add('sel'); });
-    });
-  });
-}
-
-window.qmToggleChip=function(group,val,el){
-  var arr=qmChips[group]||[];
-  var idx=arr.indexOf(val);
-  if(idx>-1){arr.splice(idx,1);el.classList.remove('sel');}
-  else{arr.push(val);el.classList.add('sel');}
-  qmChips[group]=arr;
 };
 
-window.qmYNSel=function(key,val,el){
-  qmYN[key]=val;
-  var par=el.parentElement;
-  par.querySelectorAll('.qm-yn').forEach(function(b){b.classList.remove('sel');});
-  el.classList.add('sel');
-};
-
-function collectStep(s){
-  var inputs=document.querySelectorAll('#qm-steps-wrap .qm-inp, #qm-steps-wrap .qm-sel, #qm-steps-wrap .qm-ta');
-  inputs.forEach(function(el){if(el.id&&el.type!=='file')qmData[el.id]=sanitizeUrl(el.value);});
-  if(fi('qm-premium')) qmData.premium=fi('qm-premium').value;
-}
-
-function validateQmStep(lang){
-  collectStep(qmStep);
-  var L=QML[lang];
-  var ok=true;
-  var alert=document.getElementById('qm-val-alert');
-
-  if(qmStep===1){ /* chip optional — user can proceed without selecting */ }
-  else if(qmStep===2){
-    ['qm-fn','qm-ln','qm-email','qm-dob','qm-phone','qm-addr','qm-city','qm-state','qm-zip'].forEach(function(id){
-      var el=fi(id); if(!el||!el.value.trim()){ok=false;if(el)el.classList.add('err');}
-      else{if(el)el.classList.remove('err');}
-    });
-  }
-  else if(qmStep===5){
-    ['qm-ben1name','qm-ben1dob','qm-ben1rel','qm-ben1pct'].forEach(function(id){
-      var el=fi(id); if(!el||!el.value.trim()){ok=false;if(el)el.classList.add('err');}
-      else{if(el)el.classList.remove('err');}
-    });
-  }
-
-  if(!ok){
-    alert.innerHTML='⚠️ '+L.valMsg;
-    alert.style.cssText='display:flex;align-items:center;background:rgba(231,76,60,0.12);border:1px solid rgba(231,76,60,0.4);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:#c0392b;font-weight:600;animation:shakeErr 0.4s ease';
-    setTimeout(function(){alert.style.animation='';alert.style.display='none';},4000);
-    // Scroll to top of form
-    var fa=document.getElementById('qm-form-area'); if(fa) fa.scrollTop=0;
-  }
-  return ok;
-}
-
-function submitQm(lang){
-  collectStep(qmStep);
-  var isES=lang==='es'; var L=QML[lang];
-  var d=qmData; var lines=[];
-  lines.push(isES?'🛡️ NUEVA SOLICITUD DE CALIFICACIÓN — JCNay Vida Team':'🛡️ NEW QUALIFICATION APPLICATION — JCNay Vida Team');
-  lines.push('━━━━━━━━━━━━━━━━━━━━━━');
-  lines.push((isES?'📋 PÓLIZA':'📋 POLICY'));
-  lines.push((isES?'Tipo: ':'Type: ')+(qmChips.polType||[]).join(', '));
-  lines.push((isES?'Prima mensual: $':'Monthly premium: $')+(d.premium||''));
-  if(d['qm-extra-inv']) lines.push((isES?'Valor extra: $':'Extra value: $')+d['qm-extra-inv']);
-  lines.push('');
-  lines.push(isES?'👤 PERSONAL':'👤 PERSONAL');
-  lines.push((isES?'Nombre: ':'Name: ')+[d['qm-fn'],d['qm-ln']].filter(Boolean).join(' '));
-  lines.push('Email: '+(d['qm-email']||''));
-  lines.push((isES?'Fecha Nac: ':'DOB: ')+(d['qm-dob']||''));
-  lines.push((isES?'Teléfono: ':'Phone: ')+(d['qm-phone']||''));
-  lines.push((isES?'Dirección: ':'Address: ')+[d['qm-addr'],d['qm-city'],d['qm-state'],d['qm-zip']].filter(Boolean).join(', '));
-  lines.push((isES?'ID: ':'ID: ')+(d['qm-idtype']||'')+' '+( d['qm-idnum']||''));
-  lines.push((isES?'País: ':'Country: ')+(d['qm-country']||''));
-  lines.push((isES?'Ciudadano: ':'Citizen: ')+(d['qm-citizen']||''));
-  if(qmYN.parents) lines.push((isES?'Padres vivos: ':'Parents alive: ')+qmYN.parents);
-  lines.push('');
-  lines.push(isES?'🏥 SALUD':'🏥 HEALTH');
-  if(d['qm-weight']) lines.push((isES?'Peso: ':'Weight: ')+d['qm-weight']);
-  if(d['qm-height']) lines.push((isES?'Altura: ':'Height: ')+d['qm-height']);
-  if(d['qm-clinic']) lines.push((isES?'Clínica: ':'Clinic: ')+d['qm-clinic']+' '+( d['qm-clinic-phone']||''));
-  if(d['qm-doctor']) lines.push((isES?'Médico: ':'Doctor: ')+d['qm-doctor']);
-  if(d['qm-last-checkup']) lines.push((isES?'Último chequeo: ':'Last checkup: ')+d['qm-last-checkup']);
-  if(d['qm-prescriptions']) lines.push((isES?'Prescripciones: ':'Prescriptions: ')+d['qm-prescriptions']);
-  lines.push('');
-  lines.push(isES?'💼 LABORAL & PAGO':'💼 EMPLOYMENT & PAYMENT');
-  if(d['qm-employer']) lines.push((isES?'Empleador: ':'Employer: ')+d['qm-employer']);
-  if(d['qm-jobtitle']) lines.push((isES?'Cargo: ':'Title: ')+d['qm-jobtitle']);
-  if(d['qm-income']) lines.push((isES?'Ingreso anual: $':'Annual income: $')+d['qm-income']);
-  if(d['qm-bank']) lines.push((isES?'Banco: ':'Bank: ')+d['qm-bank']);
-  if(d['qm-account']) lines.push((isES?'Cuenta: ':'Account: ')+d['qm-account']);
-  if(d['qm-routing']) lines.push((isES?'Ruta: ':'Routing: ')+d['qm-routing']);
-  if(d['qm-payee']) lines.push((isES?'Titular: ':'Account holder: ')+d['qm-payee']);
-  lines.push('');
-  lines.push(isES?'👨‍👩‍👧 BENEFICIARIOS':'👨‍👩‍👧 BENEFICIARIES');
-  [1,2,3,4].forEach(function(n){
-    var nm=d['qm-ben'+n+'name']; if(!nm) return;
-    lines.push(n+'. '+nm+' | '+( d['qm-ben'+n+'rel']||'')+' | '+(d['qm-ben'+n+'pct']||'')+'% | DOB: '+(d['qm-ben'+n+'dob']||''));
-  });
-  lines.push('');
-  lines.push('━━━━━━━━━━━━━━━━━━━━━━');
-  lines.push(isES?'Agente: Yunersy Salabarria | NJ #3003419400 | FL #G365745':'Agent: Yunersy Salabarria | NJ #3003419400 | FL #G365745');
-
-  var waUrl='https://wa.me/19086774196?text='+encodeURIComponent(lines.join('\n'));
-  // Open WhatsApp synchronously (must be in same user gesture)
-  var waWin=window.open(waUrl,'_blank');
-  if(!waWin){ // blocked by popup blocker — show prominent button
-    var fallbackBtn=document.createElement('div');
-    fallbackBtn.style.cssText='position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:99999;background:#25D366;color:#fff;padding:14px 28px;border-radius:50px;font-weight:800;font-size:15px;box-shadow:0 8px 24px rgba(37,211,102,0.5);cursor:pointer;font-family:DM Sans,sans-serif';
-    fallbackBtn.innerHTML='💬 Click here to open WhatsApp';
-    fallbackBtn.onclick=function(){ window.open(waUrl,'_blank'); document.body.removeChild(fallbackBtn); };
-    document.body.appendChild(fallbackBtn);
-    setTimeout(function(){ if(document.body.contains(fallbackBtn)) document.body.removeChild(fallbackBtn); },8000);
-  }
-  var closeLbl=lang==='es'?'← Volver al sitio':'← Back to website';
-  document.getElementById('qm-steps-wrap').innerHTML='<div class="qm-success"><div style="font-size:52px;margin-bottom:16px">🎉</div><div style="font-family:\'Playfair Display\',serif;font-size:22px;color:var(--navy);margin-bottom:12px">'+L.successTitle+'</div><p style="color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:20px">'+L.successSub+'</p><a href="'+waUrl+'" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:#25D366;color:#fff;font-weight:800;font-size:15px;border-radius:50px;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,0.4);margin-bottom:16px">💬 '+L.successBtn+'</a><br><button onclick="closeQualModal()" style="padding:10px 24px;background:transparent;border:1.5px solid var(--cream2);border-radius:50px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;font-family:\'DM Sans\',sans-serif;margin-top:8px">'+closeLbl+'</button></div>';
-  document.getElementById('qm-btn-row').innerHTML='';
-}
+document.getElementById('qual-modal').addEventListener('click',function(e){if(e.target===this)qm2Close();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')qm2Close();});
 
 })();
 </script>

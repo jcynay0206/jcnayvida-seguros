@@ -2772,6 +2772,55 @@ function qm2Next(es){
 function qm2Send(es){
   qm2Collect();
   var d=qm2.data, g=function(k){return(d[k]||'').trim();};
+
+  // ── Build beneficiary strings
+  var bens=[];
+  [1,2,3,4].forEach(function(n){
+    var nm=g('qm2-b'+n+'n'); if(!nm) return;
+    bens.push(nm+' | '+g('qm2-b'+n+'r')+' | '+g('qm2-b'+n+'p')+'% | DOB:'+g('qm2-b'+n+'d'));
+  });
+
+  // ── Send to Google Sheets CRM (async, no-cors — fire and forget)
+  var SHEET_URL = 'PASTE_YOUR_APPS_SCRIPT_URL_HERE'; // ← replace after deploying
+  if(SHEET_URL.indexOf('script.google.com') > -1){
+    var payload = {
+      // ── CRM columns (A-J match existing sheet)
+      nombre:         g('qm2-fn')+' '+g('qm2-ln'),
+      telefono:       g('qm2-phone'),
+      email:          g('qm2-email'),
+      tipo_registro:  'Lead - Seguro de Vida',
+      dob:            g('qm2-dob'),
+      ingresos:       g('qm2-income'),
+      // ── Extra details (column K)
+      poliza:         qm2.chips.join(', '),
+      prima:          g('qm2-premium'),
+      salud:          g('qm2-salud')||'',
+      tabaco:         g('qm2-tabaco')||'',
+      estado_res:     g('qm2-state'),
+      ciudad:         g('qm2-city'),
+      zip:            g('qm2-zip'),
+      prescripciones: g('qm2-rx'),
+      clinica:        g('qm2-clinic')+' '+g('qm2-clinic-phone'),
+      medico:         g('qm2-doctor'),
+      empleador:      g('qm2-employer'),
+      banco:          g('qm2-bank'),
+      pais:           g('qm2-country'),
+      ciudadano:      g('qm2-citizen'),
+      padresVivos:    qm2.yn.parents||'',
+      ben1:           bens[0]||'',
+      ben2:           bens[1]||'',
+      ben3:           bens[2]||'',
+      ben4:           bens[3]||''
+    };
+    fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    }).catch(function(){});// silent fail — WA is the backup
+  }
+
+  // ── Build WhatsApp message
   var lines=[];
   lines.push(es?'🛡️ NUEVA SOLICITUD — JCNay Vida Team':'🛡️ NEW APPLICATION — JCNay Vida Team');
   lines.push('━━━━━━━━━━━━━━━━━━━━━━');
@@ -2800,22 +2849,15 @@ function qm2Send(es){
   if(g('qm2-employer')) lines.push((es?'Empleador: ':'Employer: ')+g('qm2-employer')+' | '+g('qm2-jobtitle'));
   if(g('qm2-income')) lines.push((es?'Ingreso: $':'Income: $')+g('qm2-income'));
   if(g('qm2-bank')) lines.push((es?'Banco: ':'Bank: ')+g('qm2-bank')+' | Cta: '+g('qm2-account')+' | Ruta: '+g('qm2-routing'));
-  lines.push('');
-  lines.push(es?'👨‍👩‍👧 BENEFICIARIOS':'👨‍👩‍👧 BENEFICIARIES');
-  [1,2,3,4].forEach(function(n){
-    var nm=g('qm2-b'+n+'n'); if(!nm) return;
-    lines.push(n+'. '+nm+' | '+g('qm2-b'+n+'r')+' | '+g('qm2-b'+n+'p')+'% | DOB: '+g('qm2-b'+n+'d'));
-  });
+  if(bens.length){lines.push('');lines.push(es?'👨‍👩‍👧 BENEFICIARIOS':'👨‍👩‍👧 BENEFICIARIES');bens.forEach(function(b,i){lines.push((i+1)+'. '+b);});}
   lines.push('');
   lines.push('━━━━━━━━━━━━━━━━━━━━━━');
   lines.push('Agente: Yunersy Salabarria | NJ #3003419400 | FL #G365745');
 
   var waUrl='https://wa.me/19086774196?text='+encodeURIComponent(lines.join('\n'));
+  window.open(waUrl,'_blank');
 
-  // Open WhatsApp immediately (must be synchronous in click handler)
-  var w=window.open(waUrl,'_blank');
-
-  // Show success in modal
+  // Show success
   document.getElementById('qm2-steps').innerHTML='<div style="text-align:center;padding:32px 0"><div style="font-size:48px;margin-bottom:16px">🎉</div><div style="font-family:Playfair Display,serif;font-size:20px;color:var(--navy);margin-bottom:10px">'+(es?'¡Solicitud enviada!':'Application sent!')+'</div><p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px">'+(es?'Yunersy recibió tu información y te contactará en 24 horas.':'Yunersy received your information and will contact you within 24 hours.')+'</p><a href="'+waUrl+'" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:#25D366;color:#fff;border-radius:50px;text-decoration:none;font-weight:700;font-size:14px">💬 '+(es?'Abrir WhatsApp':'Open WhatsApp')+'</a></div>';
   document.getElementById('qm2-btns').innerHTML='<button onclick="qm2Close()" style="padding:12px 24px;background:#fff;border:1.5px solid var(--cream2);border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);font-family:DM Sans,sans-serif">'+(es?'← Volver al sitio':'← Back to website')+'</button>';
   document.getElementById('qm2-alert').style.display='none';

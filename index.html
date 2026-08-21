@@ -457,7 +457,7 @@
       <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
       <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
     </div>
-    <a href="https://wa.me/19086774196?text=Hi,%20I%27m%20interested%20in%20a%20free%20life%20insurance%20consultation" class="nav-cta" target="_blank" data-i18n="nav-cta">Free Consultation</a>
+    <a href="#" onclick="openQualModal();return false;" class="nav-cta" data-i18n="nav-cta">✅ Qualify Now</a>
   </div>
 </nav>
 
@@ -1997,14 +1997,21 @@ var UI = {
   en:{
     status:'Insurance Assistant', placeholder:'Write your question...',
     welcome:"Hi! 👋 I'm the JCNay Vida Team assistant.<br>I can answer your insurance questions, <strong>pre-qualify you in 60 seconds</strong>, or connect you with Yunersy directly.<br><br>What would you like to do?",
-    quickStart:['🛡️ Life Insurance','📈 IUL Policy','💸 Final Expense','🏠 Mortgage Protection','🎓 College Fund','✅ Pre-qualify me','📞 Talk to Yunersy'],
+    quickStart:['🛡️ Life Insurance','📈 IUL Policy','💸 Final Expense','✅ Pre-qualify me','📅 Schedule a call','📞 Talk to Yunersy'],
     leadPrompt:"Great! To connect you with Yunersy for a free personalized consultation, <strong>what's your name?</strong>",
     leadWa:"Thanks, <strong>{name}</strong>! 😊 <strong>What's your WhatsApp number?</strong> Yunersy will reach out personally.",
     leadDone:"All set, <strong>{name}</strong>! Yunersy will contact you on WhatsApp shortly. You can also reach her anytime:",
     btnWa:"💬 Message Yunersy on WhatsApp",
     fallback:"Great question! For the most accurate answer for your situation, let me connect you with Yunersy directly.",
     more:"Want to know more about:",
-    moreOptions:['🛡️ Life Insurance','📈 IUL','💸 Final Expense','🏠 Mortgage','✅ Pre-qualify me','📞 Talk to Yunersy'],
+    moreOptions:['🛡️ Life Insurance','📈 IUL','💸 Final Expense','✅ Pre-qualify me','📅 Schedule a call','📞 Talk to Yunersy'],
+    schedPrompt:"I'd love to schedule a free call with Yunersy for you! <strong>What's your preferred day?</strong>",
+    schedOpts:['📅 Monday','📅 Tuesday','📅 Wednesday','📅 Thursday','📅 Friday','📅 Saturday'],
+    schedTime:"<strong>What time works best for you?</strong>",
+    schedTimeOpts:['☀️ Morning (9–12pm)','🌤️ Afternoon (12–5pm)','🌙 Evening (5–8pm)'],
+    schedName:"Got it! <strong>What's your name?</strong>",
+    schedPhone:"And your <strong>WhatsApp number</strong>?",
+    schedDone:"All set! I've sent your appointment request to Yunersy. She will confirm your slot within a few hours.",
     pq:{
       start:"Let's find out what you qualify for in about 60 seconds. <strong>How old are you?</strong>",
       ageOpts:['Under 30','30–39','40–49','50–59','60–69','70+'],
@@ -2019,14 +2026,21 @@ var UI = {
   es:{
     status:'Asistente de Seguros', placeholder:'Escribe tu pregunta...',
     welcome:"¡Hola! 👋 Soy el asistente de JCNay Vida Team.<br>Puedo responder tus preguntas sobre seguros, <strong>pre-calificarte en 60 segundos</strong> o conectarte directamente con Yunersy.<br><br>¿Qué te gustaría hacer?",
-    quickStart:['🛡️ Seguro de Vida','📈 Póliza IUL','💸 Gastos Finales','🏠 Protección Hipotecaria','🎓 Fondo Universitario','✅ Pre-calificarme','📞 Hablar con Yunersy'],
+    quickStart:['🛡️ Seguro de Vida','📈 Póliza IUL','💸 Gastos Finales','✅ Pre-calificarme','📅 Agendar una llamada','📞 Hablar con Yunersy'],
     leadPrompt:"¡Perfecto! Para conectarte con Yunersy en una consulta personalizada gratuita, <strong>¿cómo te llamas?</strong>",
     leadWa:"¡Gracias, <strong>{name}</strong>! 😊 <strong>¿Cuál es tu número de WhatsApp?</strong> Yunersy te contactará personalmente.",
     leadDone:"¡Todo listo, <strong>{name}</strong>! Yunersy te contactará por WhatsApp pronto. También puedes escribirle directamente:",
     btnWa:"💬 Escribir a Yunersy por WhatsApp",
     fallback:"¡Buena pregunta! Para darte la respuesta más precisa según tu situación, déjame conectarte con Yunersy directamente.",
     more:"¿Quieres saber más sobre:",
-    moreOptions:['🛡️ Seguro de Vida','📈 IUL','💸 Gastos Finales','🏠 Hipoteca','✅ Pre-calificarme','📞 Hablar con Yunersy'],
+    moreOptions:['🛡️ Seguro de Vida','📈 IUL','💸 Gastos Finales','✅ Pre-calificarme','📅 Agendar una llamada','📞 Hablar con Yunersy'],
+    schedPrompt:"¡Me encantaría agendar una llamada gratuita con Yunersy para ti! <strong>¿Qué día prefieres?</strong>",
+    schedOpts:['📅 Lunes','📅 Martes','📅 Miércoles','📅 Jueves','📅 Viernes','📅 Sábado'],
+    schedTime:"<strong>¿Qué horario te queda mejor?</strong>",
+    schedTimeOpts:['☀️ Mañana (9–12pm)','🌤️ Tarde (12–5pm)','🌙 Noche (5–8pm)'],
+    schedName:"¡Perfecto! <strong>¿Cuál es tu nombre?</strong>",
+    schedPhone:"¿Y tu <strong>número de WhatsApp</strong>?",
+    schedDone:"¡Todo listo! Envié tu solicitud de cita a Yunersy. Ella confirmará tu horario en pocas horas.",
     pq:{
       start:"Vamos a saber qué calificas en unos 60 segundos. <strong>¿Cuántos años tienes?</strong>",
       ageOpts:['Menos de 30','30–39','40–49','50–59','60–69','70+'],
@@ -2303,6 +2317,44 @@ function processInput(text){
     return;
   }
 
+  // ── SCHEDULE START
+  if(/schedule|agendar|cita|llamada|appointment|📅/.test(lower)){
+    step='sched-day';
+    botReply(UI[lang].schedPrompt, UI[lang].schedOpts);
+    return;
+  }
+
+  // ── SCHEDULE FLOW
+  if(step==='sched-day'){
+    pq.schedDay=text; step='sched-time';
+    botReply(UI[lang].schedTime, UI[lang].schedTimeOpts);
+    return;
+  }
+  if(step==='sched-time'){
+    pq.schedTime=text; step='sched-name';
+    botReply(UI[lang].schedName, []);
+    return;
+  }
+  if(step==='sched-name'){
+    pq.schedNameVal=text; step='sched-phone';
+    botReply(UI[lang].schedPhone, []);
+    return;
+  }
+  if(step==='sched-phone'){
+    step='done';
+    var waSchedMsg = lang==='es'
+      ? 'Hola Yunersy, me llamo '+pq.schedNameVal+' y mi WhatsApp es '+text+'. Quisiera agendar una llamada contigo el '+pq.schedDay+' en horario de '+pq.schedTime+'. ¡Gracias!'
+      : 'Hi Yunersy, my name is '+pq.schedNameVal+' and my WhatsApp is '+text+'. I would like to schedule a call with you on '+pq.schedDay+' during '+pq.schedTime+'. Thank you!';
+    var waSchedLink='https://wa.me/19086774196?text='+encodeURIComponent(waSchedMsg);
+    addTyping();
+    setTimeout(function(){
+      removeTyping();
+      addMsg(UI[lang].schedDone+'<br><br><a href="'+waSchedLink+'" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#25D366;color:#fff;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px;margin-top:8px">'+UI[lang].btnWa+'</a>','bot');
+      setQR([]);
+    },900);
+    return;
+  }
+
   // ── PRE-QUAL START
   if(/pre.qualif|pre.calif|calific|qualify|eligib|✅/.test(lower)){
     step='pq-age';
@@ -2568,8 +2620,8 @@ function buildStep(s,lang){
     html+=sec(isES?'PRIMA MENSUAL ($0 – $500)':'MONTHLY PREMIUM ($0 – $500)');
     var pv=qmData.premium||200;
     html+='<div class="qm-slider-wrap"><input type="range" id="qm-premium" class="qm-slider" min="0" max="500" step="10" value="'+pv+'" oninput="document.getElementById(\'qm-pval\').textContent=\'$\'+this.value;qmData.premium=this.value"><div class="qm-slider-labels"><span>$0</span><span>$500</span></div><div class="qm-slider-val" id="qm-pval">$'+pv+'</div></div>';
-    html+=inp('qm-extra-inv',isES?'ej. 50000':'e.g. 50000',false,'number');
-    html='<div class="qm-field"><label>'+(isES?'VALOR EXTRA DE INVERSIÓN ($1,000 – $1,000,000)':'EXTRA INVESTMENT VALUE ($1,000 – $1,000,000)')+'</label>'+html.split('<div class="qm-field">').pop();
+    html+=sec(isES?'VALOR EXTRA DE INVERSIÓN ($1,000 – $1,000,000)':'EXTRA INVESTMENT VALUE ($1,000 – $1,000,000)');
+    html+='<div class="qm-field"><input id="qm-extra-inv" type="number" class="qm-inp" placeholder="'+(isES?'ej. 50000':'e.g. 50000')+'"></div>';
   }
 
   else if(s===2){
@@ -2776,7 +2828,7 @@ function submitQm(lang){
 const T = {
   en: {
     "nav-services":"Services","nav-calc":"Calculators","nav-team":"Team",
-    "nav-contact":"Contact","nav-join":"Join","nav-cta":"Free Consultation",
+    "nav-contact":"Contact","nav-join":"Join","nav-cta":"✅ Qualify Now",
     "hero-eyebrow":"Licensed Agent · New Jersey &amp; Florida",
     "hero-title":"Protect your family today<br>and build a future of<br><em>financial peace of mind.</em>",
     "hero-sub":"Personalized guidance in English and Spanish for Hispanic families in the United States. No fine print, no pressure — just clarity and a plan that truly works.",

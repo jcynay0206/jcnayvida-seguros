@@ -438,6 +438,8 @@
     flex-direction: column !important;
   }
 </style>
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </head>
 <body>
 
@@ -458,7 +460,7 @@
       <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
       <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
     </div>
-    <a href="#" onclick="openQualModal();return false;" class="nav-cta" data-i18n="nav-cta">✅ Qualify Now</a>
+    <a href="https://calendly.com/blindajefamiliarus" target="_blank" class="nav-cta" data-i18n="nav-cta">📅 Book Now</a>
   </div>
 </nav>
 
@@ -1662,6 +1664,24 @@
   </div>
 </section>
 
+<!-- AGENDAMIENTO -->
+<section id="agendamiento" style="background:var(--cream2);padding:72px 40px;text-align:center">
+  <div style="max-width:800px;margin:0 auto">
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:12px" data-i18n="sched-eyebrow">Free Consultation</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,36px);color:var(--navy);margin:0 0 12px;line-height:1.2" data-i18n="sched-title">Schedule your free consultation<br><em style="color:var(--gold-dark);font-style:italic">Pick a time that works for you</em></h2>
+    <p style="font-size:15px;color:var(--muted);margin:0 0 28px;line-height:1.7" data-i18n="sched-sub">Choose a slot directly in Yunersy's calendar — no waiting, instant confirmation, with a reminder before your appointment.</p>
+    <a href="https://calendly.com/blindajefamiliarus" target="_blank"
+      style="display:inline-flex;align-items:center;gap:10px;padding:16px 40px;background:var(--navy);color:var(--cream);font-weight:700;font-size:15px;border-radius:50px;text-decoration:none;box-shadow:0 8px 28px rgba(10,26,42,0.25);transition:all 0.2s"
+      onmouseover="this.style.background='var(--navy2)';this.style.transform='translateY(-2px)'"
+      onmouseout="this.style.background='var(--navy)';this.style.transform='none'">
+      📅 <span data-i18n="sched-btn">Open Calendar — Schedule Now</span>
+    </a>
+    <p style="font-size:12px;color:var(--muted);margin-top:14px" data-i18n="sched-note">30-minute session · Free · No obligation · English or Spanish</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- CALCULADORAS -->
 <div class="divider"></div>
 <section class="section section-alt" id="calculadoras">
@@ -2318,41 +2338,12 @@ function processInput(text){
     return;
   }
 
-  // ── SCHEDULE START
+  // ── SCHEDULE → Calendly direct
   if(/schedule|agendar|cita|llamada|appointment|📅/.test(lower)){
-    step='sched-day';
-    botReply(UI[lang].schedPrompt, UI[lang].schedOpts);
-    return;
-  }
-
-  // ── SCHEDULE FLOW
-  if(step==='sched-day'){
-    pq.schedDay=text; step='sched-time';
-    botReply(UI[lang].schedTime, UI[lang].schedTimeOpts);
-    return;
-  }
-  if(step==='sched-time'){
-    pq.schedTime=text; step='sched-name';
-    botReply(UI[lang].schedName, []);
-    return;
-  }
-  if(step==='sched-name'){
-    pq.schedNameVal=text; step='sched-phone';
-    botReply(UI[lang].schedPhone, []);
-    return;
-  }
-  if(step==='sched-phone'){
-    step='done';
-    var waSchedMsg = lang==='es'
-      ? 'Hola Yunersy, me llamo '+pq.schedNameVal+' y mi WhatsApp es '+text+'. Quisiera agendar una llamada contigo el '+pq.schedDay+' en horario de '+pq.schedTime+'. ¡Gracias!'
-      : 'Hi Yunersy, my name is '+pq.schedNameVal+' and my WhatsApp is '+text+'. I would like to schedule a call with you on '+pq.schedDay+' during '+pq.schedTime+'. Thank you!';
-    var waSchedLink='https://wa.me/19086774196?text='+encodeURIComponent(waSchedMsg);
-    addTyping();
-    setTimeout(function(){
-      removeTyping();
-      addMsg(UI[lang].schedDone+'<br><br><a href="'+waSchedLink+'" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#25D366;color:#fff;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px;margin-top:8px">'+UI[lang].btnWa+'</a>','bot');
-      setQR([]);
-    },900);
+    var calMsg = lang==='es'
+      ? 'Perfecto 📅 Puedes ver los horarios disponibles de Yunersy y reservar tu cita gratis aquí:<br><br><a href="https://calendly.com/blindajefamiliarus" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--navy,#0a1a2a);color:#fff;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px">📅 Abrir Calendario de Yunersy</a><br><br><span style="font-size:12px;color:#888">30 min · Gratis · Sin compromiso</span>'
+      : 'Perfect 📅 You can view Yunersy's available times and book your free consultation here:<br><br><a href="https://calendly.com/blindajefamiliarus" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#0a1a2a;color:#fff;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px">📅 Open Yunersy's Calendar</a><br><br><span style="font-size:12px;color:#888">30 min · Free · No obligation</span>';
+    botReply(calMsg, []);
     return;
   }
 
@@ -2829,7 +2820,7 @@ function submitQm(lang){
 const T = {
   en: {
     "nav-home":"Home","nav-services":"Services","nav-calc":"Calculators","nav-team":"Team",
-    "nav-contact":"Contact","nav-join":"Join","nav-cta":"✅ Qualify Now",
+    "nav-contact":"Contact","nav-join":"Join","nav-cta":"📅 Book Now",
     "hero-eyebrow":"Licensed Agent · New Jersey &amp; Florida",
     "hero-title":"Protect your family today<br>and build a future of<br><em>financial peace of mind.</em>",
     "hero-sub":"Personalized guidance in English and Spanish for Hispanic families in the United States. No fine print, no pressure — just clarity and a plan that truly works.",
@@ -2866,7 +2857,7 @@ const T = {
     "lic-num-label":"License #","lic-num-label2":"License #",
     "blog-label":"Resources &amp; Education","blog-title":"Learn, decide, and<br>protect what you love most",
     "blog-sub":"Articles and guides to help you make the best financial decisions for your family.",
-    "qual-eyebrow":"Free Qualification — 2 Minutes","qual-title":"Find out if you qualify<br><em style='font-style:italic;color:var(--gold)'>and what coverage fits your family</em>","qual-sub":"Complete our qualification form and Yunersy will review your information and contact you within 24 hours — at no cost, no commitment.","qual-check1":"No medical exam initially","qual-check2":"Options from $30/mo","qual-check3":"Personalized plan in 24 hrs","qual-check4":"IUL, Term, or Final Expense","qual-check5":"100% free — no obligation","qual-check6":"In English or Spanish","qual-btn":"Find out if I qualify now","qual-note":"Takes about 2 minutes · Your information is private and only shared with Yunersy","calc-label":"Free Tools","calc-title":"Financial calculators<br>to make better decisions",
+    "sched-eyebrow":"Free Consultation","sched-title":"Schedule your free consultation<br><em style='color:var(--gold-dark);font-style:italic'>Pick a time that works for you</em>","sched-sub":"Choose a slot directly in Yunersy's calendar — no waiting, instant confirmation, with a reminder before your appointment.","sched-btn":"Open Calendar — Schedule Now","sched-note":"30-minute session · Free · No obligation · English or Spanish","qual-eyebrow":"Free Qualification — 2 Minutes","qual-title":"Find out if you qualify<br><em style='font-style:italic;color:var(--gold)'>and what coverage fits your family</em>","qual-sub":"Complete our qualification form and Yunersy will review your information and contact you within 24 hours — at no cost, no commitment.","qual-check1":"No medical exam initially","qual-check2":"Options from $30/mo","qual-check3":"Personalized plan in 24 hrs","qual-check4":"IUL, Term, or Final Expense","qual-check5":"100% free — no obligation","qual-check6":"In English or Spanish","qual-btn":"Find out if I qualify now","qual-note":"Takes about 2 minutes · Your information is private and only shared with Yunersy","calc-label":"Free Tools","calc-title":"Financial calculators<br>to make better decisions",
     "calc-sub":"Interactive tools so you understand exactly how much you need and how much your money can grow.",
     "calc-c1-title":"Financial Shield","calc-c1-desc":"Calculate how much life insurance coverage your family needs based on your income, debts, and dependents.","calc-c2-title":"College Fund","calc-c2-desc":"Discover how much you need to save today to cover your children's college without going into debt.","calc-c3-title":"D.I.M.E. Method","calc-c3-desc":"The professional method to calculate the exact coverage your family needs — Debt, Income, Mortgage, and Education.","calc-c4-title":"IUL Projection","calc-c4-desc":"Simulate how your money would grow in an IUL — with the 0% floor and S&P 500 upside potential.","calc-c5-title":"IUL vs. Bank","calc-c5-desc":"How much more would you have earned in an IUL vs. a bank account over the last 10 years? The numbers will surprise you.","calc-now":"Calculate now →","calc-c-fe-title":"Final Expense","calc-c-fe-desc":"See exactly how much more your monthly premium costs if you wait — every year you delay, the rate goes up permanently.","calc-c7-title":"Mortgage Protection","calc-c7-desc":"If something happens to you, would your family keep the house? Calculate exactly how much coverage your mortgage needs.","calc-c8-title":"How Much Do I Need?","calc-c8-desc":"The most complete analysis: income, debts, future expenses and assets — get your exact recommended coverage amount.","calc-c6-title":"IUL vs. Bank — Min to Max","calc-c6-desc":"See your money grow from the worst to the best IUL scenario vs. a savings account. Even minimum growth beats the bank.","lic-type-label":"Type","lic-type-label2":"Type","test-p1":"Yunersy explained everything with patience and clarity I had never encountered. I finally understood how life insurance could also grow my money. My family is protected and I sleep soundly.","test-p2":"As a single mom I was afraid I couldn't protect my kids if something happened to me. Yunersy guided me without pressure and we found a plan that fits my budget. She's more than an advisor — she truly cares.","test-p3":"I thought life insurance was only for older or wealthy people. Yunersy completely changed my perspective and today I have a policy that also works as an investment. I wish I had started sooner.","test-loc1":"New Jersey","calc-compare":"View comparison →","calc-q":"Questions about your results?","calc-q-sub":"After using any calculator, we can analyze the results together and design your personalized plan.","calc-expert":"Talk to an expert →",
     "fe-label":"Final Expense Calculator","fe-title":"What does waiting really cost you?",
@@ -2929,7 +2920,7 @@ const T = {
     "lic-num-label":"N° de licencia","lic-num-label2":"N° de licencia",
     "blog-label":"Recursos &amp; Educación","blog-title":"Aprende, decide y<br>protege lo que más amas",
     "blog-sub":"Artículos y guías en español para que tomes las mejores decisiones financieras para tu familia.",
-    "qual-eyebrow":"Calificación Gratuita — 2 Minutos","qual-title":"Descubre si calificas<br><em style='font-style:italic;color:var(--gold)'>y qué cobertura es para tu familia</em>","qual-sub":"Completa nuestro formulario de calificación y Yunersy revisará tu información y te contactará en 24 horas con tus opciones personalizadas — sin costo, sin compromiso.","qual-check1":"Sin examen médico inicial","qual-check2":"Opciones desde $30/mes","qual-check3":"Plan personalizado en 24 hrs","qual-check4":"IUL, Temporal o Gastos Finales","qual-check5":"100% gratis — sin compromiso","qual-check6":"En inglés o español","qual-btn":"Descubrir si califico ahora","qual-note":"Toma unos 2 minutos · Tu información es privada y solo se comparte con Yunersy","calc-label":"Herramientas Gratuitas","calc-title":"Calculadoras financieras<br>para tomar mejores decisiones",
+    "sched-eyebrow":"Consulta Gratuita","sched-title":"Agenda tu consulta gratuita<br><em style='color:var(--gold-dark);font-style:italic'>Elige el horario que más te convenga</em>","sched-sub":"Elige un horario directamente en el calendario de Yunersy — sin espera, confirmación instantánea y recordatorio antes de tu cita.","sched-btn":"Abrir Calendario — Agendar Ahora","sched-note":"Sesión de 30 minutos · Gratis · Sin compromiso · En inglés o español","qual-eyebrow":"Calificación Gratuita — 2 Minutos","qual-title":"Descubre si calificas<br><em style='font-style:italic;color:var(--gold)'>y qué cobertura es para tu familia</em>","qual-sub":"Completa nuestro formulario de calificación y Yunersy revisará tu información y te contactará en 24 horas con tus opciones personalizadas — sin costo, sin compromiso.","qual-check1":"Sin examen médico inicial","qual-check2":"Opciones desde $30/mes","qual-check3":"Plan personalizado en 24 hrs","qual-check4":"IUL, Temporal o Gastos Finales","qual-check5":"100% gratis — sin compromiso","qual-check6":"En inglés o español","qual-btn":"Descubrir si califico ahora","qual-note":"Toma unos 2 minutos · Tu información es privada y solo se comparte con Yunersy","calc-label":"Herramientas Gratuitas","calc-title":"Calculadoras financieras<br>para tomar mejores decisiones",
     "calc-sub":"Herramientas interactivas para que entiendas exactamente cuánto necesitas y cuánto puede crecer tu dinero.",
     "calc-c1-title":"Escudo Financiero","calc-c1-desc":"Calcula cuánta cobertura de seguro de vida necesita tu familia según tus ingresos, deudas y dependientes.","calc-c2-title":"Fondo Universitario","calc-c2-desc":"Descubre cuánto necesitas ahorrar hoy para cubrir la universidad de tus hijos sin endeudarte.","calc-c3-title":"Método D.I.M.E.","calc-c3-desc":"El método profesional para calcular la cobertura exacta que necesita tu familia — Deuda, Ingresos, Manutención y Educación.","calc-c4-title":"Proyección IUL","calc-c4-desc":"Simula cómo crecería tu dinero en un IUL — con el piso del 0% y el potencial del S&P 500.","calc-c5-title":"IUL vs Banco","calc-c5-desc":"¿Cuánto más hubieras ganado en un IUL vs una cuenta bancaria en los últimos 10 años? Los números te van a sorprender.","calc-now":"Calcular ahora →","calc-c-fe-title":"Gastos Finales","calc-c-fe-desc":"Ve exactamente cuánto más cuesta tu prima mensual si esperas — cada año que demoras, la tarifa sube de forma permanente.","calc-c7-title":"Protección Hipotecaria","calc-c7-desc":"Si algo te pasa, ¿tu familia se quedará en la casa? Calcula exactamente cuánta cobertura necesita tu hipoteca.","calc-c8-title":"¿Cuánto Necesito?","calc-c8-desc":"El análisis más completo: ingresos, deudas, gastos futuros y activos — obtén el monto exacto de cobertura recomendado.","calc-c6-title":"IUL vs. Banco — Del Mínimo al Máximo","calc-c6-desc":"Ve cómo crece tu dinero desde el peor hasta el mejor escenario del IUL vs. una cuenta de ahorros. Incluso el crecimiento mínimo supera al banco.","lic-type-label":"Tipo","lic-type-label2":"Tipo","test-p1":"Yunersy me explicó todo con una paciencia y claridad que nunca había encontrado. Finalmente entendí cómo el seguro de vida también podía hacerme crecer dinero. Mi familia está protegida y yo duermo tranquilo.","test-p2":"Como mamá soltera tenía miedo de no poder proteger a mis hijos si me pasaba algo. Yunersy me orientó sin presiones y encontramos un plan que cabe en mi presupuesto. Es más que una asesora — es alguien que de verdad se preocupa.","test-p3":"Pensaba que los seguros de vida eran solo para gente mayor o muy rica. Yunersy cambió completamente mi perspectiva y hoy tengo una póliza que también funciona como inversión. Ojalá hubiera empezado antes.","test-loc1":"Nueva Jersey","calc-compare":"Ver comparación →","calc-q":"¿Tienes preguntas sobre los resultados?","calc-q-sub":"Después de usar cualquier calculadora, podemos analizar juntos los resultados y diseñar tu plan personalizado.","calc-expert":"Hablar con un experto →",
     "fe-label":"Calculadora — Seguro de Gastos Finales","fe-title":"¿Cuánto te cuesta realmente esperar?",

@@ -2723,7 +2723,7 @@ function buildStep(s,lang){
 
   if(s===1){
     html+='<div class="qm-title">'+(isES?'¿Para qué quiere calificar?':'What would you like to qualify for?')+'</div>';
-    html+='<p class="qm-sub">'+(isES?'Selecciona el tipo de póliza y los montos que te interesan.':'Select the policy type and amounts you are interested in.')+'</p>';
+    html+='<p class="qm-sub">'+(isES?'Selecciona el tipo de póliza que te interesa (opcional) y los montos.':'Select the policy type you are interested in (optional) and amounts.')+'</p>';
     html+=sec(isES?'TIPO DE PÓLIZA *':'POLICY TYPE *');
     var chips=[
       {v:'IUL',icon:'📈',l:isES?'IUL':'IUL'},
@@ -2865,7 +2865,7 @@ function validateQmStep(lang){
   var ok=true;
   var alert=document.getElementById('qm-val-alert');
 
-  if(qmStep===1){ if(!qmChips.polType||!qmChips.polType.length){ok=false;} }
+  if(qmStep===1){ /* chip optional — user can proceed without selecting */ }
   else if(qmStep===2){
     ['qm-fn','qm-ln','qm-email','qm-dob','qm-phone','qm-addr','qm-city','qm-state','qm-zip'].forEach(function(id){
       var el=fi(id); if(!el||!el.value.trim()){ok=false;if(el)el.classList.add('err');}
@@ -2879,7 +2879,13 @@ function validateQmStep(lang){
     });
   }
 
-  if(!ok){ alert.textContent='⚠️ '+L.valMsg; alert.style.display='flex'; setTimeout(function(){alert.style.display='none';},4000); }
+  if(!ok){
+    alert.innerHTML='⚠️ '+L.valMsg;
+    alert.style.cssText='display:flex;align-items:center;background:rgba(231,76,60,0.12);border:1px solid rgba(231,76,60,0.4);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:#c0392b;font-weight:600;animation:shakeErr 0.4s ease';
+    setTimeout(function(){alert.style.animation='';alert.style.display='none';},4000);
+    // Scroll to top of form
+    var fa=document.getElementById('qm-form-area'); if(fa) fa.scrollTop=0;
+  }
   return ok;
 }
 
@@ -2932,8 +2938,16 @@ function submitQm(lang){
   lines.push(isES?'Agente: Yunersy Salabarria | NJ #3003419400 | FL #G365745':'Agent: Yunersy Salabarria | NJ #3003419400 | FL #G365745');
 
   var waUrl='https://wa.me/19086774196?text='+encodeURIComponent(lines.join('\n'));
-  // Show success + open WhatsApp directly
-  window.open(waUrl,'_blank');
+  // Open WhatsApp synchronously (must be in same user gesture)
+  var waWin=window.open(waUrl,'_blank');
+  if(!waWin){ // blocked by popup blocker — show prominent button
+    var fallbackBtn=document.createElement('div');
+    fallbackBtn.style.cssText='position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:99999;background:#25D366;color:#fff;padding:14px 28px;border-radius:50px;font-weight:800;font-size:15px;box-shadow:0 8px 24px rgba(37,211,102,0.5);cursor:pointer;font-family:DM Sans,sans-serif';
+    fallbackBtn.innerHTML='💬 Click here to open WhatsApp';
+    fallbackBtn.onclick=function(){ window.open(waUrl,'_blank'); document.body.removeChild(fallbackBtn); };
+    document.body.appendChild(fallbackBtn);
+    setTimeout(function(){ if(document.body.contains(fallbackBtn)) document.body.removeChild(fallbackBtn); },8000);
+  }
   var closeLbl=lang==='es'?'← Volver al sitio':'← Back to website';
   document.getElementById('qm-steps-wrap').innerHTML='<div class="qm-success"><div style="font-size:52px;margin-bottom:16px">🎉</div><div style="font-family:\'Playfair Display\',serif;font-size:22px;color:var(--navy);margin-bottom:12px">'+L.successTitle+'</div><p style="color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:20px">'+L.successSub+'</p><a href="'+waUrl+'" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:#25D366;color:#fff;font-weight:800;font-size:15px;border-radius:50px;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,0.4);margin-bottom:16px">💬 '+L.successBtn+'</a><br><button onclick="closeQualModal()" style="padding:10px 24px;background:transparent;border:1.5px solid var(--cream2);border-radius:50px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;font-family:\'DM Sans\',sans-serif;margin-top:8px">'+closeLbl+'</button></div>';
   document.getElementById('qm-btn-row').innerHTML='';
@@ -3151,6 +3165,7 @@ document.addEventListener('DOMContentLoaded', () => setLang(_initLang));
 @keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(1.3)}}
 @keyframes countUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes shakeErr{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
 
 /* Counter */
 .counter-num{display:inline-block;transition:all 0.1s}

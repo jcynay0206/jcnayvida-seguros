@@ -508,9 +508,26 @@
           <div class="stat-num">$0</div>
           <div class="stat-label" data-i18n="stat-consult">Initial consultation</div>
         </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num" data-count="200" data-suffix="+">200+</div>
+          <div class="stat-label" data-i18n="stat-families">Families Protected</div>
+        </div>
+        <div>
+          <div class="stat-num" data-count="3" data-suffix="+">3+</div>
+          <div class="stat-label" data-i18n="stat-years">Years of Experience</div>
+        </div>
+        <div>
+          <div class="stat-num" data-count="97" data-suffix="%">97%</div>
+          <div class="stat-label" data-i18n="stat-retention">Client Retention</div>
+        </div>
+        <div>
+          <div class="stat-num">NJ · FL</div>
+          <div class="stat-label" data-i18n="stat-licensed">Licensed</div>
+        </div>
       </div>
     </div>
-    <div class="hero-foto-col">
+    <div class="hero-foto-col" style="position:relative">
       <div class="hero-foto-marco">
         <img src="/yunersy.jpg" alt="Yunersy Salabarria — Asesora de Seguros de Vida" class="hero-foto-img">
         <div class="hero-foto-badge-v2">
@@ -520,6 +537,28 @@
             <span data-i18n="badge-title">Licensed Agent · NJ &amp; FL</span>
           </div>
         </div>
+      </div>
+
+      <!-- FLOATING IUL PERFORMANCE CARD -->
+      <div id="iul-card" style="position:absolute;top:24px;right:-20px;background:#0a1a2a;border-radius:16px;padding:18px 20px;width:200px;box-shadow:0 12px 40px rgba(0,0,0,0.35);border:1px solid rgba(201,168,106,0.2);z-index:5;animation:cardFloat 4s ease-in-out infinite">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:flex;align-items:center;gap:6px">
+          <span style="width:7px;height:7px;border-radius:50%;background:#25D366;display:inline-block;animation:pulse 2s infinite"></span>
+          <span data-i18n="iul-card-label">IUL Performance</span>
+        </div>
+        <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#fff;line-height:1" id="iul-pct">0<span style="font-size:20px">%</span></div>
+        <div style="font-size:11px;color:rgba(250,247,242,0.4);margin-top:4px;margin-bottom:14px" data-i18n="iul-card-sub">Avg. annual return 2024</div>
+        <!-- Mini chart bars -->
+        <div style="display:flex;align-items:flex-end;gap:3px;height:40px">
+          <div style="flex:1;background:rgba(201,168,106,0.15);border-radius:3px 3px 0 0;height:30%;transition:height 1s ease"></div>
+          <div style="flex:1;background:rgba(201,168,106,0.25);border-radius:3px 3px 0 0;height:0%;transition:height 1.1s ease 0.1s" class="chart-bar"></div>
+          <div style="flex:1;background:rgba(201,168,106,0.35);border-radius:3px 3px 0 0;height:55%;transition:height 1.2s ease 0.2s"></div>
+          <div style="flex:1;background:rgba(201,168,106,0.2);border-radius:3px 3px 0 0;height:0%;transition:height 1.3s ease 0.3s" class="chart-bar"></div>
+          <div style="flex:1;background:rgba(201,168,106,0.15);border-radius:3px 3px 0 0;height:35%;transition:height 1.4s ease 0.4s"></div>
+          <div style="flex:1;background:rgba(37,211,102,0.4);border-radius:3px 3px 0 0;height:0%;transition:height 1.5s ease 0.5s" class="chart-bar"></div>
+          <div style="flex:1;background:rgba(37,211,102,0.6);border-radius:3px 3px 0 0;height:0%;transition:height 1.6s ease 0.6s" class="chart-bar"></div>
+          <div style="flex:1;background:#25D366;border-radius:3px 3px 0 0;height:0%;transition:height 1.7s ease 0.7s" class="chart-bar"></div>
+        </div>
+        <div style="font-size:10px;color:rgba(37,211,102,0.8);margin-top:8px;display:flex;align-items:center;gap:4px">↑ <span data-i18n="iul-card-note">0% floor — never loses</span></div>
       </div>
     </div>
   </div>
@@ -943,7 +982,7 @@
     <p class="section-sub center" data-i18n="blog-sub">Articles and guides to help you make the best financial decisions for your family.</p>
   </div>
 
-  <div class="blog-grid reveal">
+  <div class="blog-grid reveal stagger-children">
 
     <div class="blog-card" onclick="openPost('post1')">
       <div class="blog-card-top">
@@ -2938,7 +2977,7 @@ const T = {
     "lic-num-label":"License #","lic-num-label2":"License #",
     "blog-label":"Resources &amp; Education","blog-title":"Learn, decide, and<br>protect what you love most",
     "blog-sub":"Articles and guides to help you make the best financial decisions for your family.",
-    "footer-desc":"Protecting families and building wealth through financial education and life insurance. Licensed Agent Yunersy Salabarria · NJ & FL.","footer-col-services":"Services","fs-iul":"📈 IUL Insurance","fs-fe":"💸 Final Expense","fs-mort":"🏠 Mortgage Protection","fs-college":"🎓 College Fund","fs-retire":"🌴 Retirement / IUL","footer-col-company":"Company","fc-about":"About Yunersy","fc-test":"Testimonials","fc-calc":"Calculators","fc-join":"Join the Team","footer-col-contact":"Contact","fc-qualify":"✅ Qualify Now","fc-schedule":"📅 Schedule a Call","sched-eyebrow":"Free Consultation","sched-title":"Schedule your free consultation<br><em style='color:var(--gold-dark);font-style:italic'>Pick a time that works for you</em>","sched-sub":"Choose a slot directly in Yunersy's calendar — no waiting, instant confirmation, with a reminder before your appointment.","sched-btn":"Open Calendar — Schedule Now","sched-note":"30-minute session · Free · No obligation · English or Spanish","qual-eyebrow":"Free Qualification — 2 Minutes","qual-title":"Find out if you qualify<br><em style='font-style:italic;color:var(--gold)'>and what coverage fits your family</em>","qual-sub":"Complete our qualification form and Yunersy will review your information and contact you within 24 hours — at no cost, no commitment.","qual-check1":"No medical exam initially","qual-check2":"Options from $30/mo","qual-check3":"Personalized plan in 24 hrs","qual-check4":"IUL, Term, or Final Expense","qual-check5":"100% free — no obligation","qual-check6":"In English or Spanish","qual-btn":"Find out if I qualify now","qual-note":"Takes about 2 minutes · Your information is private and only shared with Yunersy","calc-label":"Free Tools","calc-title":"Financial calculators<br>to make better decisions",
+    "iul-card-label":"IUL Performance","iul-card-sub":"Avg. annual return 2024","iul-card-note":"0% floor — never loses","stat-families":"Families Protected","stat-retention":"Client Retention","stat-years":"Years of Experience","footer-desc":"Protecting families and building wealth through financial education and life insurance. Licensed Agent Yunersy Salabarria · NJ & FL.","footer-col-services":"Services","fs-iul":"📈 IUL Insurance","fs-fe":"💸 Final Expense","fs-mort":"🏠 Mortgage Protection","fs-college":"🎓 College Fund","fs-retire":"🌴 Retirement / IUL","footer-col-company":"Company","fc-about":"About Yunersy","fc-test":"Testimonials","fc-calc":"Calculators","fc-join":"Join the Team","footer-col-contact":"Contact","fc-qualify":"✅ Qualify Now","fc-schedule":"📅 Schedule a Call","sched-eyebrow":"Free Consultation","sched-title":"Schedule your free consultation<br><em style='color:var(--gold-dark);font-style:italic'>Pick a time that works for you</em>","sched-sub":"Choose a slot directly in Yunersy's calendar — no waiting, instant confirmation, with a reminder before your appointment.","sched-btn":"Open Calendar — Schedule Now","sched-note":"30-minute session · Free · No obligation · English or Spanish","qual-eyebrow":"Free Qualification — 2 Minutes","qual-title":"Find out if you qualify<br><em style='font-style:italic;color:var(--gold)'>and what coverage fits your family</em>","qual-sub":"Complete our qualification form and Yunersy will review your information and contact you within 24 hours — at no cost, no commitment.","qual-check1":"No medical exam initially","qual-check2":"Options from $30/mo","qual-check3":"Personalized plan in 24 hrs","qual-check4":"IUL, Term, or Final Expense","qual-check5":"100% free — no obligation","qual-check6":"In English or Spanish","qual-btn":"Find out if I qualify now","qual-note":"Takes about 2 minutes · Your information is private and only shared with Yunersy","calc-label":"Free Tools","calc-title":"Financial calculators<br>to make better decisions",
     "calc-sub":"Interactive tools so you understand exactly how much you need and how much your money can grow.",
     "calc-c1-title":"Financial Shield","calc-c1-desc":"Calculate how much life insurance coverage your family needs based on your income, debts, and dependents.","calc-c2-title":"College Fund","calc-c2-desc":"Discover how much you need to save today to cover your children's college without going into debt.","calc-c3-title":"D.I.M.E. Method","calc-c3-desc":"The professional method to calculate the exact coverage your family needs — Debt, Income, Mortgage, and Education.","calc-c4-title":"IUL Projection","calc-c4-desc":"Simulate how your money would grow in an IUL — with the 0% floor and S&P 500 upside potential.","calc-c5-title":"IUL vs. Bank","calc-c5-desc":"How much more would you have earned in an IUL vs. a bank account over the last 10 years? The numbers will surprise you.","calc-now":"Calculate now →","calc-c-fe-title":"Final Expense","calc-c-fe-desc":"See exactly how much more your monthly premium costs if you wait — every year you delay, the rate goes up permanently.","calc-c7-title":"Mortgage Protection","calc-c7-desc":"If something happens to you, would your family keep the house? Calculate exactly how much coverage your mortgage needs.","calc-c8-title":"How Much Do I Need?","calc-c8-desc":"The most complete analysis: income, debts, future expenses and assets — get your exact recommended coverage amount.","calc-c6-title":"IUL vs. Bank — Min to Max","calc-c6-desc":"See your money grow from the worst to the best IUL scenario vs. a savings account. Even minimum growth beats the bank.","lic-type-label":"Type","lic-type-label2":"Type","test-p1":"Yunersy explained everything with patience and clarity I had never encountered. I finally understood how life insurance could also grow my money. My family is protected and I sleep soundly.","test-p2":"As a single mom I was afraid I couldn't protect my kids if something happened to me. Yunersy guided me without pressure and we found a plan that fits my budget. She's more than an advisor — she truly cares.","test-p3":"I thought life insurance was only for older or wealthy people. Yunersy completely changed my perspective and today I have a policy that also works as an investment. I wish I had started sooner.","test-loc1":"New Jersey","calc-compare":"View comparison →","calc-q":"Questions about your results?","calc-q-sub":"After using any calculator, we can analyze the results together and design your personalized plan.","calc-expert":"Talk to an expert →",
     "fe-label":"Final Expense Calculator","fe-title":"What does waiting really cost you?",
@@ -3001,7 +3040,7 @@ const T = {
     "lic-num-label":"N° de licencia","lic-num-label2":"N° de licencia",
     "blog-label":"Recursos &amp; Educación","blog-title":"Aprende, decide y<br>protege lo que más amas",
     "blog-sub":"Artículos y guías en español para que tomes las mejores decisiones financieras para tu familia.",
-    "footer-desc":"Protegiendo familias y construyendo riqueza a través de la educación financiera y el seguro de vida. Agente Licenciada Yunersy Salabarria · NJ & FL.","footer-col-services":"Servicios","fs-iul":"📈 Seguro IUL","fs-fe":"💸 Gastos Finales","fs-mort":"🏠 Protección Hipotecaria","fs-college":"🎓 Fondo Universitario","fs-retire":"🌴 Retiro / IUL","footer-col-company":"Empresa","fc-about":"Sobre Yunersy","fc-test":"Testimonios","fc-calc":"Calculadoras","fc-join":"Únete al Equipo","footer-col-contact":"Contacto","fc-qualify":"✅ Calificar Ahora","fc-schedule":"📅 Agendar una Llamada","sched-eyebrow":"Consulta Gratuita","sched-title":"Agenda tu consulta gratuita<br><em style='color:var(--gold-dark);font-style:italic'>Elige el horario que más te convenga</em>","sched-sub":"Elige un horario directamente en el calendario de Yunersy — sin espera, confirmación instantánea y recordatorio antes de tu cita.","sched-btn":"Abrir Calendario — Agendar Ahora","sched-note":"Sesión de 30 minutos · Gratis · Sin compromiso · En inglés o español","qual-eyebrow":"Calificación Gratuita — 2 Minutos","qual-title":"Descubre si calificas<br><em style='font-style:italic;color:var(--gold)'>y qué cobertura es para tu familia</em>","qual-sub":"Completa nuestro formulario de calificación y Yunersy revisará tu información y te contactará en 24 horas con tus opciones personalizadas — sin costo, sin compromiso.","qual-check1":"Sin examen médico inicial","qual-check2":"Opciones desde $30/mes","qual-check3":"Plan personalizado en 24 hrs","qual-check4":"IUL, Temporal o Gastos Finales","qual-check5":"100% gratis — sin compromiso","qual-check6":"En inglés o español","qual-btn":"Descubrir si califico ahora","qual-note":"Toma unos 2 minutos · Tu información es privada y solo se comparte con Yunersy","calc-label":"Herramientas Gratuitas","calc-title":"Calculadoras financieras<br>para tomar mejores decisiones",
+    "iul-card-label":"Rendimiento IUL","iul-card-sub":"Retorno promedio anual 2024","iul-card-note":"Piso 0% — nunca pierde","stat-families":"Familias Protegidas","stat-retention":"Retención de Clientes","stat-years":"Años de Experiencia","footer-desc":"Protegiendo familias y construyendo riqueza a través de la educación financiera y el seguro de vida. Agente Licenciada Yunersy Salabarria · NJ & FL.","footer-col-services":"Servicios","fs-iul":"📈 Seguro IUL","fs-fe":"💸 Gastos Finales","fs-mort":"🏠 Protección Hipotecaria","fs-college":"🎓 Fondo Universitario","fs-retire":"🌴 Retiro / IUL","footer-col-company":"Empresa","fc-about":"Sobre Yunersy","fc-test":"Testimonios","fc-calc":"Calculadoras","fc-join":"Únete al Equipo","footer-col-contact":"Contacto","fc-qualify":"✅ Calificar Ahora","fc-schedule":"📅 Agendar una Llamada","sched-eyebrow":"Consulta Gratuita","sched-title":"Agenda tu consulta gratuita<br><em style='color:var(--gold-dark);font-style:italic'>Elige el horario que más te convenga</em>","sched-sub":"Elige un horario directamente en el calendario de Yunersy — sin espera, confirmación instantánea y recordatorio antes de tu cita.","sched-btn":"Abrir Calendario — Agendar Ahora","sched-note":"Sesión de 30 minutos · Gratis · Sin compromiso · En inglés o español","qual-eyebrow":"Calificación Gratuita — 2 Minutos","qual-title":"Descubre si calificas<br><em style='font-style:italic;color:var(--gold)'>y qué cobertura es para tu familia</em>","qual-sub":"Completa nuestro formulario de calificación y Yunersy revisará tu información y te contactará en 24 horas con tus opciones personalizadas — sin costo, sin compromiso.","qual-check1":"Sin examen médico inicial","qual-check2":"Opciones desde $30/mes","qual-check3":"Plan personalizado en 24 hrs","qual-check4":"IUL, Temporal o Gastos Finales","qual-check5":"100% gratis — sin compromiso","qual-check6":"En inglés o español","qual-btn":"Descubrir si califico ahora","qual-note":"Toma unos 2 minutos · Tu información es privada y solo se comparte con Yunersy","calc-label":"Herramientas Gratuitas","calc-title":"Calculadoras financieras<br>para tomar mejores decisiones",
     "calc-sub":"Herramientas interactivas para que entiendas exactamente cuánto necesitas y cuánto puede crecer tu dinero.",
     "calc-c1-title":"Escudo Financiero","calc-c1-desc":"Calcula cuánta cobertura de seguro de vida necesita tu familia según tus ingresos, deudas y dependientes.","calc-c2-title":"Fondo Universitario","calc-c2-desc":"Descubre cuánto necesitas ahorrar hoy para cubrir la universidad de tus hijos sin endeudarte.","calc-c3-title":"Método D.I.M.E.","calc-c3-desc":"El método profesional para calcular la cobertura exacta que necesita tu familia — Deuda, Ingresos, Manutención y Educación.","calc-c4-title":"Proyección IUL","calc-c4-desc":"Simula cómo crecería tu dinero en un IUL — con el piso del 0% y el potencial del S&P 500.","calc-c5-title":"IUL vs Banco","calc-c5-desc":"¿Cuánto más hubieras ganado en un IUL vs una cuenta bancaria en los últimos 10 años? Los números te van a sorprender.","calc-now":"Calcular ahora →","calc-c-fe-title":"Gastos Finales","calc-c-fe-desc":"Ve exactamente cuánto más cuesta tu prima mensual si esperas — cada año que demoras, la tarifa sube de forma permanente.","calc-c7-title":"Protección Hipotecaria","calc-c7-desc":"Si algo te pasa, ¿tu familia se quedará en la casa? Calcula exactamente cuánta cobertura necesita tu hipoteca.","calc-c8-title":"¿Cuánto Necesito?","calc-c8-desc":"El análisis más completo: ingresos, deudas, gastos futuros y activos — obtén el monto exacto de cobertura recomendado.","calc-c6-title":"IUL vs. Banco — Del Mínimo al Máximo","calc-c6-desc":"Ve cómo crece tu dinero desde el peor hasta el mejor escenario del IUL vs. una cuenta de ahorros. Incluso el crecimiento mínimo supera al banco.","lic-type-label":"Tipo","lic-type-label2":"Tipo","test-p1":"Yunersy me explicó todo con una paciencia y claridad que nunca había encontrado. Finalmente entendí cómo el seguro de vida también podía hacerme crecer dinero. Mi familia está protegida y yo duermo tranquilo.","test-p2":"Como mamá soltera tenía miedo de no poder proteger a mis hijos si me pasaba algo. Yunersy me orientó sin presiones y encontramos un plan que cabe en mi presupuesto. Es más que una asesora — es alguien que de verdad se preocupa.","test-p3":"Pensaba que los seguros de vida eran solo para gente mayor o muy rica. Yunersy cambió completamente mi perspectiva y hoy tengo una póliza que también funciona como inversión. Ojalá hubiera empezado antes.","test-loc1":"Nueva Jersey","calc-compare":"Ver comparación →","calc-q":"¿Tienes preguntas sobre los resultados?","calc-q-sub":"Después de usar cualquier calculadora, podemos analizar juntos los resultados y diseñar tu plan personalizado.","calc-expert":"Hablar con un experto →",
     "fe-label":"Calculadora — Seguro de Gastos Finales","fe-title":"¿Cuánto te cuesta realmente esperar?",
@@ -3060,23 +3099,13 @@ document.addEventListener('DOMContentLoaded', () => setLang(_initLang));
 <!-- ═══════════════════════════════════════════════════
      LEAD CAPTURE POPUP
 ════════════════════════════════════════════════════ -->
-<div id="lead-popup" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,26,42,0.75);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px">
-  <div style="background:var(--cream);border-radius:20px;max-width:480px;width:100%;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.4);animation:popupIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both">
-    <div style="background:linear-gradient(135deg,#0a1a2a,#0f3545);padding:28px 32px 24px;position:relative">
-      <button onclick="closePopup()" style="position:absolute;top:14px;right:16px;background:rgba(255,255,255,0.1);border:none;width:30px;height:30px;border-radius:50%;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px" id="popup-eyebrow">FREE CONSULTATION</div>
-      <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--cream);line-height:1.3;margin:0" id="popup-title">How much protection does your family actually need?</h3>
-    </div>
-    <div style="padding:24px 32px 28px">
-      <p style="font-size:14px;color:var(--muted);margin-bottom:20px;line-height:1.7" id="popup-sub">Leave your name and WhatsApp and Yunersy will reach out with a free personalized analysis for your family — no commitment.</p>
-      <div id="popup-alert" style="display:none;background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.3);border-radius:8px;padding:10px 14px;font-size:13px;color:#c0392b;margin-bottom:14px;font-weight:600"></div>
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <input id="popup-name" type="text" placeholder="Your name" style="padding:12px 14px;border:1.5px solid var(--cream2);border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;color:var(--navy);background:#fff;transition:border-color 0.2s" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--cream2)'">
-        <input id="popup-wa" type="tel" placeholder="WhatsApp number" style="padding:12px 14px;border:1.5px solid var(--cream2);border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;color:var(--navy);background:#fff;transition:border-color 0.2s" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--cream2)'">
-        <button onclick="submitPopup()" style="padding:14px;background:linear-gradient(135deg,var(--gold),#e3cfa3);color:var(--navy);font-weight:800;font-size:15px;border:none;border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s" id="popup-btn">Get my free consultation →</button>
-      </div>
-      <p style="font-size:11px;color:rgba(107,114,128,0.7);margin-top:12px;text-align:center" id="popup-privacy">🔒 Your info is private and only shared with Yunersy.</p>
-    </div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:15px;color:var(--cream);line-height:1.4;margin:0 0 8px" id="popup-title">How much protection does your family actually need?</h3>
+    <p style="font-size:12px;color:rgba(250,247,242,0.55);margin-bottom:14px;line-height:1.6" id="popup-sub">Leave your info and Yunersy will reach out with a free personalized analysis.</p>
+    <div id="popup-alert" style="display:none;background:rgba(231,76,60,0.15);border-radius:7px;padding:8px 10px;font-size:12px;color:#ff8080;margin-bottom:10px;font-weight:600"></div>
+    <input id="popup-name" type="text" placeholder="Your name" style="width:100%;padding:9px 12px;border:1.5px solid rgba(250,247,242,0.15);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;color:var(--cream);background:rgba(255,255,255,0.07);box-sizing:border-box;margin-bottom:8px" onfocus="this.style.borderColor='rgba(201,168,106,0.6)'" onblur="this.style.borderColor='rgba(250,247,242,0.15)'">
+    <input id="popup-wa" type="tel" placeholder="WhatsApp number" style="width:100%;padding:9px 12px;border:1.5px solid rgba(250,247,242,0.15);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;color:var(--cream);background:rgba(255,255,255,0.07);box-sizing:border-box;margin-bottom:12px" onfocus="this.style.borderColor='rgba(201,168,106,0.6)'" onblur="this.style.borderColor='rgba(250,247,242,0.15)'">
+    <button onclick="submitPopup()" id="popup-btn" style="width:100%;padding:10px;background:linear-gradient(135deg,var(--gold),#e3cfa3);color:var(--navy);font-weight:800;font-size:13px;border:none;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif">Get my free consultation →</button>
+    <p style="font-size:10px;color:rgba(250,247,242,0.3);margin-top:10px;text-align:center" id="popup-privacy">🔒 Private · Only shared with Yunersy</p>
   </div>
 </div>
 
@@ -3084,13 +3113,13 @@ document.addEventListener('DOMContentLoaded', () => setLang(_initLang));
 @keyframes popupIn{from{opacity:0;transform:scale(0.85) translateY(20px)}to{opacity:1;transform:none}}
 
 /* ── ENHANCED ANIMATIONS ── */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
-.reveal.visible{opacity:1;transform:none}
-.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity 0.7s ease,transform 0.7s ease}
-.reveal-left.visible{opacity:1;transform:none}
-.reveal-right{opacity:0;transform:translateX(32px);transition:opacity 0.7s ease,transform 0.7s ease}
-.reveal-right.visible{opacity:1;transform:none}
-.reveal-scale{opacity:0;transform:scale(0.9);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s cubic-bezier(0.22,1,0.36,1);will-change:opacity,transform}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity 0.65s ease,transform 0.65s cubic-bezier(0.22,1,0.36,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(28px);transition:opacity 0.65s ease,transform 0.65s cubic-bezier(0.22,1,0.36,1)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(0.93);transition:opacity 0.6s ease,transform 0.6s cubic-bezier(0.22,1,0.36,1)}
 .reveal-scale.visible{opacity:1;transform:scale(1)}
 
 /* Stagger children */
@@ -3112,6 +3141,9 @@ document.addEventListener('DOMContentLoaded', () => setLang(_initLang));
   animation:shimmer 4s linear infinite;
 }
 @keyframes shimmer{to{background-position:200% center}}
+@keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(1.3)}}
+@keyframes countUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 /* Counter */
 .counter-num{display:inline-block;transition:all 0.1s}
@@ -3149,63 +3181,6 @@ section{scroll-margin-top:80px}
 
 <script>
 // ══════════════════════════════════════════
-//  POPUP LOGIC
-// ══════════════════════════════════════════
-var popupShown = false;
-
-function showPopup(){
-  if(popupShown) return;
-  popupShown=true;
-  var popup=document.getElementById('lead-popup');
-  popup.style.display='flex';
-  // Sync language
-  var isES=document.documentElement.lang==='es';
-  if(isES){
-    document.getElementById('popup-eyebrow').textContent='CONSULTA GRATUITA';
-    document.getElementById('popup-title').textContent='¿Cuánta protección necesita tu familia?';
-    document.getElementById('popup-sub').textContent='Déjanos tu nombre y WhatsApp y Yunersy te contactará con un análisis gratuito y personalizado para tu familia — sin compromiso.';
-    document.getElementById('popup-name').placeholder='Tu nombre';
-    document.getElementById('popup-wa').placeholder='Número de WhatsApp';
-    document.getElementById('popup-btn').textContent='Quiero mi consulta gratuita →';
-    document.getElementById('popup-privacy').textContent='🔒 Tu info es privada y solo se comparte con Yunersy.';
-  }
-}
-
-function closePopup(){
-  document.getElementById('lead-popup').style.display='none';
-}
-
-function submitPopup(){
-  var name=document.getElementById('popup-name').value.trim().substring(0,100);
-  var wa=document.getElementById('popup-wa').value.trim().replace(/[^0-9+\-\s\(\)]/g,'').substring(0,20);
-  var isES=document.documentElement.lang==='es';
-  var alertEl=document.getElementById('popup-alert');
-  if(!name||!wa){
-    alertEl.textContent=isES?'⚠️ Por favor completa ambos campos.':'⚠️ Please fill in both fields.';
-    alertEl.style.display='block';
-    setTimeout(function(){alertEl.style.display='none';},3000);
-    return;
-  }
-  var msg=isES
-    ?'Hola Yunersy, me llamo '+name+' y mi WhatsApp es '+wa+'. Me registré en tu página y quiero recibir la guía gratuita sobre seguro de vida.'
-    :'Hi Yunersy, my name is '+name+' and my WhatsApp is '+wa+'. I signed up on your website and would like a free personalized insurance consultation.';
-  window.open('https://wa.me/19086774196?text='+encodeURIComponent(msg),'_blank');
-  closePopup();
-}
-
-// Trigger: 8 seconds after load OR exit intent on desktop
-window.addEventListener('load',function(){
-  setTimeout(function(){ if(!popupShown) showPopup(); },8000);
-});
-document.addEventListener('mouseleave',function(e){
-  if(e.clientY<10 && !popupShown) showPopup();
-});
-// Close on backdrop click
-document.getElementById('lead-popup').addEventListener('click',function(e){
-  if(e.target===this) closePopup();
-});
-
-// ══════════════════════════════════════════
 //  INTERSECTION OBSERVER — SCROLL REVEALS
 // ══════════════════════════════════════════
 var revealObs=new IntersectionObserver(function(entries){
@@ -3220,13 +3195,40 @@ var revealObs=new IntersectionObserver(function(entries){
 },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
 
 document.addEventListener('DOMContentLoaded',function(){
-  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.stagger-children').forEach(function(el){
-    revealObs.observe(el);
-  });
+  // Small delay so layout is complete before observing
+  setTimeout(function(){
+    document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.stagger-children').forEach(function(el){
+      revealObs.observe(el);
+    });
+  },100);
+  // ── IUL floating card animation
+  setTimeout(function(){
+    // Animate percentage counter
+    var pctEl=document.getElementById('iul-pct');
+    if(pctEl){
+      var target=12, current=0, duration=1800, step=16;
+      var timer=setInterval(function(){
+        current+=step/duration*target;
+        if(current>=target){current=target;clearInterval(timer);}
+        pctEl.innerHTML=Math.round(current)+'<span style="font-size:20px">%</span>';
+      },step);
+    }
+    // Animate chart bars
+    var bars=document.querySelectorAll('.chart-bar');
+    var heights=['45%','20%','80%','65%','100%'];
+    bars.forEach(function(b,i){ setTimeout(function(){ b.style.height=heights[i]||'60%'; },i*100); });
+  },600);
+
   initParticles();
   initCounters();
   initNavActive();
   applyCardHover();
+  // Shimmer logo
+  var logo=document.querySelector('.nav-logo span');
+  if(logo) logo.classList.add('shimmer-gold');
+  // Hero title
+  var heroTitle=document.querySelector('.hero-title');
+  if(heroTitle){ heroTitle.style.opacity='0'; heroTitle.style.transform='translateY(32px)'; setTimeout(function(){ heroTitle.style.transition='opacity 1s ease,transform 1s cubic-bezier(0.22,1,0.36,1)'; heroTitle.style.opacity='1'; heroTitle.style.transform='translateY(0)'; },200); }
 });
 
 // ══════════════════════════════════════════
@@ -3260,6 +3262,26 @@ function initParticles(){
 //  COUNTER ANIMATION
 // ══════════════════════════════════════════
 function initCounters(){
+  // Special hero counters (stat-num with data-count)
+  document.querySelectorAll('.stat-num[data-count]').forEach(function(el){
+    var target=parseInt(el.getAttribute('data-count'));
+    var suffix=el.getAttribute('data-suffix')||'';
+    var prefix=el.getAttribute('data-prefix')||'';
+    var duration=1400, step=16;
+    var obs=new IntersectionObserver(function(entries){
+      if(!entries[0].isIntersecting) return;
+      obs.disconnect();
+      var current=0;
+      var timer=setInterval(function(){
+        current+=step/duration*target;
+        if(current>=target){current=target;clearInterval(timer);}
+        el.textContent=prefix+Math.round(current)+suffix;
+      },step);
+    },{threshold:0.5});
+    obs.observe(el);
+  });
+  // Original counters below
+
   var statNums=document.querySelectorAll('.stat-num');
   var counterObs=new IntersectionObserver(function(entries){
     entries.forEach(function(entry){

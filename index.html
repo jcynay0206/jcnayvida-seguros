@@ -2976,5 +2976,275 @@ const _initLang = localStorage.getItem('jcnay-lang') || 'en';
 document.addEventListener('DOMContentLoaded', () => setLang(_initLang));
 </script>
 
+<!-- ═══════════════════════════════════════════════════
+     LEAD CAPTURE POPUP
+════════════════════════════════════════════════════ -->
+<div id="lead-popup" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,26,42,0.75);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px">
+  <div style="background:var(--cream);border-radius:20px;max-width:480px;width:100%;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.4);animation:popupIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both">
+    <div style="background:linear-gradient(135deg,#0a1a2a,#0f3545);padding:28px 32px 24px;position:relative">
+      <button onclick="closePopup()" style="position:absolute;top:14px;right:16px;background:rgba(255,255,255,0.1);border:none;width:30px;height:30px;border-radius:50%;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px" id="popup-eyebrow">FREE GUIDE</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--cream);line-height:1.3;margin:0" id="popup-title">The 3 things every family needs to know about life insurance</h3>
+    </div>
+    <div style="padding:24px 32px 28px">
+      <p style="font-size:14px;color:var(--muted);margin-bottom:20px;line-height:1.7" id="popup-sub">Leave your name and WhatsApp and Yunersy will send it to you personally — free, no obligation.</p>
+      <div id="popup-alert" style="display:none;background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.3);border-radius:8px;padding:10px 14px;font-size:13px;color:#c0392b;margin-bottom:14px;font-weight:600"></div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <input id="popup-name" type="text" placeholder="Your name" style="padding:12px 14px;border:1.5px solid var(--cream2);border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;color:var(--navy);background:#fff;transition:border-color 0.2s" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--cream2)'">
+        <input id="popup-wa" type="tel" placeholder="WhatsApp number" style="padding:12px 14px;border:1.5px solid var(--cream2);border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;color:var(--navy);background:#fff;transition:border-color 0.2s" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--cream2)'">
+        <button onclick="submitPopup()" style="padding:14px;background:linear-gradient(135deg,var(--gold),#e3cfa3);color:var(--navy);font-weight:800;font-size:15px;border:none;border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s" id="popup-btn">Send me the free guide →</button>
+      </div>
+      <p style="font-size:11px;color:rgba(107,114,128,0.7);margin-top:12px;text-align:center" id="popup-privacy">🔒 Your info is private and only shared with Yunersy.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+@keyframes popupIn{from{opacity:0;transform:scale(0.85) translateY(20px)}to{opacity:1;transform:none}}
+
+/* ── ENHANCED ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(32px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal-right.visible{opacity:1;transform:none}
+.reveal-scale{opacity:0;transform:scale(0.9);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+
+/* Stagger children */
+.stagger-children>*{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease}
+.stagger-children.visible>*:nth-child(1){opacity:1;transform:none;transition-delay:0s}
+.stagger-children.visible>*:nth-child(2){opacity:1;transform:none;transition-delay:0.1s}
+.stagger-children.visible>*:nth-child(3){opacity:1;transform:none;transition-delay:0.2s}
+.stagger-children.visible>*:nth-child(4){opacity:1;transform:none;transition-delay:0.3s}
+.stagger-children.visible>*:nth-child(5){opacity:1;transform:none;transition-delay:0.4s}
+.stagger-children.visible>*:nth-child(6){opacity:1;transform:none;transition-delay:0.5s}
+.stagger-children.visible>*:nth-child(7){opacity:1;transform:none;transition-delay:0.6s}
+.stagger-children.visible>*:nth-child(8){opacity:1;transform:none;transition-delay:0.7s}
+
+/* Gold shimmer text */
+.shimmer-gold{
+  background:linear-gradient(90deg,#a07840 0%,#e3cfa3 40%,#c9a86a 60%,#a07840 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 4s linear infinite;
+}
+@keyframes shimmer{to{background-position:200% center}}
+
+/* Counter */
+.counter-num{display:inline-block;transition:all 0.1s}
+
+/* Card hover lift */
+.calc-card-hover{transition:transform 0.25s ease,box-shadow 0.25s ease}
+.calc-card-hover:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,0.15)!important}
+
+/* Floating hero particles */
+#hero-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.particle{position:absolute;border-radius:50%;opacity:0;animation:float linear infinite}
+@keyframes float{
+  0%{opacity:0;transform:translateY(0) scale(0)}
+  10%{opacity:1}
+  90%{opacity:0.4}
+  100%{opacity:0;transform:translateY(-100vh) scale(1)}
+}
+
+/* Pulse ring on WhatsApp float */
+.wa-float-pulse::before{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(37,211,102,0.5);animation:pulseRing 2s ease-out infinite}
+@keyframes pulseRing{0%{transform:scale(1);opacity:1}100%{transform:scale(1.5);opacity:0}}
+
+/* Gradient text animate */
+.hero-title-animate{animation:heroTitleIn 1.2s cubic-bezier(0.22,1,0.36,1) both}
+@keyframes heroTitleIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+
+/* Nav active indicator */
+.nav-links a{position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--gold);transition:width 0.3s ease}
+.nav-links a:hover::after,.nav-links a.nav-active::after{width:100%}
+
+/* Smooth section transitions */
+section{scroll-margin-top:80px}
+</style>
+
+<script>
+// ══════════════════════════════════════════
+//  POPUP LOGIC
+// ══════════════════════════════════════════
+var popupShown = false;
+
+function showPopup(){
+  if(popupShown) return;
+  popupShown=true;
+  var popup=document.getElementById('lead-popup');
+  popup.style.display='flex';
+  // Sync language
+  var isES=document.documentElement.lang==='es';
+  if(isES){
+    document.getElementById('popup-eyebrow').textContent='GUÍA GRATUITA';
+    document.getElementById('popup-title').textContent='Las 3 cosas que toda familia necesita saber sobre el seguro de vida';
+    document.getElementById('popup-sub').textContent='Déjanos tu nombre y WhatsApp y Yunersy te lo enviará personalmente — gratis, sin compromiso.';
+    document.getElementById('popup-name').placeholder='Tu nombre';
+    document.getElementById('popup-wa').placeholder='Número de WhatsApp';
+    document.getElementById('popup-btn').textContent='Enviarme la guía gratuita →';
+    document.getElementById('popup-privacy').textContent='🔒 Tu info es privada y solo se comparte con Yunersy.';
+  }
+}
+
+function closePopup(){
+  document.getElementById('lead-popup').style.display='none';
+}
+
+function submitPopup(){
+  var name=document.getElementById('popup-name').value.trim();
+  var wa=document.getElementById('popup-wa').value.trim();
+  var isES=document.documentElement.lang==='es';
+  var alertEl=document.getElementById('popup-alert');
+  if(!name||!wa){
+    alertEl.textContent=isES?'⚠️ Por favor completa ambos campos.':'⚠️ Please fill in both fields.';
+    alertEl.style.display='block';
+    setTimeout(function(){alertEl.style.display='none';},3000);
+    return;
+  }
+  var msg=isES
+    ?'Hola Yunersy, me llamo '+name+' y mi WhatsApp es '+wa+'. Me registré en tu página y quiero recibir la guía gratuita sobre seguro de vida.'
+    :'Hi Yunersy, my name is '+name+' and my WhatsApp is '+wa+'. I signed up on your website and would like to receive the free life insurance guide.';
+  window.open('https://wa.me/19086774196?text='+encodeURIComponent(msg),'_blank');
+  closePopup();
+}
+
+// Trigger: 8 seconds after load OR exit intent on desktop
+window.addEventListener('load',function(){
+  setTimeout(function(){ if(!popupShown) showPopup(); },8000);
+});
+document.addEventListener('mouseleave',function(e){
+  if(e.clientY<10 && !popupShown) showPopup();
+});
+// Close on backdrop click
+document.getElementById('lead-popup').addEventListener('click',function(e){
+  if(e.target===this) closePopup();
+});
+
+// ══════════════════════════════════════════
+//  INTERSECTION OBSERVER — SCROLL REVEALS
+// ══════════════════════════════════════════
+var revealObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      // Stagger children if applicable
+      if(e.target.classList.contains('stagger-children')) e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.stagger-children').forEach(function(el){
+    revealObs.observe(el);
+  });
+  initParticles();
+  initCounters();
+  initNavActive();
+  applyCardHover();
+});
+
+// ══════════════════════════════════════════
+//  HERO PARTICLES
+// ══════════════════════════════════════════
+function initParticles(){
+  var hero=document.querySelector('.hero');
+  if(!hero) return;
+  var container=document.createElement('div');
+  container.id='hero-particles';
+  hero.style.position='relative';
+  hero.insertBefore(container,hero.firstChild);
+  var colors=['rgba(201,168,106,0.4)','rgba(201,168,106,0.2)','rgba(255,255,255,0.15)','rgba(201,168,106,0.3)'];
+  for(var i=0;i<18;i++){
+    var p=document.createElement('div');
+    p.className='particle';
+    var size=Math.random()*4+2;
+    p.style.cssText=[
+      'width:'+size+'px','height:'+size+'px',
+      'left:'+Math.random()*100+'%',
+      'top:'+Math.random()*100+'%',
+      'background:'+colors[Math.floor(Math.random()*colors.length)],
+      'animation-duration:'+(Math.random()*12+8)+'s',
+      'animation-delay:'+(Math.random()*8)+'s'
+    ].join(';');
+    container.appendChild(p);
+  }
+}
+
+// ══════════════════════════════════════════
+//  COUNTER ANIMATION
+// ══════════════════════════════════════════
+function initCounters(){
+  var statNums=document.querySelectorAll('.stat-num');
+  var counterObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      var el=entry.target;
+      var raw=el.textContent;
+      var num=parseFloat(raw.replace(/[^0-9.]/g,''));
+      if(isNaN(num)||num<2){counterObs.unobserve(el);return;}
+      var prefix=raw.match(/^[^0-9]*/)[0];
+      var suffix=raw.match(/[^0-9.]*$/)[0];
+      var start=0,duration=1600,step=16;
+      var timer=setInterval(function(){
+        start+=step;
+        var progress=Math.min(start/duration,1);
+        var eased=1-Math.pow(1-progress,3);
+        var val=Math.round(num*eased);
+        el.textContent=prefix+val+suffix;
+        if(progress>=1){clearInterval(timer);el.textContent=raw;}
+      },step);
+      counterObs.unobserve(el);
+    });
+  },{threshold:0.5});
+  statNums.forEach(function(el){ counterObs.observe(el); });
+}
+
+// ══════════════════════════════════════════
+//  NAV ACTIVE STATE
+// ══════════════════════════════════════════
+function initNavActive(){
+  var sections=document.querySelectorAll('section[id]');
+  var navLinks=document.querySelectorAll('.nav-links a[href^="#"]');
+  var activeObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        navLinks.forEach(function(a){ a.classList.remove('nav-active'); });
+        var link=document.querySelector('.nav-links a[href="#'+e.target.id+'"]');
+        if(link) link.classList.add('nav-active');
+      }
+    });
+  },{threshold:0.35});
+  sections.forEach(function(s){ activeObs.observe(s); });
+}
+
+// ══════════════════════════════════════════
+//  CARD HOVER LIFT — calculator grid
+// ══════════════════════════════════════════
+function applyCardHover(){
+  document.querySelectorAll('[id^="calc-"] > a > div, .calc-card-hover').forEach(function(el){
+    el.classList.add('calc-card-hover');
+  });
+}
+
+// ══════════════════════════════════════════
+//  SHIMMER on logo text
+// ══════════════════════════════════════════
+document.addEventListener('DOMContentLoaded',function(){
+  var logo=document.querySelector('.nav-logo span');
+  if(logo) logo.classList.add('shimmer-gold');
+  // Animate hero title
+  var heroTitle=document.querySelector('.hero-title');
+  if(heroTitle) heroTitle.classList.add('hero-title-animate');
+  // WhatsApp float pulse
+  var waFloat=document.querySelector('#wa-float');
+  if(waFloat) waFloat.style.position='relative',waFloat.classList.add('wa-float-pulse');
+});
+</script>
+
 </body>
 </html>

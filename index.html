@@ -1859,10 +1859,45 @@
     <div class="section-label center light" data-i18n="join-label">Career Opportunity</div>
     <h2 class="section-title light center" data-i18n="join-title">Want a career<br>with purpose and unlimited income?</h2>
     <p class="section-sub light center" data-i18n="join-sub">Join the JCNay Vida team. We train you from scratch to become a life insurance agent and build your own business helping Hispanic families.</p>
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:40px">
-      <a href="https://wa.me/19086774196?text=Hola,%20me%20interesa%20unirme%20al%20equipo%20JCNay%20Vida%20Team" class="btn-primary" target="_blank" rel="noopener noreferrer"><span data-i18n="join-cta">💬 I Want to Join the Team</span></a>
+
+    <!-- MINI INTAKE FORM -->
+    <div style="max-width:480px;margin:32px auto 0;background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,106,0.2);border-radius:16px;padding:28px 28px 24px;text-align:left" id="join-form-wrap">
+      <div style="font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:16px" data-i18n="join-form-title">Tell me about you</div>
+      <div id="join-alert" style="display:none;background:rgba(231,76,60,0.15);border-radius:8px;padding:10px 14px;font-size:12px;color:#ff8080;font-weight:600;margin-bottom:12px"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+        <div>
+          <label style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(250,247,242,0.5);margin-bottom:5px" data-i18n="join-f-name">Name *</label>
+          <input id="join-name" type="text" style="width:100%;padding:10px 12px;border:1px solid rgba(250,247,242,0.15);border-radius:8px;background:rgba(255,255,255,0.08);color:var(--cream);font-size:13px;font-family:DM Sans,sans-serif;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='rgba(201,168,106,0.6)'" onblur="this.style.borderColor='rgba(250,247,242,0.15)'" data-i18n-ph="join-ph-name" placeholder="Full name">
+        </div>
+        <div>
+          <label style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(250,247,242,0.5);margin-bottom:5px" data-i18n="join-f-phone">WhatsApp *</label>
+          <input id="join-phone" type="tel" style="width:100%;padding:10px 12px;border:1px solid rgba(250,247,242,0.15);border-radius:8px;background:rgba(255,255,255,0.08);color:var(--cream);font-size:13px;font-family:DM Sans,sans-serif;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='rgba(201,168,106,0.6)'" onblur="this.style.borderColor='rgba(250,247,242,0.15)'" placeholder="+1 (000) 000-0000">
+        </div>
+      </div>
+      <div style="margin-bottom:10px">
+        <label style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(250,247,242,0.5);margin-bottom:5px">Email *</label>
+        <input id="join-email" type="email" style="width:100%;padding:10px 12px;border:1px solid rgba(250,247,242,0.15);border-radius:8px;background:rgba(255,255,255,0.08);color:var(--cream);font-size:13px;font-family:DM Sans,sans-serif;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='rgba(201,168,106,0.6)'" onblur="this.style.borderColor='rgba(250,247,242,0.15)'" placeholder="your@email.com">
+      </div>
+      <div style="margin-bottom:16px">
+        <label style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(250,247,242,0.5);margin-bottom:5px" data-i18n="join-f-exp">Sales experience?</label>
+        <select id="join-exp" style="width:100%;padding:10px 12px;border:1px solid rgba(250,247,242,0.15);border-radius:8px;background:rgba(10,26,42,0.8);color:var(--cream);font-size:13px;font-family:DM Sans,sans-serif;outline:none;box-sizing:border-box">
+          <option value="" data-i18n="sel-opt">Select...</option>
+          <option value="No experience" data-i18n="join-exp-0">No experience — I want to learn from scratch</option>
+          <option value="Some sales experience" data-i18n="join-exp-1">Some sales experience</option>
+          <option value="Insurance experience" data-i18n="join-exp-2">Insurance or financial experience</option>
+          <option value="Licensed agent" data-i18n="join-exp-3">Already licensed agent</option>
+        </select>
+      </div>
+      <button onclick="submitJoinForm()" style="width:100%;padding:13px;background:linear-gradient(135deg,var(--gold),#e3cfa3);color:var(--navy);font-weight:800;font-size:14px;border:none;border-radius:10px;cursor:pointer;font-family:DM Sans,sans-serif;transition:all 0.2s" data-i18n="join-submit">I want to join the team →</button>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:800px;margin:48px auto 0">
+    <!-- SUCCESS STATE -->
+    <div id="join-success" style="display:none;max-width:480px;margin:32px auto 0;text-align:center;padding:28px">
+      <div style="font-size:44px;margin-bottom:12px">🎉</div>
+      <div style="font-family:Playfair Display,serif;font-size:20px;color:var(--cream);margin-bottom:10px" data-i18n="join-success-title">Application received!</div>
+      <p style="font-size:13px;color:rgba(250,247,242,0.6);line-height:1.7" data-i18n="join-success-sub">Yunersy will reach out to you personally within 24 hours. She's looking forward to talking with you!</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:800px;margin:40px auto 0">
       <div style="text-align:center;padding:24px;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,106,0.2)">
         <div style="font-family:Playfair Display,serif;font-size:32px;color:var(--gold-light)">$0</div>
         <div style="font-size:12px;color:rgba(250,247,242,0.5);margin-top:4px" data-i18n="join-cost">Cost to start</div>
@@ -2781,7 +2816,7 @@ function qm2Send(es){
   });
 
   // ── Send to Google Sheets CRM (async, no-cors — fire and forget)
-  var SHEET_URL = 'PASTE_YOUR_APPS_SCRIPT_URL_HERE'; // ← replace after deploying
+  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzDRYjBd4fr_bJCs5aP769xrNFO3z2NOgMCUtpsikdayDQTLC97xR1uViFaDYCtdwPg_w/exec'; // ← replace after deploying
   if(SHEET_URL.indexOf('script.google.com') > -1){
     var payload = {
       // ── CRM columns (A-J match existing sheet)
@@ -2936,7 +2971,7 @@ const T = {
     "team-label":"The Team","team-title":"Real people,<br>real results",
     "team-role":"Life Insurance Agent · NJ &amp; FL",
     "team-bio":"Licensed agent specialized in IUL strategies and family protection for the Hispanic community in the USA. With direct experience as an entrepreneur and immigrant, she understands the real challenges of Latino families and designs financial solutions that truly work.",
-    "join-label":"Career Opportunity","join-title":"Want a career<br>with purpose and unlimited income?",
+    "join-form-title":"Tell me about you","join-f-name":"Name","join-ph-name":"Full name","join-f-phone":"WhatsApp","join-f-exp":"Sales experience?","join-exp-0":"No experience — I want to learn from scratch","join-exp-1":"Some sales experience","join-exp-2":"Insurance or financial experience","join-exp-3":"Already licensed agent","join-submit":"I want to join the team →","join-success-title":"Application received!","join-success-sub":"Yunersy will reach out to you personally within 24 hours. She's looking forward to talking with you!","join-label":"Career Opportunity","join-title":"Want a career<br>with purpose and unlimited income?",
     "join-sub":"Join the JCNay Vida team. We train you from scratch to become a life insurance agent and build your own business helping Hispanic families.",
     "join-cta":"💬 I Want to Join the Team","join-cost":"Cost to start","join-remote":"100% remote from home","join-income":"Unlimited income",
     "contact-label":"Contact","contact-title":"Let's talk about<br>your financial future",
@@ -2999,7 +3034,7 @@ const T = {
     "team-label":"El Equipo","team-title":"Personas reales,<br>resultados reales",
     "team-role":"Agente de Seguros de Vida · NJ &amp; FL",
     "team-bio":"Agente licenciada especializada en estrategias IUL y protección familiar para la comunidad hispana en USA. Con experiencia directa como emprendedora e inmigrante, entiende los desafíos reales de las familias latinas y diseña soluciones financieras que realmente funcionan.",
-    "join-label":"Oportunidad de Carrera","join-title":"¿Quieres una carrera<br>con propósito e ingresos ilimitados?",
+    "join-form-title":"Cuéntame sobre ti","join-f-name":"Nombre","join-ph-name":"Nombre completo","join-f-phone":"WhatsApp","join-f-exp":"¿Experiencia en ventas?","join-exp-0":"Sin experiencia — quiero aprender desde cero","join-exp-1":"Algo de experiencia en ventas","join-exp-2":"Experiencia en seguros o finanzas","join-exp-3":"Ya soy agente licenciado/a","join-submit":"Quiero unirme al equipo →","join-success-title":"¡Solicitud recibida!","join-success-sub":"Yunersy se pondrá en contacto contigo personalmente en 24 horas. ¡Está emocionada de hablar contigo!","join-label":"Oportunidad de Carrera","join-title":"¿Quieres una carrera<br>con propósito e ingresos ilimitados?",
     "join-sub":"Únete al equipo JCNay Vida. Te capacitamos desde cero para convertirte en agente de seguros de vida y construir tu propio negocio ayudando a familias hispanas.",
     "join-cta":"💬 Quiero Unirme al Equipo","join-cost":"Costo para empezar","join-remote":"Remoto desde casa","join-income":"Ingresos ilimitados",
     "contact-label":"Contacto","contact-title":"Hablemos sobre<br>tu futuro financiero",
@@ -3313,6 +3348,53 @@ document.addEventListener('DOMContentLoaded',function(){
   var waFloat=document.querySelector('#wa-float');
   if(waFloat) waFloat.style.position='relative',waFloat.classList.add('wa-float-pulse');
 });
+</script>
+
+
+<script>
+function submitJoinForm(){
+  var name  = document.getElementById('join-name').value.trim();
+  var phone = document.getElementById('join-phone').value.trim();
+  var email = document.getElementById('join-email').value.trim();
+  var exp   = document.getElementById('join-exp').value;
+  var alert = document.getElementById('join-alert');
+  var isES  = document.documentElement.lang === 'es';
+
+  if(!name || !phone || !email){
+    alert.textContent = isES ? '⚠️ Por favor completa nombre, teléfono y email.' : '⚠️ Please fill in name, phone, and email.';
+    alert.style.display = 'block';
+    setTimeout(function(){ alert.style.display='none'; }, 3000);
+    return;
+  }
+
+  // ── Send to Google Sheets CRM as Prospecto Agente
+  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzDRYjBd4fr_bJCs5aP769xrNFO3z2NOgMCUtpsikdayDQTLC97xR1uViFaDYCtdwPg_w/exec';
+  if(SHEET_URL.indexOf('script.google.com') > -1){
+    fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        nombre:        name,
+        telefono:      phone,
+        email:         email,
+        tipo_registro: 'Prospecto Agente',
+        ingresos:      exp,
+        poliza:        exp
+      })
+    }).catch(function(){});
+  }
+
+  // ── Open WhatsApp with prospect info
+  var msg = isES
+    ? 'Hola Yunersy, me llamo ' + name + ' y mi WhatsApp es ' + phone + '. Me interesa unirme al equipo JCNay Vida. Experiencia: ' + (exp || 'Sin experiencia') + '. Email: ' + email
+    : 'Hi Yunersy, my name is ' + name + ' and my WhatsApp is ' + phone + '. I am interested in joining the JCNay Vida team. Experience: ' + (exp || 'No experience') + '. Email: ' + email;
+  window.open('https://wa.me/19086774196?text=' + encodeURIComponent(msg), '_blank');
+
+  // ── Show success
+  document.getElementById('join-form-wrap').style.display = 'none';
+  document.getElementById('join-success').style.display = 'block';
+}
 </script>
 
 </body>

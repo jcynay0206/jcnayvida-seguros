@@ -2831,93 +2831,95 @@ function qm2Send(es){
   qm2Collect();
   var d=qm2.data, g=function(k){return(d[k]||'').trim();};
 
-  // ── Build beneficiary strings
   var bens=[];
   [1,2,3,4].forEach(function(n){
     var nm=g('qm2-b'+n+'n'); if(!nm) return;
     bens.push(nm+' | '+g('qm2-b'+n+'r')+' | '+g('qm2-b'+n+'p')+'% | DOB:'+g('qm2-b'+n+'d'));
   });
 
-  // ── Send to Google Sheets CRM (async, no-cors — fire and forget)
-  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzlciDVdoOsZpJfBgz7tHqchxo5sfJ1Jf-WlNk7O23X8LYq50-ur5jdBE6eaADbdIKskg/exec'; // ← replace after deploying
-  if(SHEET_URL.indexOf('script.google.com') > -1){
-    var payload = {
-      // ── CRM columns (A-J match existing sheet)
-      nombre:         g('qm2-fn')+' '+g('qm2-ln'),
-      telefono:       g('qm2-phone'),
-      email:          g('qm2-email'),
-      tipo_registro:  'Lead - Seguro de Vida',
-      dob:            g('qm2-dob'),
-      ingresos:       g('qm2-income'),
-      // ── Extra details (column K)
-      poliza:         qm2.chips.join(', '),
-      prima:          g('qm2-premium'),
-      salud:          g('qm2-salud')||'',
-      tabaco:         g('qm2-tabaco')||'',
-      estado_res:     g('qm2-state'),
-      ciudad:         g('qm2-city'),
-      zip:            g('qm2-zip'),
-      prescripciones: g('qm2-rx'),
-      clinica:        g('qm2-clinic')+' '+g('qm2-clinic-phone'),
-      medico:         g('qm2-doctor'),
-      empleador:      g('qm2-employer'),
-      banco:          g('qm2-bank'),
-      pais:           g('qm2-country'),
-      ciudadano:      g('qm2-citizen'),
-      padresVivos:    qm2.yn.parents||'',
-      ben1:           bens[0]||'',
-      ben2:           bens[1]||'',
-      ben3:           bens[2]||'',
-      ben4:           bens[3]||''
-    };
-    // Image beacon — most reliable way to send data without CORS blocking
-    var params = Object.keys(payload).map(function(k){
-      return encodeURIComponent(k)+'='+encodeURIComponent(payload[k]||'');
-    }).join('&');
-    new Image().src = SHEET_URL+'?'+params;
-  }
+  var tipo = 'Lead - Seguro de Vida';
+  var poliza = qm2.chips.join(', ') || '—';
 
-  // ── Build WhatsApp message
-  var lines=[];
-  lines.push(es?'🛡️ NUEVA SOLICITUD — JCNay Vida Team':'🛡️ NEW APPLICATION — JCNay Vida Team');
-  lines.push('━━━━━━━━━━━━━━━━━━━━━━');
-  lines.push((es?'📋 PÓLIZA: ':'📋 POLICY: ')+(qm2.chips.join(', ')||'—')+' | $'+(g('qm2-premium')||'200')+'/mo');
-  lines.push('');
-  lines.push(es?'👤 PERSONAL':'👤 PERSONAL');
-  lines.push((es?'Nombre: ':'Name: ')+g('qm2-fn')+' '+g('qm2-ln'));
-  lines.push('Email: '+g('qm2-email'));
-  lines.push((es?'Tel: ':'Phone: ')+g('qm2-phone'));
-  lines.push((es?'Nac: ':'DOB: ')+g('qm2-dob'));
-  lines.push((es?'Dir: ':'Addr: ')+[g('qm2-addr'),g('qm2-city'),g('qm2-state'),g('qm2-zip')].filter(Boolean).join(', '));
-  lines.push('ID: '+g('qm2-idtype')+' '+g('qm2-idnum'));
-  if(g('qm2-country')) lines.push((es?'País: ':'Country: ')+g('qm2-country'));
-  if(g('qm2-citizen')) lines.push((es?'Status: ':'Status: ')+g('qm2-citizen'));
-  if(qm2.yn.parents) lines.push((es?'Padres vivos: ':'Parents alive: ')+qm2.yn.parents);
-  lines.push('');
-  lines.push(es?'🏥 SALUD':'🏥 HEALTH');
-  if(g('qm2-weight')) lines.push((es?'Peso: ':'Weight: ')+g('qm2-weight'));
-  if(g('qm2-height')) lines.push((es?'Altura: ':'Height: ')+g('qm2-height'));
-  if(g('qm2-clinic')) lines.push((es?'Clínica: ':'Clinic: ')+g('qm2-clinic')+' '+g('qm2-clinic-phone'));
-  if(g('qm2-doctor')) lines.push((es?'Médico: ':'Doctor: ')+g('qm2-doctor'));
-  if(g('qm2-last-checkup')) lines.push((es?'Último chequeo: ':'Last checkup: ')+g('qm2-last-checkup'));
-  if(g('qm2-rx')) lines.push((es?'Rx: ':'Rx: ')+g('qm2-rx'));
-  lines.push('');
-  lines.push(es?'💼 LABORAL':'💼 EMPLOYMENT');
-  if(g('qm2-employer')) lines.push((es?'Empleador: ':'Employer: ')+g('qm2-employer')+' | '+g('qm2-jobtitle'));
-  if(g('qm2-income')) lines.push((es?'Ingreso: $':'Income: $')+g('qm2-income'));
-  if(g('qm2-bank')) lines.push((es?'Banco: ':'Bank: ')+g('qm2-bank')+' | Cta: '+g('qm2-account')+' | Ruta: '+g('qm2-routing'));
-  if(bens.length){lines.push('');lines.push(es?'👨‍👩‍👧 BENEFICIARIOS':'👨‍👩‍👧 BENEFICIARIES');bens.forEach(function(b,i){lines.push((i+1)+'. '+b);});}
-  lines.push('');
-  lines.push('━━━━━━━━━━━━━━━━━━━━━━');
-  lines.push('Agente: Yunersy Salabarria | NJ #3003419400 | FL #G365745');
+  // ── 1. Google Sheets CRM (Image beacon)
+  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzJy3Lf7YT30iE6jy7YjTyXk9jp4p-GqjUONwILD_HssHkZVo1yH8ugTdskHgQaQ7PC6w/exec';
+  var sheetParams = [
+    'nombre='+encodeURIComponent(g('qm2-fn')+' '+g('qm2-ln')),
+    'telefono='+encodeURIComponent(g('qm2-phone')),
+    'email='+encodeURIComponent(g('qm2-email')),
+    'tipo_registro='+encodeURIComponent(tipo),
+    'dob='+encodeURIComponent(g('qm2-dob')),
+    'prima='+encodeURIComponent(g('qm2-premium')),
+    'poliza='+encodeURIComponent(poliza),
+    'ingresos='+encodeURIComponent(g('qm2-premium')),
+    'salud='+encodeURIComponent(d['qm2-salud']||''),
+    'tabaco='+encodeURIComponent(d['qm2-tabaco']||''),
+    'estado_res='+encodeURIComponent(g('qm2-state')),
+    'ciudad='+encodeURIComponent(g('qm2-city')),
+    'zip='+encodeURIComponent(g('qm2-zip')),
+    'pais='+encodeURIComponent(g('qm2-country')),
+    'ciudadano='+encodeURIComponent(g('qm2-citizen')),
+    'prescripciones='+encodeURIComponent(g('qm2-rx')),
+    'clinica='+encodeURIComponent(g('qm2-clinic')+' '+g('qm2-clinic-phone')),
+    'medico='+encodeURIComponent(g('qm2-doctor')),
+    'empleador='+encodeURIComponent(g('qm2-employer')),
+    'cuenta='+encodeURIComponent(g('qm2-account')),
+    'ruta='+encodeURIComponent(g('qm2-routing')),
+    'banco='+encodeURIComponent(g('qm2-bank')),
+    'titular='+encodeURIComponent(g('qm2-payee')),
+    'ben1='+encodeURIComponent(bens[0]||''),
+    'ben2='+encodeURIComponent(bens[1]||''),
+    'ben3='+encodeURIComponent(bens[2]||''),
+    'ben4='+encodeURIComponent(bens[3]||'')
+  ].join('&');
+  new Image().src = SHEET_URL+'?'+sheetParams;
 
-  var waUrl='https://wa.me/19086774196?text='+encodeURIComponent(lines.join('\n'));
-  // Small delay so beacon fires before WhatsApp opens
-  setTimeout(function(){ window.open(waUrl,'_blank'); }, 300);
+  // ── 2. FormSpree Email
+  var emailPayload = {
+    '_subject': (es?'🛡️ Nueva Solicitud - Seguro de Vida':'🛡️ New Lead - Life Insurance')+' | JCNay Vida Team',
+    'Tipo': tipo,
+    'Nombre': g('qm2-fn')+' '+g('qm2-ln'),
+    'Email': g('qm2-email'),
+    'Teléfono': g('qm2-phone'),
+    'Fecha de Nacimiento': g('qm2-dob'),
+    'Tipo de Póliza': poliza,
+    'Prima Mensual': '$'+g('qm2-premium')+'/mo',
+    'Dirección': [g('qm2-addr'),g('qm2-city'),g('qm2-state'),g('qm2-zip')].filter(Boolean).join(', '),
+    'País de Origen': g('qm2-country'),
+    'Ciudadano/Residente': g('qm2-citizen'),
+    'Tipo de ID': g('qm2-idtype')+' '+g('qm2-idnum'),
+    '--- SALUD ---': '---',
+    'Peso': g('qm2-weight'),
+    'Altura': g('qm2-height'),
+    'Clínica': g('qm2-clinic')+' '+g('qm2-clinic-phone'),
+    'Dir. Clínica': g('qm2-clinic-addr'),
+    'Médico': g('qm2-doctor'),
+    'Último Chequeo': g('qm2-last-checkup'),
+    'Prescripciones': g('qm2-rx'),
+    '--- LABORAL ---': '---',
+    'Empleador': g('qm2-employer')+' | '+g('qm2-jobtitle'),
+    'Ingreso Anual': '$'+g('qm2-income'),
+    'Banco': g('qm2-bank'),
+    'Cuenta': g('qm2-account'),
+    'Ruta': g('qm2-routing'),
+    'Titular de Cuenta': g('qm2-payee'),
+    '--- BENEFICIARIOS ---': '---',
+    'Beneficiario 1': bens[0]||'—',
+    'Beneficiario 2': bens[1]||'—',
+    'Beneficiario 3': bens[2]||'—',
+    'Beneficiario 4': bens[3]||'—',
+    '--- AGENTE ---': '---',
+    'Agente': 'Yunersy Salabarria | NJ #3003419400 | FL #G365745'
+  };
 
-  // Show success
-  document.getElementById('qm2-steps').innerHTML='<div style="text-align:center;padding:32px 0"><div style="font-size:48px;margin-bottom:16px">🎉</div><div style="font-family:Playfair Display,serif;font-size:20px;color:var(--navy);margin-bottom:10px">'+(es?'¡Solicitud enviada!':'Application sent!')+'</div><p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px">'+(es?'Yunersy recibió tu información y te contactará en 24 horas.':'Yunersy received your information and will contact you within 24 hours.')+'</p><a href="'+waUrl+'" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:#25D366;color:#fff;border-radius:50px;text-decoration:none;font-weight:700;font-size:14px">💬 '+(es?'Abrir WhatsApp':'Open WhatsApp')+'</a></div>';
-  document.getElementById('qm2-btns').innerHTML='<button onclick="qm2Close()" style="padding:12px 24px;background:#fff;border:1.5px solid var(--cream2);border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);font-family:DM Sans,sans-serif">'+(es?'← Volver al sitio':'← Back to website')+'</button>';
+  fetch('https://formspree.io/f/mqpzjgpp', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify(emailPayload)
+  }).catch(function(){});
+
+  // ── Show success (no WhatsApp)
+  document.getElementById('qm2-steps').innerHTML='<div style="text-align:center;padding:40px 0"><div style="font-size:52px;margin-bottom:16px">✅</div><div style="font-family:Playfair Display,serif;font-size:22px;color:var(--navy);margin-bottom:12px">'+(es?'¡Solicitud enviada!':'Application submitted!')+'</div><p style="font-size:14px;color:var(--muted);line-height:1.75;max-width:380px;margin:0 auto">'+(es?'Yunersy recibió tu información completa y te contactará en menos de 24 horas para tu consulta gratuita.':'Yunersy received your complete information and will contact you within 24 hours for your free consultation.')+'</p></div>';
+  document.getElementById('qm2-btns').innerHTML='<button onclick="qm2Close()" style="padding:12px 28px;background:linear-gradient(135deg,var(--gold),#e3cfa3);color:var(--navy);border:none;border-radius:10px;cursor:pointer;font-size:14px;font-weight:800;font-family:DM Sans,sans-serif">'+(es?'Cerrar':'Close')+'</button>';
   document.getElementById('qm2-alert').style.display='none';
 }
 
@@ -3391,7 +3393,7 @@ function submitJoinForm(){
   }
 
   // ── Send to Google Sheets CRM as Prospecto Agente
-  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzlciDVdoOsZpJfBgz7tHqchxo5sfJ1Jf-WlNk7O23X8LYq50-ur5jdBE6eaADbdIKskg/exec';
+  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzJy3Lf7YT30iE6jy7YjTyXk9jp4p-GqjUONwILD_HssHkZVo1yH8ugTdskHgQaQ7PC6w/exec';
   if(SHEET_URL.indexOf('script.google.com') > -1){
     var joinParams = 'nombre='+encodeURIComponent(name)+'&telefono='+encodeURIComponent(phone)+'&email='+encodeURIComponent(email)+'&tipo_registro=Prospecto%20Agente&ingresos='+encodeURIComponent(exp)+'&poliza='+encodeURIComponent(exp);
     new Image().src = SHEET_URL+'?'+joinParams;

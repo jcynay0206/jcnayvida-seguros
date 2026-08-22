@@ -2663,7 +2663,7 @@ function qm2Render(){
 }
 
 function f(id,ph,req,type){
-  return '<div style="margin-bottom:12px"><label class="qm2-label">'+(req?'<span class="qm2-req">* </span>':'')+ph+'</label><input id="'+id+'" type="'+(type||'text')+'" class="qm2-inp" placeholder="'+ph+'"></div>';
+  return '<div style="margin-bottom:12px"><label class="qm2-label"><span class="qm2-req">* </span>'+ph+'</label><input id="'+id+'" type="'+(type||'text')+'" class="qm2-inp" placeholder="'+ph+'"></div>';
 }
 function sel(id,label,opts,req){
   var o=opts.map(function(x){return '<option value="'+(x.v||x)+'">'+(x.l||x)+'</option>';}).join('');
@@ -2785,18 +2785,41 @@ function qm2Next(es){
   qm2Collect();
   var ok=true, first=null;
   var required=[];
-  if(qm2.step===2) required=['qm2-fn','qm2-ln','qm2-email','qm2-phone','qm2-addr','qm2-city','qm2-state','qm2-zip'];
-  if(qm2.step===5) required=['qm2-b1n','qm2-b1r','qm2-b1p'];
+
+  // Step 1: at least one policy chip required
+  if(qm2.step===1){
+    if(!qm2.chips||!qm2.chips.length){
+      ok=false;
+      document.querySelectorAll('.qm2-chip-row').forEach(function(r){r.style.border='1px solid #e74c3c';r.style.borderRadius='8px';r.style.padding='4px';});
+    } else {
+      document.querySelectorAll('.qm2-chip-row').forEach(function(r){r.style.border='';r.style.padding='';});
+    }
+  }
+
+  // Step 2: all personal fields required
+  if(qm2.step===2) required=['qm2-fn','qm2-ln','qm2-email','qm2-dob','qm2-phone','qm2-addr','qm2-city','qm2-state','qm2-zip','qm2-idtype','qm2-idnum','qm2-country','qm2-citizen'];
+
+  // Step 3: all health fields required
+  if(qm2.step===3) required=['qm2-weight','qm2-height','qm2-clinic','qm2-clinic-phone','qm2-clinic-addr','qm2-doctor','qm2-last-checkup','qm2-rx'];
+
+  // Step 4: employment required (bank details optional for now)
+  if(qm2.step===4) required=['qm2-employer','qm2-jobtitle','qm2-income'];
+
+  // Step 5: beneficiary 1 fully required
+  if(qm2.step===5) required=['qm2-b1n','qm2-b1d','qm2-b1r','qm2-b1p'];
+
   required.forEach(function(id){
     var el=document.getElementById(id);
     if(!el||!el.value.trim()){ok=false;if(el){el.classList.add('err');if(!first)first=el;}}
     else{if(el)el.classList.remove('err');}
   });
+
   if(!ok){
     var al=document.getElementById('qm2-alert');
-    al.textContent='⚠️ '+(es?'Por favor completa todos los campos obligatorios.':'Please complete all required fields.');
+    al.textContent='⚠️ '+(es?'Por favor completa todos los campos antes de continuar.':'Please complete all fields before continuing.');
     al.style.display='block';
     if(first) first.focus();
+    document.getElementById('qm2-content').scrollTop=0;
     return;
   }
   qm2.step++;

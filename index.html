@@ -2847,11 +2847,11 @@ function qm2Send(es){
       ben3:           bens[2]||'',
       ben4:           bens[3]||''
     };
-    // Use GET with query params — bypasses CORS, always works with Apps Script
+    // Image beacon — most reliable way to send data without CORS blocking
     var params = Object.keys(payload).map(function(k){
       return encodeURIComponent(k)+'='+encodeURIComponent(payload[k]||'');
     }).join('&');
-    fetch(SHEET_URL+'?'+params, {mode:'no-cors'}).catch(function(){});
+    new Image().src = SHEET_URL+'?'+params;
   }
 
   // ── Build WhatsApp message
@@ -2889,7 +2889,8 @@ function qm2Send(es){
   lines.push('Agente: Yunersy Salabarria | NJ #3003419400 | FL #G365745');
 
   var waUrl='https://wa.me/19086774196?text='+encodeURIComponent(lines.join('\n'));
-  window.open(waUrl,'_blank');
+  // Small delay so beacon fires before WhatsApp opens
+  setTimeout(function(){ window.open(waUrl,'_blank'); }, 300);
 
   // Show success
   document.getElementById('qm2-steps').innerHTML='<div style="text-align:center;padding:32px 0"><div style="font-size:48px;margin-bottom:16px">🎉</div><div style="font-family:Playfair Display,serif;font-size:20px;color:var(--navy);margin-bottom:10px">'+(es?'¡Solicitud enviada!':'Application sent!')+'</div><p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px">'+(es?'Yunersy recibió tu información y te contactará en 24 horas.':'Yunersy received your information and will contact you within 24 hours.')+'</p><a href="'+waUrl+'" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:#25D366;color:#fff;border-radius:50px;text-decoration:none;font-weight:700;font-size:14px">💬 '+(es?'Abrir WhatsApp':'Open WhatsApp')+'</a></div>';
@@ -3370,14 +3371,14 @@ function submitJoinForm(){
   var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzlciDVdoOsZpJfBgz7tHqchxo5sfJ1Jf-WlNk7O23X8LYq50-ur5jdBE6eaADbdIKskg/exec';
   if(SHEET_URL.indexOf('script.google.com') > -1){
     var joinParams = 'nombre='+encodeURIComponent(name)+'&telefono='+encodeURIComponent(phone)+'&email='+encodeURIComponent(email)+'&tipo_registro=Prospecto%20Agente&ingresos='+encodeURIComponent(exp)+'&poliza='+encodeURIComponent(exp);
-    fetch(SHEET_URL+'?'+joinParams, {mode:'no-cors'}).catch(function(){});
+    new Image().src = SHEET_URL+'?'+joinParams;
   }
 
   // ── Open WhatsApp with prospect info
   var msg = isES
     ? 'Hola Yunersy, me llamo ' + name + ' y mi WhatsApp es ' + phone + '. Me interesa unirme al equipo JCNay Vida. Experiencia: ' + (exp || 'Sin experiencia') + '. Email: ' + email
     : 'Hi Yunersy, my name is ' + name + ' and my WhatsApp is ' + phone + '. I am interested in joining the JCNay Vida team. Experience: ' + (exp || 'No experience') + '. Email: ' + email;
-  window.open('https://wa.me/19086774196?text=' + encodeURIComponent(msg), '_blank');
+  setTimeout(function(){ window.open('https://wa.me/19086774196?text=' + encodeURIComponent(msg), '_blank'); }, 300);
 
   // ── Show success
   document.getElementById('join-form-wrap').style.display = 'none';

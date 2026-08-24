@@ -448,6 +448,7 @@
   }
 </style>
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </head>
 <body>
@@ -2611,6 +2612,40 @@ document.head.appendChild(s);
 </style>
 
 <script>
+// ── EmailJS config — fill these after setting up EmailJS
+var EMAILJS_SERVICE_ID  = 'PASTE_SERVICE_ID';   // e.g. service_abc123
+var EMAILJS_TEMPLATE_ID = 'PASTE_TEMPLATE_ID';  // e.g. template_xyz789
+var EMAILJS_PUBLIC_KEY  = 'PASTE_PUBLIC_KEY';   // e.g. user_XXXX
+
+// ── OTP state
+var _otpCode = null;
+var _otpEmail = null;
+var _otpVerified = false;
+
+function generateOTP(){ return String(Math.floor(100000 + Math.random() * 900000)); }
+
+function sendOTP(email, name, es, callback){
+  _otpCode = generateOTP();
+  _otpEmail = email;
+  _otpVerified = false;
+  if(EMAILJS_SERVICE_ID === 'PASTE_SERVICE_ID'){
+    // EmailJS not configured yet — skip OTP for now
+    _otpVerified = true;
+    if(callback) callback(true);
+    return;
+  }
+  emailjs.init({publicKey: EMAILJS_PUBLIC_KEY});
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    to_email: email,
+    to_name: name,
+    otp_code: _otpCode,
+    message: es
+      ? 'Tu código de verificación para JCNay Vida Team es: ' + _otpCode + '. Válido por 10 minutos.'
+      : 'Your verification code for JCNay Vida Team is: ' + _otpCode + '. Valid for 10 minutes.'
+  }).then(function(){ if(callback) callback(true); })
+    .catch(function(){ if(callback) callback(false); });
+}
+
 (function(){
 var qm2={step:1,total:6,chips:[],yn:{},data:{}};
 var isES=function(){return document.documentElement.lang==='es';};
@@ -2814,6 +2849,27 @@ function qm2Next(es){
     else{if(el)el.classList.remove('err');}
   });
 
+  // Phone format validation on step 2
+  if(qm2.step===2 && ok){
+    var phoneEl=document.getElementById('qm2-phone');
+    if(phoneEl){
+      var digits=phoneEl.value.replace(/\D/g,'');
+      if(digits.length<10){
+        ok=false;
+        phoneEl.classList.add('err');
+        if(!first)first=phoneEl;
+        if(!first)first=phoneEl;
+      }
+    }
+    // Email format validation
+    var emailEl=document.getElementById('qm2-email');
+    if(emailEl && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)){
+      ok=false;
+      emailEl.classList.add('err');
+      if(!first)first=emailEl;
+    }
+  }
+
   if(!ok){
     var al=document.getElementById('qm2-alert');
     al.textContent='⚠️ '+(es?'Por favor completa todos los campos antes de continuar.':'Please complete all fields before continuing.');
@@ -2822,6 +2878,19 @@ function qm2Next(es){
     document.getElementById('qm2-content').scrollTop=0;
     return;
   }
+
+  // ── OTP verification on step 2
+  if(qm2.step===2 && !_otpVerified){
+    var email2=document.getElementById('qm2-email').value.trim();
+    var name2=document.getElementById('qm2-fn').value.trim();
+    showOTPModal(email2, name2, es, function(){
+      qm2.step++;
+      qm2Render();
+      document.getElementById('qm2-content').scrollTop=0;
+    });
+    return;
+  }
+
   qm2.step++;
   qm2Render();
   document.getElementById('qm2-content').scrollTop=0;
@@ -2850,7 +2919,7 @@ function qm2Send(es){
     'dob='+encodeURIComponent(g('qm2-dob')),
     'prima='+encodeURIComponent(g('qm2-premium')),
     'poliza='+encodeURIComponent(poliza),
-    'ingresos='+encodeURIComponent(g('qm2-premium')),
+    'ingresos='+encodeURIComponent(g('qm2-income')),
     'salud='+encodeURIComponent(d['qm2-salud']||''),
     'tabaco='+encodeURIComponent(d['qm2-tabaco']||''),
     'estado_res='+encodeURIComponent(g('qm2-state')),
@@ -3385,7 +3454,9 @@ function submitJoinForm(){
   var alert = document.getElementById('join-alert');
   var isES  = document.documentElement.lang === 'es';
 
-  if(!name || !phone || !email){
+  // Phone format validation
+  var phoneDigits = phone.replace(/\D/g,'');
+  if(!name || phoneDigits.length < 10 || !email){
     alert.textContent = isES ? '⚠️ Por favor completa nombre, teléfono y email.' : '⚠️ Please fill in name, phone, and email.';
     alert.style.display = 'block';
     setTimeout(function(){ alert.style.display='none'; }, 3000);
@@ -3394,21 +3465,109 @@ function submitJoinForm(){
 
   // ── Send to Google Sheets CRM as Prospecto Agente
   var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzJy3Lf7YT30iE6jy7YjTyXk9jp4p-GqjUONwILD_HssHkZVo1yH8ugTdskHgQaQ7PC6w/exec';
-  if(SHEET_URL.indexOf('script.google.com') > -1){
-    var joinParams = 'nombre='+encodeURIComponent(name)+'&telefono='+encodeURIComponent(phone)+'&email='+encodeURIComponent(email)+'&tipo_registro=Prospecto%20Agente&ingresos='+encodeURIComponent(exp)+'&poliza='+encodeURIComponent(exp);
-    new Image().src = SHEET_URL+'?'+joinParams;
-  }
+  var joinParams = 'nombre='+encodeURIComponent(name)+'&telefono='+encodeURIComponent(phone)+'&email='+encodeURIComponent(email)+'&tipo_registro=Prospecto%20Agente&ingresos='+encodeURIComponent(exp)+'&poliza='+encodeURIComponent(exp);
+  new Image().src = SHEET_URL+'?'+joinParams;
 
-  // ── Open WhatsApp with prospect info
-  var msg = isES
-    ? 'Hola Yunersy, me llamo ' + name + ' y mi WhatsApp es ' + phone + '. Me interesa unirme al equipo JCNay Vida. Experiencia: ' + (exp || 'Sin experiencia') + '. Email: ' + email
-    : 'Hi Yunersy, my name is ' + name + ' and my WhatsApp is ' + phone + '. I am interested in joining the JCNay Vida team. Experience: ' + (exp || 'No experience') + '. Email: ' + email;
-  setTimeout(function(){ window.open('https://wa.me/19086774196?text=' + encodeURIComponent(msg), '_blank'); }, 300);
+  // ── FormSpree email (no WhatsApp)
+  fetch('https://formspree.io/f/mqpzjgpp', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify({
+      '_subject': (isES?'👔 Nuevo Prospecto Agente':'👔 New Agent Prospect')+' | JCNay Vida Team',
+      'Tipo': 'Prospecto Agente',
+      'Nombre': name,
+      'Teléfono / WhatsApp': phone,
+      'Email': email,
+      'Experiencia en Ventas': exp || 'Sin especificar'
+    })
+  }).catch(function(){});
 
   // ── Show success
   document.getElementById('join-form-wrap').style.display = 'none';
   document.getElementById('join-success').style.display = 'block';
 }
+</script>
+
+
+<!-- OTP VERIFICATION MODAL -->
+<div id="otp-modal" style="display:none;position:fixed;inset:0;z-index:10001;background:rgba(10,26,42,0.9);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px">
+  <div style="background:var(--cream);border-radius:20px;max-width:400px;width:100%;padding:32px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,0.5)">
+    <div style="font-size:40px;margin-bottom:12px">📧</div>
+    <h3 style="font-family:Playfair Display,serif;font-size:20px;color:var(--navy);margin-bottom:8px" id="otp-title">Verify your email</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6" id="otp-sub">We sent a 6-digit code to <strong id="otp-email-display"></strong>. Enter it below.</p>
+    <div id="otp-alert" style="display:none;background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.3);border-radius:8px;padding:10px 14px;font-size:13px;color:#c0392b;font-weight:600;margin-bottom:14px"></div>
+    <input id="otp-input" type="number" maxlength="6" placeholder="_ _ _ _ _ _"
+      style="width:100%;text-align:center;font-size:28px;font-weight:700;letter-spacing:0.3em;padding:14px;border:2px solid var(--cream2);border-radius:12px;font-family:DM Sans,sans-serif;color:var(--navy);outline:none;box-sizing:border-box;margin-bottom:14px"
+      onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--cream2)'">
+    <button onclick="verifyOTP()" id="otp-verify-btn"
+      style="width:100%;padding:13px;background:linear-gradient(135deg,var(--gold),#e3cfa3);color:var(--navy);font-weight:800;font-size:15px;border:none;border-radius:10px;cursor:pointer;font-family:DM Sans,sans-serif;margin-bottom:12px"
+      id="otp-btn">Verify code</button>
+    <div><button onclick="resendOTP()" style="background:none;border:none;font-size:12px;color:var(--muted);cursor:pointer;text-decoration:underline;font-family:DM Sans,sans-serif" id="otp-resend">Resend code</button></div>
+    <div style="font-size:11px;color:rgba(107,114,128,0.6);margin-top:10px" id="otp-note">Code valid for 10 minutes</div>
+  </div>
+</div>
+
+<script>
+var _otpCallback = null;
+var _otpIsES = false;
+
+function showOTPModal(email, name, es, callback){
+  _otpCallback = callback;
+  _otpIsES = es;
+  document.getElementById('otp-modal').style.display='flex';
+  document.getElementById('otp-email-display').textContent=email;
+  document.getElementById('otp-title').textContent=es?'Verifica tu correo':'Verify your email';
+  document.getElementById('otp-sub').innerHTML=(es?'Enviamos un código de 6 dígitos a ':'We sent a 6-digit code to ')+'<strong>'+email+'</strong>. '+(es?'Ingrésalo aquí.':'Enter it below.');
+  document.getElementById('otp-verify-btn').textContent=es?'Verificar código':'Verify code';
+  document.getElementById('otp-resend').textContent=es?'Reenviar código':'Resend code';
+  document.getElementById('otp-note').textContent=es?'Código válido por 10 minutos':'Code valid for 10 minutes';
+  document.getElementById('otp-input').value='';
+  document.getElementById('otp-alert').style.display='none';
+  sendOTP(email, name, es, function(sent){
+    if(!sent){
+      // EmailJS not configured — skip verification
+      document.getElementById('otp-modal').style.display='none';
+      if(_otpCallback) _otpCallback();
+    }
+  });
+}
+
+function verifyOTP(){
+  var entered = document.getElementById('otp-input').value.toString().trim();
+  var alertEl = document.getElementById('otp-alert');
+  if(!entered || entered.length < 6){
+    alertEl.textContent=_otpIsES?'⚠️ Ingresa el código de 6 dígitos.':'⚠️ Enter the 6-digit code.';
+    alertEl.style.display='block';
+    return;
+  }
+  if(entered === _otpCode){
+    _otpVerified = true;
+    document.getElementById('otp-modal').style.display='none';
+    if(_otpCallback) _otpCallback();
+  } else {
+    alertEl.textContent=_otpIsES?'❌ Código incorrecto. Intenta de nuevo.':'❌ Incorrect code. Please try again.';
+    alertEl.style.display='block';
+    document.getElementById('otp-input').value='';
+    document.getElementById('otp-input').focus();
+  }
+}
+
+function resendOTP(){
+  var email2=document.getElementById('qm2-email').value.trim();
+  var name2=document.getElementById('qm2-fn').value.trim();
+  sendOTP(email2, name2, _otpIsES, function(sent){
+    var alertEl=document.getElementById('otp-alert');
+    alertEl.textContent=_otpIsES?'✅ Código reenviado.':'✅ Code resent.';
+    alertEl.style.cssText='display:block;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.3);border-radius:8px;padding:10px 14px;font-size:13px;color:#27ae60;font-weight:600;margin-bottom:14px';
+    setTimeout(function(){ alertEl.style.display='none'; alertEl.style.cssText=''; },3000);
+  });
+}
+
+// Allow Enter key to verify
+document.addEventListener('DOMContentLoaded', function(){
+  var otpInp = document.getElementById('otp-input');
+  if(otpInp) otpInp.addEventListener('keydown', function(e){ if(e.key==='Enter') verifyOTP(); });
+});
 </script>
 
 </body>

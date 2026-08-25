@@ -2700,6 +2700,29 @@ function qm2Render(){
 function f(id,ph,req,type){
   return '<div style="margin-bottom:12px"><label class="qm2-label"><span class="qm2-req">* </span>'+ph+'</label><input id="'+id+'" type="'+(type||'text')+'" class="qm2-inp" placeholder="'+ph+'"></div>';
 }
+// fn() = validated field with type enforcement
+function fn(id,ph,vtype){
+  var inputType='text', oninput='', pattern='', maxlen='', inputmode='';
+  if(vtype==='number'){
+    inputType='text'; inputmode='numeric';
+    oninput='this.value=this.value.replace(/[^0-9.]/g,"")';
+  } else if(vtype==='tel'){
+    inputType='tel'; inputmode='numeric';
+    oninput='this.value=this.value.replace(/[^0-9+\-\s()]/g,"")';
+    maxlen='max="15"';
+  } else if(vtype==='routing'){
+    inputType='text'; inputmode='numeric';
+    oninput='this.value=this.value.replace(/[^0-9]/g,"").slice(0,9)';
+    pattern='[0-9]{9}';
+  } else if(vtype==='email'){
+    inputType='email';
+  }
+  var attrs='id="'+id+'" type="'+inputType+'" class="qm2-inp" placeholder="'+ph+'"';
+  if(inputmode) attrs+=' inputmode="'+inputmode+'"';
+  if(oninput)   attrs+=' oninput=''+oninput+''';
+  if(pattern)   attrs+=' pattern="'+pattern+'"';
+  return '<div style="margin-bottom:12px"><label class="qm2-label"><span class="qm2-req">* </span>'+ph+'</label><input '+attrs+'></div>';
+}
 function sel(id,label,opts,req){
   var o=opts.map(function(x){return '<option value="'+(x.v||x)+'">'+(x.l||x)+'</option>';}).join('');
   return '<div style="margin-bottom:12px"><label class="qm2-label">'+(req?'<span class="qm2-req">* </span>':'')+label+'</label><select id="'+id+'" class="qm2-sel"><option value="">—</option>'+o+'</select></div>';
@@ -2741,9 +2764,9 @@ function qm2BuildStep(s,es){
     h+='<div class="qm2-yn"><button data-yn="parents-yes" onclick="qm2YN(this,&quot;parents&quot;,&quot;yes&quot;)">'+(es?'Sí':'Yes')+'</button><button data-yn="parents-no" onclick="qm2YN(this,&quot;parents&quot;,&quot;no&quot;)">No</button></div>';
   }
   else if(s===3){
-    h+='<div class="qm2-g2">'+f('qm2-weight',es?'Peso (lbs/kg)':'Weight (lbs/kg)')+f('qm2-height',es?'Altura':'Height')+'</div>';
+    h+='<div class="qm2-g2">'+fn('qm2-weight',es?'Peso (lbs/kg)':'Weight (lbs/kg)','number')+fn('qm2-height',es?'Altura':'Height (ft/in)','text')+'</div>';
     h+=sec(es?'MÉDICO DE CABECERA':'PRIMARY PHYSICIAN');
-    h+='<div class="qm2-g2">'+f('qm2-clinic',es?'Nombre de la Clínica':'Clinic Name')+f('qm2-clinic-phone',es?'Tel. de la Clínica':'Clinic Phone','','tel')+'</div>';
+    h+='<div class="qm2-g2">'+f('qm2-clinic',es?'Nombre de la Clínica':'Clinic Name')+fn('qm2-clinic-phone',es?'Tel. de la Clínica':'Clinic Phone','tel')+'</div>';
     h+=f('qm2-clinic-addr',es?'Dirección de la Clínica':'Clinic Address');
     h+='<div class="qm2-g2">'+f('qm2-doctor',es?'Nombre del Médico':'Doctor Name')+f('qm2-last-checkup',es?'Último chequeo':'Last checkup','','date')+'</div>';
     h+=ta('qm2-rx',es?'Prescripciones médicas (lista completa, dosis, frecuencia)':'Medical prescriptions (full list, doses, frequency)',es?'Medicamentos recetados...':'Prescribed medications...');
@@ -2751,9 +2774,9 @@ function qm2BuildStep(s,es){
   else if(s===4){
     h+=sec(es?'DATOS LABORALES':'EMPLOYMENT');
     h+='<div class="qm2-g2">'+f('qm2-employer',es?'Empleador':'Employer')+f('qm2-jobtitle',es?'Cargo/Puesto':'Job Title')+'</div>';
-    h+=f('qm2-income',es?'Ingreso Anual Estimado':'Estimated Annual Income','','number');
+    h+=fn('qm2-income',es?'Ingreso Anual Estimado ($)':'Estimated Annual Income ($)','number');
     h+=sec(es?'INFORMACIÓN DE PAGO':'PAYMENT INFO');
-    h+='<div class="qm2-g2">'+f('qm2-account',es?'Número de Cuenta':'Account Number')+f('qm2-routing',es?'Número de Ruta':'Routing Number')+'</div>';
+    h+='<div class="qm2-g2">'+fn('qm2-account',es?'Número de Cuenta (solo dígitos)':'Account Number (digits only)','number')+fn('qm2-routing',es?'Número de Ruta (9 dígitos)':'Routing Number (9 digits)','routing')+'</div>';
     h+='<div class="qm2-g2">'+f('qm2-bank',es?'Banco':'Bank Name')+f('qm2-payee',es?'Nombre del Titular':'Account Holder')+'</div>';
   }
   else if(s===5){
@@ -2848,6 +2871,51 @@ function qm2Next(es){
     if(!el||!el.value.trim()){ok=false;if(el){el.classList.add('err');if(!first)first=el;}}
     else{if(el)el.classList.remove('err');}
   });
+
+  // Enhanced field validation
+  if(qm2.step===2 && ok){
+    // Phone: min 10 digits
+    var phoneEl=document.getElementById('qm2-phone');
+    if(phoneEl && phoneEl.value.replace(/\D/g,'').length<10){
+      ok=false; phoneEl.classList.add('err'); if(!first)first=phoneEl;
+    }
+    // Email format
+    var emailEl=document.getElementById('qm2-email');
+    if(emailEl && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)){
+      ok=false; emailEl.classList.add('err'); if(!first)first=emailEl;
+    }
+    // Zip: 5 digits
+    var zipEl=document.getElementById('qm2-zip');
+    if(zipEl && !/^\d{4,5}$/.test(zipEl.value.trim())){
+      ok=false; zipEl.classList.add('err'); if(!first)first=zipEl;
+    }
+  }
+
+  if(qm2.step===3 && ok){
+    // Clinic phone: min 10 digits
+    var cpEl=document.getElementById('qm2-clinic-phone');
+    if(cpEl && cpEl.value.replace(/\D/g,'').length<10){
+      ok=false; cpEl.classList.add('err'); if(!first)first=cpEl;
+    }
+  }
+
+  if(qm2.step===4 && ok){
+    // Income: must be a positive number
+    var incEl=document.getElementById('qm2-income');
+    if(incEl && (isNaN(incEl.value)||Number(incEl.value)<=0)){
+      ok=false; incEl.classList.add('err'); if(!first)first=incEl;
+    }
+    // Routing: exactly 9 digits
+    var rtEl=document.getElementById('qm2-routing');
+    if(rtEl && rtEl.value && !/^\d{9}$/.test(rtEl.value)){
+      ok=false; rtEl.classList.add('err'); if(!first)first=rtEl;
+    }
+    // Account: digits only
+    var acEl=document.getElementById('qm2-account');
+    if(acEl && acEl.value && !/^\d+$/.test(acEl.value)){
+      ok=false; acEl.classList.add('err'); if(!first)first=acEl;
+    }
+  }
 
   // Phone format validation on step 2
   if(qm2.step===2 && ok){

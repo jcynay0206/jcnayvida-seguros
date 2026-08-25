@@ -2702,25 +2702,18 @@ function f(id,ph,req,type){
 }
 // fn() = validated field with type enforcement
 function fn(id,ph,vtype){
-  var inputType='text', oninput='', pattern='', maxlen='', inputmode='';
+  var inputType='text', inputmode='', pattern='', dataoi='';
   if(vtype==='number'){
-    inputType='text'; inputmode='numeric';
-    oninput='this.value=this.value.replace(/[^0-9.]/g,"")';
+    inputType='number'; inputmode='numeric'; dataoi=' data-numonly="1"';
   } else if(vtype==='tel'){
-    inputType='tel'; inputmode='numeric';
-    oninput='this.value=this.value.replace(/[^0-9+\-\s()]/g,"")';
-    maxlen='max="15"';
+    inputType='tel'; inputmode='numeric'; dataoi=' data-telonly="1"';
   } else if(vtype==='routing'){
-    inputType='text'; inputmode='numeric';
-    oninput='this.value=this.value.replace(/[^0-9]/g,"").slice(0,9)';
-    pattern='[0-9]{9}';
-  } else if(vtype==='email'){
-    inputType='email';
+    inputType='text'; inputmode='numeric'; pattern=' pattern="[0-9]{9}"'; dataoi=' data-routing="1"';
   }
   var attrs='id="'+id+'" type="'+inputType+'" class="qm2-inp" placeholder="'+ph+'"';
   if(inputmode) attrs+=' inputmode="'+inputmode+'"';
-  if(oninput)   attrs+=' oninput=''+oninput+''';
-  if(pattern)   attrs+=' pattern="'+pattern+'"';
+  if(pattern)   attrs+=pattern;
+  if(dataoi)    attrs+=dataoi;
   return '<div style="margin-bottom:12px"><label class="qm2-label"><span class="qm2-req">* </span>'+ph+'</label><input '+attrs+'></div>';
 }
 function sel(id,label,opts,req){
@@ -3075,6 +3068,20 @@ window.qm2Close=function(){
 };
 
 document.getElementById('qual-modal').addEventListener('click',function(e){if(e.target===this)qm2Close();});
+
+// Delegated numeric field enforcement
+document.getElementById('qual-modal').addEventListener('input',function(e){
+  var el=e.target;
+  if(!el.dataset.oi) return;
+  var id=el.dataset.oi;
+  if(id==='qm2-income'||id==='qm2-account'){
+    el.value=el.value.replace(/[^0-9.]/g,'');
+  } else if(id==='qm2-routing'){
+    el.value=el.value.replace(/[^0-9]/g,'').slice(0,9);
+  } else if(id==='qm2-clinic-phone'||id==='qm2-weight'){
+    el.value=el.value.replace(/[^0-9+\-\s().]/g,'');
+  }
+});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')qm2Close();});
 
 })();

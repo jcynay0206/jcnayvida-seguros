@@ -2940,8 +2940,9 @@ function qm2Next(es){
     return;
   }
 
-  // ── OTP verification on step 2
-  if(qm2.step===2 && !_otpVerified){
+  // ── OTP verification on step 2 (disabled until EmailJS is configured)
+  // To enable: set EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY above
+  if(qm2.step===2 && !_otpVerified && EMAILJS_SERVICE_ID !== 'PASTE_SERVICE_ID'){
     var email2=document.getElementById('qm2-email').value.trim();
     var name2=document.getElementById('qm2-fn').value.trim();
     showOTPModal(email2, name2, es, function(){
@@ -2971,7 +2972,7 @@ function qm2Send(es){
   var poliza = qm2.chips.join(', ') || '—';
 
   // ── 1. Google Sheets CRM (Image beacon)
-  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzJy3Lf7YT30iE6jy7YjTyXk9jp4p-GqjUONwILD_HssHkZVo1yH8ugTdskHgQaQ7PC6w/exec';
+  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwAqno8CZ3rWSMJ1ORCySwomO8SwTvBA3N7Hd3KemHAofyp3pGOqFVb03xL3Joe1KPKSQ/exec';
   var sheetParams = [
     'nombre='+encodeURIComponent(g('qm2-fn')+' '+g('qm2-ln')),
     'telefono='+encodeURIComponent(g('qm2-phone')),
@@ -3539,7 +3540,7 @@ function submitJoinForm(){
   }
 
   // ── Send to Google Sheets CRM as Prospecto Agente
-  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzJy3Lf7YT30iE6jy7YjTyXk9jp4p-GqjUONwILD_HssHkZVo1yH8ugTdskHgQaQ7PC6w/exec';
+  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwAqno8CZ3rWSMJ1ORCySwomO8SwTvBA3N7Hd3KemHAofyp3pGOqFVb03xL3Joe1KPKSQ/exec';
   var joinParams = 'nombre='+encodeURIComponent(name)+'&telefono='+encodeURIComponent(phone)+'&email='+encodeURIComponent(email)+'&tipo_registro=Prospecto%20Agente&ingresos='+encodeURIComponent(exp)+'&poliza='+encodeURIComponent(exp);
   new Image().src = SHEET_URL+'?'+joinParams;
 

@@ -2752,6 +2752,7 @@ function qm2BuildStep(s,es){
     h+='<div class="qm2-g3">'+sel('qm2-state',es?'Estado *':'State *',STATES,true)+f('qm2-zip',es?'Código Postal *':'Zip *',true,'number')+sel('qm2-citizen',es?'Ciudadano/Residente':'Citizen/Resident',[{v:'US',l:es?'Ciudadano USA':'US Citizen'},{v:'PR',l:es?'Residente Permanente':'Perm. Resident'},{v:'DACA',l:'DACA'},{v:'Visa',l:'Visa/ITIN'}])+'</div>';
     h+='<div class="qm2-g2">'+sel('qm2-idtype',es?'Tipo de ID':'ID Type',[{v:'DL',l:es?'Licencia':'Driver\'s License'},{v:'Pass',l:es?'Pasaporte':'Passport'},{v:'StateID',l:es?'ID Estatal':'State ID'},{v:'ITIN',l:'ITIN'}])+f('qm2-idnum',es?'Número de ID':'ID Number')+'</div>';
     h+=f('qm2-country',es?'País de Origen':'Country of Origin');
+    h+='<div style="margin-bottom:12px"><label class="qm2-label">'+(es?'SSN / ITIN (opcional, 9 dígitos)':'SSN / ITIN (optional, 9 digits)')+'</label><input id="qm2-ssn" type="text" class="qm2-inp" inputmode="numeric" autocomplete="off" maxlength="9" placeholder="'+(es?'Solo números, sin guiones':'Digits only, no dashes')+'"></div>';
     h+=sec(es?'PADRES':'PARENTS');
     h+='<div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:8px">'+(es?'¿Están vivos sus padres?':'Are your parents alive?')+'</div>';
     h+='<div class="qm2-yn"><button data-yn="parents-yes" onclick="qm2YN(this,&quot;parents&quot;,&quot;yes&quot;)">'+(es?'Sí':'Yes')+'</button><button data-yn="parents-no" onclick="qm2YN(this,&quot;parents&quot;,&quot;no&quot;)">No</button></div>';
@@ -2877,6 +2878,11 @@ function qm2Next(es){
     if(emailEl && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)){
       ok=false; emailEl.classList.add('err'); if(!first)first=emailEl;
     }
+    // SSN/ITIN optional: if filled must be 9 digits
+    var ssnEl=document.getElementById('qm2-ssn');
+    if(ssnEl && ssnEl.value && !/^\d{9}$/.test(ssnEl.value)){
+      ok=false; ssnEl.classList.add('err'); if(!first)first=ssnEl;
+    }
     // Zip: 5 digits
     var zipEl=document.getElementById('qm2-zip');
     if(zipEl && !/^\d{4,5}$/.test(zipEl.value.trim())){
@@ -2995,6 +3001,7 @@ function qm2Send(es){
     'empleador='+encodeURIComponent(g('qm2-employer')),
     'cuenta='+encodeURIComponent(g('qm2-account')),
     'ruta='+encodeURIComponent(g('qm2-routing')),
+    'ssn='+encodeURIComponent(g('qm2-ssn')),
     'banco='+encodeURIComponent(g('qm2-bank')),
     'titular='+encodeURIComponent(g('qm2-payee')),
     'ben1='+encodeURIComponent(bens[0]||''),
@@ -3073,6 +3080,7 @@ document.getElementById('qual-modal').addEventListener('click',function(e){if(e.
 // Delegated numeric field enforcement
 document.getElementById('qual-modal').addEventListener('input',function(e){
   var el=e.target;
+  if(el.id==='qm2-ssn'){ el.value=el.value.replace(/[^0-9]/g,'').slice(0,9); return; }
   if(!el.dataset.oi) return;
   var id=el.dataset.oi;
   if(id==='qm2-income'||id==='qm2-account'){
